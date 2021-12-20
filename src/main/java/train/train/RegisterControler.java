@@ -57,7 +57,13 @@ public class RegisterControler implements Initializable{
     }
 
     public void RegistrationButtonOnAction(ActionEvent event){
-        registerUser();
+        if (firstNameTextField.getText().isBlank() || emailTextField.getText().isBlank()|| setPasswordField.getText().isBlank()|| confirmPasswordField.getText().isBlank()) {
+            RegistrationMessageLabel.setText("Please enter all fields");
+        }else if(!setPasswordField.equals(confirmPasswordField)){
+            passwordMessageLabel.setText("Confirm Password does not match");
+        }else {
+            registerUser();
+        }
     }
 
 
