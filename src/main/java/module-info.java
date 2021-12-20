@@ -3,7 +3,7 @@ module train.train {
     requires javafx.fxml;
     requires javafx.graphics;
     requires java.sql;
-
+    requires mysql.connector.java;
 
 
     opens train.train to javafx.fxml;

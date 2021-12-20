@@ -3,6 +3,8 @@ package train.train;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -11,6 +13,9 @@ import javafx.scene.control.Label;
 
 import java.io.File;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ResourceBundle;
 
 public class LoginControler implements Initializable {
@@ -23,6 +28,10 @@ public class LoginControler implements Initializable {
     private ImageView trainImageView;
     @FXML
     private ImageView lockImageView;
+    @FXML
+    private TextField emailTextField;
+    @FXML
+    private PasswordField passwordField;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
@@ -42,6 +51,39 @@ public class LoginControler implements Initializable {
     }
 
     public void LoginButtonOnAction(ActionEvent event){
-        loginMessageLabel.setText("You try to login");
+
+        if(emailTextField.getText().isBlank() == false && passwordField.getText().isBlank() == false ){
+            validateLogin();
+        }else{
+            loginMessageLabel.setText("Please enter username and password !");
+        }
+
+
+    }
+
+    public void validateLogin(){
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectionDB = connectNow.getConnection();
+
+        String verifyLogin = "SELECT * FROM user_account WHERE email =  '" + emailTextField.getText() + "' AND password = '" + passwordField.getText() + "'";
+
+        try {
+
+            Statement statement = connectionDB.createStatement();
+            ResultSet queryResult = statement.executeQuery(verifyLogin);
+
+            while(queryResult.next()){
+                if (queryResult.next()) {
+                    loginMessageLabel.setText("Welcome!");
+                }else {
+                    loginMessageLabel.setText("Invalid login. Please try again!");
+
+                }
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+            e.getCause();
+        }
     }
 }
