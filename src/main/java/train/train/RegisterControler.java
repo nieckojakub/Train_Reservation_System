@@ -57,10 +57,12 @@ public class RegisterControler implements Initializable{
     }
 
     public void RegistrationButtonOnAction(ActionEvent event){
-        if (firstNameTextField.getText().isBlank() || emailTextField.getText().isBlank()|| setPasswordField.getText().isBlank()|| confirmPasswordField.getText().isBlank()) {
+        if (firstNameTextField.getText().isBlank() == true && emailTextField.getText().isBlank() == true &&  setPasswordField.getText().isBlank() == true  && confirmPasswordField.getText().isBlank() == true)  {
             RegistrationMessageLabel.setText("Please enter all fields");
-        }else if(!setPasswordField.equals(confirmPasswordField)){
+        }
+        else if (!setPasswordField.getText().equals(confirmPasswordField.getText())){
             passwordMessageLabel.setText("Confirm Password does not match");
+
         }else {
             registerUser();
         }
@@ -74,19 +76,13 @@ public class RegisterControler implements Initializable{
         String password = setPasswordField.getText();
         String confirmPassword = confirmPasswordField.getText();
 
-        if (firstname.isEmpty() || email.isEmpty() || lastname.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
-            RegistrationMessageLabel.setText("Please enter all fields");
-        }
-
-        if (!password.equals(confirmPassword)) {
-            passwordMessageLabel.setText("Confirm Password does not match");
-        }
-
         user = addUserToDatabase(firstname, email, lastname, password);
         if (user != null) {
-            Stage stage = new Stage();
-            stage.close();
-            Platform.exit();
+            //tage stage = new Stage();
+            //            stage.close();
+            //            Platform.exit();
+            // reszta kodu czyli powrot do logowania
+            
         }
         else {
             RegistrationMessageLabel.setText("Failed to register new user");
@@ -129,6 +125,7 @@ public class RegisterControler implements Initializable{
 
             stmt.close();
             conn.close();
+            RegistrationMessageLabel.setText("Registration compleated!");
         }catch(Exception e){
             e.printStackTrace();
         }
