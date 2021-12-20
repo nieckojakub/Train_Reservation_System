@@ -1,7 +1,9 @@
 package train.train;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -11,15 +13,16 @@ import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
 
+
 import java.io.File;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ResourceBundle;
 
 public class LoginControler implements Initializable {
 
+    @FXML
+    private Button registerNowButton;
     @FXML
     private Button cancelButton;
     @FXML
@@ -60,8 +63,6 @@ public class LoginControler implements Initializable {
         File MalopolskaFile = new File("image/Logo-Małopolska-V-RGB.png");
         Image MalopolskaImage = new Image(MalopolskaFile.toURI().toString());
         malopolskaImageView.setImage(MalopolskaImage);
-
-
     }
 
     public void cancelButtonOnAction(ActionEvent event){
@@ -69,40 +70,89 @@ public class LoginControler implements Initializable {
         stage.close();
     }
 
+    private void LoginUser(){
+        String email = emailTextField.getText();
+        String password = passwordField.getText();
+
+        user = getAuthenticatedUser(email, password);
+
+        if (user != null) {
+        }
+        else {
+            loginMessageLabel.setText("Email or Password Invalid");
+        }
+    }
+
+
     public void LoginButtonOnAction(ActionEvent event){
 
         if(emailTextField.getText().isBlank() == false && passwordField.getText().isBlank() == false ){
-            validateLogin();
+            LoginUser();
         }else{
             loginMessageLabel.setText("Please enter username and password !");
         }
-
-
     }
 
-    public void validateLogin(){
-        DatabaseConnection connectNow = new DatabaseConnection();
-        Connection connectionDB = connectNow.getConnection();
+    public void RegisterButtonOnAction(ActionEvent event){
+        CreateAccountForm();
+    }
 
-        String verifyLogin = "SELECT * FROM user_account WHERE email =  '" + emailTextField.getText() + "' AND password = '" + passwordField.getText() + "'";
 
-        try {
+    public User user;
+    private User getAuthenticatedUser(String email, String password) {
+        User user = null;
 
-            Statement statement = connectionDB.createStatement();
-            ResultSet queryResult = statement.executeQuery(verifyLogin);
+        final String databaseName = "traiinsystem";
+        final String databaseUser = "root";
+        final String databasePassword = "Zakopane35%";
+        final String url = "jdbc:mysql://localhost:3306/" + databaseName;
 
-            while(queryResult.next()){
-                if (queryResult.next()) {
-                    loginMessageLabel.setText("Welcome!");
-                }else {
-                    loginMessageLabel.setText("Invalid login. Please try again!");
+        try{
+            Connection conn = DriverManager.getConnection(url, databaseUser, databasePassword);
+            // Connected to database successfully...
 
-                }
+            Statement stmt = conn.createStatement();
+            String sql = "SELECT * FROM user_account WHERE email=? AND password=?";
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setString(1, email);
+            preparedStatement.setString(2, password);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                user = new User();
+                user.firstname = resultSet.getString("firstname");
+                user.email = resultSet.getString("email");
+                user.lastname = resultSet.getString("lastname");
+                user.password = resultSet.getString("password");
             }
 
-        }catch (Exception e){
+            stmt.close();
+            conn.close();
+            loginMessageLabel.setText("Correct credentials");
+
+        }catch(Exception e){
+            e.printStackTrace();
+            e.getCause();
+        }
+
+        return user;
+    }
+
+    public void CreateAccountForm(){
+
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Register.fxml"));
+            Stage RegisterStage = new Stage();
+            Scene scene = new Scene(fxmlLoader.load(), 500, 500);
+            RegisterStage.setTitle("Register Page");
+            RegisterStage.setScene(scene);
+            RegisterStage.show();
+
+        }catch(Exception e){
             e.printStackTrace();
             e.getCause();
         }
     }
+
 }

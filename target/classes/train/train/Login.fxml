@@ -13,9 +13,9 @@
 
 <BorderPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #43BDC8;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="train.train.LoginControler">
     <left>
-        <AnchorPane prefHeight="400.0" prefWidth="277.0" BorderPane.alignment="CENTER">
+        <AnchorPane prefHeight="400.0" prefWidth="277.0" style="-fx-background-color: #545871;" BorderPane.alignment="CENTER">
             <children>
-                <Text fill="#646464" layoutX="10.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The real yourney starts here ..." textAlignment="CENTER" wrappingWidth="258.0">
+                <Text fill="#ecd0cd" layoutX="10.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The real yourney starts here ..." textAlignment="CENTER" wrappingWidth="258.0">
                     <font>
                         <Font name="Ink Free" size="19.0" />
                     </font>
@@ -44,33 +44,33 @@
         </AnchorPane>
     </left>
    <center>
-        <AnchorPane prefHeight="400.0" prefWidth="339.0" style="-fx-background-color: #4CA3AA#646464;" BorderPane.alignment="CENTER">
+        <AnchorPane prefHeight="400.0" prefWidth="339.0" style="-fx-background-color: #83889C;" BorderPane.alignment="CENTER">
             <children>
-                <Label layoutX="78.0" layoutY="133.0" prefHeight="18.0" prefWidth="166.0" text="Login" textFill="#646464">
+                <Label layoutX="78.0" layoutY="133.0" prefHeight="18.0" prefWidth="166.0" text="Login" textFill="#ecd0cd">
                     <font>
                         <Font name="Rubik-Bold" size="11.0" />
                     </font>
                 </Label>
-                <Label layoutX="78.0" layoutY="191.0" prefHeight="18.0" prefWidth="114.0" text="Password" textFill="#646464">
+                <Label layoutX="78.0" layoutY="191.0" prefHeight="18.0" prefWidth="114.0" text="Password" textFill="#ecd0cd">
                     <font>
                         <Font name="Rubik-Bold" size="11.0" />
                     </font>
                 </Label>
                 <TextField fx:id="emailTextField" layoutX="74.0" layoutY="152.0" prefHeight="26.0" prefWidth="190.0" promptText="e-mail" />
                 <PasswordField fx:id="passwordField" layoutX="74.0" layoutY="207.0" prefHeight="26.0" prefWidth="190.0" promptText="Password" />
-                <Button fx:id="loginButton" layoutX="125.0" layoutY="252.0" mnemonicParsing="false" onAction="#LoginButtonOnAction" prefHeight="32.0" prefWidth="89.0" style="-fx-background-color: #646464;" text="Log In">
+                <Button fx:id="loginButton" layoutX="125.0" layoutY="252.0" mnemonicParsing="false" onAction="#LoginButtonOnAction" prefHeight="32.0" prefWidth="89.0" style="-fx-background-color: #ecd0cd;" text="Log In" textFill="#545871">
                     <font>
                         <Font name="Rubik Bold Italic" size="12.0" />
                     </font>
                 </Button>
-                <Text layoutX="93.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You do not have an account?" />
-                <Button fx:id="registerNowButton" layoutX="120.0" layoutY="339.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="99.0" style="-fx-background-color: #646464;" text="Register Now">
+                <Text fill="#ecd0cd" layoutX="93.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You do not have an account?" />
+                <Button fx:id="registerNowButton" layoutX="120.0" layoutY="339.0" mnemonicParsing="false" onAction="#RegisterButtonOnAction" prefHeight="25.0" prefWidth="99.0" style="-fx-background-color: #ecd0cd;" text="Register Now" textFill="#545871">
                     <font>
                         <Font name="Rubik Bold Italic" size="12.0" />
                     </font>
                 </Button>
-                <Label fx:id="loginMessageLabel" layoutX="119.0" layoutY="110.0" textFill="#ec0909" />
-                <Button fx:id="cancelButton" layoutX="258.0" layoutY="16.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" prefHeight="24.0" prefWidth="44.0" style="-fx-background-color: #646464;" text="Exit" textAlignment="CENTER">
+                <Label fx:id="loginMessageLabel" layoutX="74.0" layoutY="110.0" textFill="#ec0909" />
+                <Button fx:id="cancelButton" layoutX="258.0" layoutY="16.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" prefHeight="24.0" prefWidth="44.0" style="-fx-background-color: #ecd0cd;" text="Exit" textAlignment="CENTER" textFill="#545871">
                     <font>
                         <Font name="Rubik Bold Italic" size="12.0" />
                     </font>
@@ -79,7 +79,7 @@
                <image>
                   <Image url="@../../../../../image/lock.png" />
                </image></ImageView>
-            <Text fill="#646464" layoutX="144.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Log In" wrappingWidth="66.44604873657227">
+            <Text fill="#ecd0cd" layoutX="144.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Log In" wrappingWidth="66.44604873657227">
                <font>
                   <Font name="Rubik-Bold" size="19.0" />
                </font>
