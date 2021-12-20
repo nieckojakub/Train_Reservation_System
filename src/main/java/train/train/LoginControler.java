@@ -29,19 +29,38 @@ public class LoginControler implements Initializable {
     @FXML
     private ImageView lockImageView;
     @FXML
+    private ImageView fbImageView;
+    @FXML
+    private ImageView instaImgView;
+    @FXML
+    private ImageView malopolskaImageView;
+    @FXML
     private TextField emailTextField;
     @FXML
     private PasswordField passwordField;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
-        File brandingFile = new File("image/train.png");
+        File brandingFile = new File("image/train_tvg.png");
         Image trainImage = new Image(brandingFile.toURI().toString());
         trainImageView.setImage(trainImage);
 
         File lockFile = new File("image/lock.png");
         Image lockImage = new Image(lockFile.toURI().toString());
         lockImageView.setImage(lockImage);
+
+        File fbFile = new File("image/fbicon.png");
+        Image fbImage = new Image(fbFile.toURI().toString());
+        fbImageView.setImage(fbImage);
+
+        File instaFile = new File("image/insta.png");
+        Image instaImage = new Image(instaFile.toURI().toString());
+        instaImgView.setImage(instaImage);
+
+        File MalopolskaFile = new File("image/Logo-Małopolska-V-RGB.png");
+        Image MalopolskaImage = new Image(MalopolskaFile.toURI().toString());
+        malopolskaImageView.setImage(MalopolskaImage);
+
 
     }
 
