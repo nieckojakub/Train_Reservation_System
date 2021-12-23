@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Train_Reservation_System_ALPHA" />
+        <module name="Train_Reservation_System" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Train_Reservation_System_ALPHA" target="17" />
+      <module name="Train_Reservation_System" target="17" />
     </bytecodeTargetLevel>
   </component>
 </project>

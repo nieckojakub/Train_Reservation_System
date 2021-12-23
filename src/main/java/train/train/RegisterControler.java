@@ -3,19 +3,20 @@ package train.train;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Label;
-
 
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
@@ -27,6 +28,8 @@ public class RegisterControler implements Initializable{
     private ImageView registerImageView;
     @FXML
     private Button CloseButton;
+    @FXML
+    private AnchorPane scenePane;
     @FXML
     private Label RegistrationMessageLabel;
     @FXML
@@ -41,6 +44,10 @@ public class RegisterControler implements Initializable{
     private TextField LastNameTextField;
     @FXML
     private TextField emailTextField;
+    @FXML
+    private Label emailMessageLabel;
+    @FXML
+    private Label passwordCorrectLabel;
 
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -50,24 +57,102 @@ public class RegisterControler implements Initializable{
 
     }
 
-    public void CloseButtonOnAction (ActionEvent event){
-        Stage stage = (Stage) CloseButton.getScene().getWindow();
-        stage.close();
-        Platform.exit();
-    }
+    boolean goodPasswordConfirmation = false;
+    boolean goodPassword = false;               /////////////////// TE TRZY ZMIENNE POTRZEBNE SA DO SPRAWDZANIA DANYCH W FORMULARZU REJESTRACJI
+    boolean goodEmail = false;
+
+    boolean canReturn = false; //////// ta zmienna wskazuje na to, czy po zarejestrowaniu mozemy po prostu opuscic okno rezerwacji bez potwierdzenia
 
     public void RegistrationButtonOnAction(ActionEvent event){
-        if (firstNameTextField.getText().isBlank() == true && emailTextField.getText().isBlank() == true &&  setPasswordField.getText().isBlank() == true  && confirmPasswordField.getText().isBlank() == true)  {
-            RegistrationMessageLabel.setText("Please enter all fields");
-        }
-        else if (!setPasswordField.getText().equals(confirmPasswordField.getText())){
-            passwordMessageLabel.setText("Confirm Password does not match");
 
-        }else {
-            registerUser();
+        if (firstNameTextField.getText().isBlank() || emailTextField.getText().isBlank() || setPasswordField.getText().isBlank() //////SPRAWDZANIE, CZY POLA SA PUSTE
+                || confirmPasswordField.getText().isBlank())  {
+            RegistrationMessageLabel.setText("Please enter all fields");
+            emailMessageLabel.setText("");
+            passwordMessageLabel.setText("");
+            passwordCorrectLabel.setText("");
+        }
+        //////////////////////////////////////////////////////////
+        else {
+            RegistrationMessageLabel.setText("");
+            int index1 = emailTextField.getText().indexOf("@");
+            int index2 = emailTextField.getText().indexOf(".");
+                                                                              ////////////////////// SPRAWDZANIE MAILA
+            if (index1 != -1 && index2 != -1) {
+                if (index1 > index2) {
+                    emailMessageLabel.setText("Invalid email address");
+                    passwordMessageLabel.setText("");
+                    passwordCorrectLabel.setText("");
+                    goodEmail = false;
+                }
+                else {
+                    emailMessageLabel.setText("");
+                    goodEmail = true;
+                }
+            }
+            else {
+                emailMessageLabel.setText("Invalid email address");
+                passwordMessageLabel.setText("");
+                passwordCorrectLabel.setText("");
+                goodEmail = false;
+            }
+            /////////////////////////////////////////////////////////////////////////
+            if(goodEmail) {
+                if (setPasswordField.getText().length() >= 8) {
+                    passwordCorrectLabel.setText("");
+                    goodPassword = true;                                               //////////////////////// SPRAWDZENIE HASLA
+                } else {
+                    passwordCorrectLabel.setText("Password should contain at least 8 characters");
+                    passwordMessageLabel.setText("");
+                    goodPassword = false;
+                }
+            }
+
+            ////////////////////////////////////////////////////////////////////////
+            if(goodPassword) {
+                if (!setPasswordField.getText().equals(confirmPasswordField.getText())) {
+                    passwordMessageLabel.setText("Confirm Password does not match");
+                    goodPasswordConfirmation = false;
+                }
+                else {                                                                       /////////// SPRAWDZENIE POTWIERDZENIA HASLA
+                    passwordMessageLabel.setText("");
+                    goodPasswordConfirmation = true;
+                }
+            }
+            if (goodPasswordConfirmation) {
+                registerUser();
+                canReturn = true;                        //////////////// PODSUMOWANIE
+            }
         }
     }
 
+    public void CloseButtonOnAction (ActionEvent event) throws IOException {
+
+        if(!canReturn) {  // JESLI SIE NIE ZAREJESTROWALISMY
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);   ///// tworzy alert typu Confirm
+            alert.setTitle("Exit");
+            alert.setHeaderText("Return to login page");       /////////// NAPISY
+            alert.setContentText("Are you sure you want to return? All changes will be lost");
+            /////////////////////////////////////////////////////
+            if (alert.showAndWait().get() == ButtonType.OK) {
+                Stage stage = (Stage) scenePane.getScene().getWindow(); /// aktualna scena, ktora chcemy zamknac
+                stage.close();
+                Parent root = FXMLLoader.load(getClass().getResource("Login.fxml")); ////////////////// POWROT DO STRONY LOGOWANIA I ZAMKNIECIE STRONY POPRZEDNIEJ
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            }
+        }
+        else {
+            Stage stage = (Stage) scenePane.getScene().getWindow(); ///////// JEZELI JUZ SIE ZAREJESTROWALISMY, TO MOZEMY OPUSCIC STRONE REJESTRACJI BEZ POTWIERDZENIA
+            stage.close();
+            Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+        canReturn = false;
+    }
 
     private void registerUser() {
         String firstname = firstNameTextField.getText();
@@ -117,15 +202,15 @@ public class RegisterControler implements Initializable{
             int addedRows = preparedStatement.executeUpdate();
             if (addedRows > 0) {
                 user = new User();
-                user.firstname = firstname;
-                user.lastname =lastname;
-                user.email = email;
-                user.password = password;
+                user.setFirstname(firstname);
+                user.setLastname(lastname);
+                user.setEmail(email);
+                user.setPassword(password);
             }
 
             stmt.close();
             conn.close();
-            RegistrationMessageLabel.setText("Registration compleated!");
+            RegistrationMessageLabel.setText("Registration completed!");
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -137,6 +222,7 @@ public class RegisterControler implements Initializable{
 
     }
 }
+
 
 
 

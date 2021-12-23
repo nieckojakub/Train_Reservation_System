@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="500.0" style="-fx-background-color: #83889C;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="train.train.RegisterControler">
+<AnchorPane fx:id="scenePane" prefHeight="500.0" prefWidth="500.0" style="-fx-background-color: #83889C;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="train.train.RegisterControler">
    <children>
       <AnchorPane prefHeight="80.0" prefWidth="500.0" style="-fx-background-color: #545871;">
          <children>
@@ -73,6 +73,16 @@
       <Label fx:id="passwordMessageLabel" alignment="CENTER" layoutX="197.0" layoutY="310.0" prefHeight="20.0" prefWidth="235.0" textAlignment="CENTER" textFill="#cc4135">
          <font>
             <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="emailMessageLabel" alignment="CENTER" layoutX="197.0" layoutY="193.0" prefHeight="20.0" prefWidth="235.0" textAlignment="CENTER" textFill="#cc4135">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="passwordCorrectLabel" alignment="CENTER" layoutX="197.0" layoutY="250.0" prefHeight="33.0" prefWidth="235.0" textAlignment="CENTER" textFill="#cc4135">
+         <font>
+            <Font size="10.0" />
          </font>
       </Label>
    </children>

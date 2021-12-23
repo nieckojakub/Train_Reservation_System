@@ -9,6 +9,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
@@ -41,6 +42,10 @@ public class LoginControler implements Initializable {
     private TextField emailTextField;
     @FXML
     private PasswordField passwordField;
+    @FXML
+    private BorderPane mainPane;
+    ////////////////
+    public User user;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
@@ -66,7 +71,7 @@ public class LoginControler implements Initializable {
     }
 
     public void cancelButtonOnAction(ActionEvent event){
-        Stage stage = (Stage) cancelButton.getScene().getWindow();
+        Stage stage = (Stage)cancelButton.getScene().getWindow();
         stage.close();
     }
 
@@ -98,7 +103,7 @@ public class LoginControler implements Initializable {
     }
 
 
-    public User user;
+
     private User getAuthenticatedUser(String email, String password) {
         User user = null;
 
@@ -121,10 +126,10 @@ public class LoginControler implements Initializable {
 
             if (resultSet.next()) {
                 user = new User();
-                user.firstname = resultSet.getString("firstname");
-                user.email = resultSet.getString("email");
-                user.lastname = resultSet.getString("lastname");
-                user.password = resultSet.getString("password");
+                user.setFirstname(resultSet.getString("firstname"));
+                user.setEmail(resultSet.getString("email"));
+                user.setLastname(resultSet.getString("lastname"));
+                user.setPassword(resultSet.getString("password"));
             }
 
             stmt.close();
@@ -142,17 +147,20 @@ public class LoginControler implements Initializable {
     public void CreateAccountForm(){
 
         try{
+
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Register.fxml"));
             Stage RegisterStage = new Stage();
             Scene scene = new Scene(fxmlLoader.load(), 500, 500);
             RegisterStage.setTitle("Register Page");
             RegisterStage.setScene(scene);
             RegisterStage.show();
-
+            ////////////////////////////////////////////////////
+            Stage stage = (Stage)mainPane.getScene().getWindow();
+            stage.close();
+            //////////////////////////////////////////////////// ZAMYKANIE POPRZEDNIEGO OKNA (Z LOGOWANIEM)
         }catch(Exception e){
             e.printStackTrace();
             e.getCause();
         }
     }
-
 }
