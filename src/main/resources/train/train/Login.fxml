@@ -58,7 +58,7 @@
                 </Label>
                 <TextField fx:id="emailTextField" layoutX="74.0" layoutY="152.0" prefHeight="26.0" prefWidth="190.0" promptText="e-mail" />
                 <PasswordField fx:id="passwordField" layoutX="74.0" layoutY="207.0" prefHeight="26.0" prefWidth="190.0" promptText="Password" />
-                <Button fx:id="loginButton" layoutX="125.0" layoutY="252.0" mnemonicParsing="false" onAction="#LoginButtonOnAction" prefHeight="32.0" prefWidth="89.0" style="-fx-background-color: #ecd0cd;" text="Log In" textFill="#545871">
+                <Button fx:id="loginButton" layoutX="125.0" layoutY="252.0" mnemonicParsing="false" onAction="#loginUser" prefHeight="32.0" prefWidth="89.0" style="-fx-background-color: #ecd0cd;" text="Log In" textFill="#545871">
                     <font>
                         <Font name="Rubik Bold Italic" size="12.0" />
                     </font>

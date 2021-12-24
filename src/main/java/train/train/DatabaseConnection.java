@@ -21,7 +21,5 @@ public class DatabaseConnection {
             e.getCause();
         }
         return databaseLink;
-
     }
-
 }

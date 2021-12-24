@@ -3,6 +3,7 @@ package train.train;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
@@ -14,8 +15,8 @@ import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
 
-
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
@@ -45,8 +46,8 @@ public class LoginControler implements Initializable {
     @FXML
     private BorderPane mainPane;
     ////////////////
-    public User user;
 
+    User user;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
         File brandingFile = new File("image/train_tvg.png");
@@ -75,92 +76,65 @@ public class LoginControler implements Initializable {
         stage.close();
     }
 
-    private void LoginUser(){
-        String email = emailTextField.getText();
-        String password = passwordField.getText();
-
-        user = getAuthenticatedUser(email, password);
-
-        if (user != null) {
-        }
+    ///////////////////// METODY LoginUser, LoginButtonOnAction i getAuthenticatedUser zwinalem w te jedna metode /////////////////
+    public void loginUser() throws SQLException, IOException {
+        if(emailTextField.getText().isBlank() || passwordField.getText().isBlank())
+            loginMessageLabel.setText("Please enter username and password!");
         else {
-            loginMessageLabel.setText("Email or Password Invalid");
-        }
-    }
 
+            User loggedInUser = new User("", "", "", "");
 
-    public void LoginButtonOnAction(ActionEvent event){
+            final String databaseName = "projectdatabase";//"traiinsystem";
+            final String databaseUser = "root";
+            final String databasePassword = "admin"; //"Zakopane35%";
+            final String url = "jdbc:mysql://localhost:3306/" + databaseName;
 
-        if(emailTextField.getText().isBlank() == false && passwordField.getText().isBlank() == false ){
-            LoginUser();
-        }else{
-            loginMessageLabel.setText("Please enter username and password !");
-        }
-    }
-
-    public void RegisterButtonOnAction(ActionEvent event){
-        CreateAccountForm();
-    }
-
-
-
-    private User getAuthenticatedUser(String email, String password) {
-        User user = null;
-
-        final String databaseName = "traiinsystem";
-        final String databaseUser = "root";
-        final String databasePassword = "Zakopane35%";
-        final String url = "jdbc:mysql://localhost:3306/" + databaseName;
-
-        try{
             Connection conn = DriverManager.getConnection(url, databaseUser, databasePassword);
-            // Connected to database successfully...
 
             Statement stmt = conn.createStatement();
-            String sql = "SELECT * FROM user_account WHERE email=? AND password=?";
+            String sql = "SELECT * FROM users WHERE email=? AND password=?";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setString(1, email);
-            preparedStatement.setString(2, password);
+            preparedStatement.setString(1, emailTextField.getText());
+            preparedStatement.setString(2, passwordField.getText());
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
-                user = new User();
-                user.setFirstname(resultSet.getString("firstname"));
-                user.setEmail(resultSet.getString("email"));
-                user.setLastname(resultSet.getString("lastname"));
-                user.setPassword(resultSet.getString("password"));
+                loggedInUser.setFirstname(resultSet.getString("firstname"));
+                loggedInUser.setLastname(resultSet.getString("lastname"));
+                loggedInUser.setEmail(resultSet.getString("email"));
+                loggedInUser.setPassword(resultSet.getString("password"));
             }
 
             stmt.close();
             conn.close();
-            loginMessageLabel.setText("Correct credentials");
 
-        }catch(Exception e){
-            e.printStackTrace();
-            e.getCause();
+            if (loggedInUser.getFirstname() != "") {
+                loginMessageLabel.setText("Logged in");
+                Stage stage = (Stage) mainPane.getScene().getWindow(); /// aktualna scena, ktora chcemy zamknac
+                stage.close();
+                Parent root = FXMLLoader.load(getClass().getResource("ReservationPage.fxml")); ////////////////// POWROT DO STRONY LOGOWANIA I ZAMKNIECIE STRONY POPRZEDNIEJ
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            } else {
+                loginMessageLabel.setText("Wrong email or password");
+            }
         }
-
-        return user;
     }
+    ////////////////////////////////////////////////////////////////////////////////////////////
 
-    public void CreateAccountForm(){
 
-        try{
-
-            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Register.fxml"));
-            Stage RegisterStage = new Stage();
-            Scene scene = new Scene(fxmlLoader.load(), 500, 500);
-            RegisterStage.setTitle("Register Page");
-            RegisterStage.setScene(scene);
-            RegisterStage.show();
-            ////////////////////////////////////////////////////
-            Stage stage = (Stage)mainPane.getScene().getWindow();
-            stage.close();
-            //////////////////////////////////////////////////// ZAMYKANIE POPRZEDNIEGO OKNA (Z LOGOWANIEM)
-        }catch(Exception e){
-            e.printStackTrace();
-            e.getCause();
-        }
+    public void RegisterButtonOnAction(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Register.fxml"));
+        Stage RegisterStage = new Stage();
+        Scene scene = new Scene(fxmlLoader.load(), 500, 500);
+        RegisterStage.setTitle("Register Page");
+        RegisterStage.setScene(scene);
+        RegisterStage.show();
+        ////////////////////////////////////////////////////
+        Stage stage = (Stage)mainPane.getScene().getWindow();
+        stage.close();
+        //////////////////////////////////////////////////// ZAMYKANIE POPRZEDNIEGO OKNA (Z LOGOWANIEM)
     }
 }

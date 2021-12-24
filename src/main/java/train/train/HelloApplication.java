@@ -17,6 +17,7 @@ public class HelloApplication extends Application {
         //Scene scene = new Scene(root);
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Login.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+
         //stage.setFullScreen(true);
 
        // stage.getIcons().add(new Image("image/login_window_icon.png"));   // wyswietlanie icony (not working)

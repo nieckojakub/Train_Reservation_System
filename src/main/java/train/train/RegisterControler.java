@@ -63,8 +63,8 @@ public class RegisterControler implements Initializable{
 
     boolean canReturn = false; //////// ta zmienna wskazuje na to, czy po zarejestrowaniu mozemy po prostu opuscic okno rezerwacji bez potwierdzenia
 
-    public void RegistrationButtonOnAction(ActionEvent event){
 
+    public void RegistrationButtonOnAction(ActionEvent event) throws IOException {
         if (firstNameTextField.getText().isBlank() || emailTextField.getText().isBlank() || setPasswordField.getText().isBlank() //////SPRAWDZANIE, CZY POLA SA PUSTE
                 || confirmPasswordField.getText().isBlank())  {
             RegistrationMessageLabel.setText("Please enter all fields");
@@ -120,14 +120,22 @@ public class RegisterControler implements Initializable{
                 }
             }
             if (goodPasswordConfirmation) {
-                registerUser();
-                canReturn = true;                        //////////////// PODSUMOWANIE
+                User user = new User(firstNameTextField.getText(), LastNameTextField.getText(), emailTextField.getText().toLowerCase(), setPasswordField.getText());
+                addUserToDatabase(user);
+                canReturn = true;               //////////////// PODSUMOWANIE
+
+                //////////////////////// PRZEJSCIE DO STRONY POTWIERDZENIA REJESTRACJI ///////////////
+                Stage stage = (Stage) scenePane.getScene().getWindow(); /// aktualna scena, ktora chcemy zamknac
+                stage.close();
+                Parent root = FXMLLoader.load(getClass().getResource("RegConfirmation.fxml")); ////////////////// POWROT DO STRONY LOGOWANIA I ZAMKNIECIE STRONY POPRZEDNIEJ
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
             }
         }
     }
 
     public void CloseButtonOnAction (ActionEvent event) throws IOException {
-
         if(!canReturn) {  // JESLI SIE NIE ZAREJESTROWALISMY
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);   ///// tworzy alert typu Confirm
             alert.setTitle("Exit");
@@ -154,51 +162,26 @@ public class RegisterControler implements Initializable{
         canReturn = false;
     }
 
-    private void registerUser() {
-        String firstname = firstNameTextField.getText();
-        String lastname = LastNameTextField.getText();
-        String email = emailTextField.getText();
-        String password = setPasswordField.getText();
-        String confirmPassword = confirmPasswordField.getText();
-
-        user = addUserToDatabase(firstname, email, lastname, password);
-        if (user != null) {
-            //tage stage = new Stage();
-            //            stage.close();
-            //            Platform.exit();
-            // reszta kodu czyli powrot do logowania
-            
-        }
-        else {
-            RegistrationMessageLabel.setText("Failed to register new user");
-        }
-    }
-
-    public User user;
-    private User addUserToDatabase(String firstname,String email,String lastname, String password ){
-        User user = null;
-
-        final String databaseName = "traiinsystem";
+    private void addUserToDatabase(User user) {
+        final String databaseName =  "projectdatabase"; //"traiinsystem";
         final String databaseUser = "root";
-        final String databasePassword = "Zakopane35%";
+        final String databasePassword = "admin"; //"Zakopane35%";
         final String url = "jdbc:mysql://localhost:3306/" + databaseName;
-
 
         try{
             Connection conn = DriverManager.getConnection(url, databaseUser, databasePassword);
             // Connected to database successfully...
 
-            Statement stmt = conn.createStatement();
-            String sql = "INSERT INTO user_account (firstname, lastname, email, password) " +
+            String sql = "INSERT INTO users (firstname, lastname, email, password) " +
                     "VALUES (?, ?, ?, ?)";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setString(1, firstname);
-            preparedStatement.setString(2, lastname);
-            preparedStatement.setString(3, email);
-            preparedStatement.setString(4, password);
-
+            preparedStatement.setString(1, user.getFirstname());
+            preparedStatement.setString(2, user.getLastname());
+            preparedStatement.setString(3, user.getEmail());
+            preparedStatement.setString(4, user.getPassword());
 
             //Insert row into the table
+            /*
             int addedRows = preparedStatement.executeUpdate();
             if (addedRows > 0) {
                 user = new User();
@@ -208,18 +191,14 @@ public class RegisterControler implements Initializable{
                 user.setPassword(password);
             }
 
-            stmt.close();
+                */
+            preparedStatement.execute();
+            preparedStatement.close();
             conn.close();
             RegistrationMessageLabel.setText("Registration completed!");
         }catch(Exception e){
             e.printStackTrace();
         }
-
-        return user;
-    }
-
-    public static void main(String[] args) {
-
     }
 }
 
