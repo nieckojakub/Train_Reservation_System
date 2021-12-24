@@ -61,9 +61,6 @@ public class RegisterControler implements Initializable{
     boolean goodPassword = false;               /////////////////// TE TRZY ZMIENNE POTRZEBNE SA DO SPRAWDZANIA DANYCH W FORMULARZU REJESTRACJI
     boolean goodEmail = false;
 
-    boolean canReturn = false; //////// ta zmienna wskazuje na to, czy po zarejestrowaniu mozemy po prostu opuscic okno rezerwacji bez potwierdzenia
-
-
     public void RegistrationButtonOnAction(ActionEvent event) throws IOException {
         if (firstNameTextField.getText().isBlank() || emailTextField.getText().isBlank() || setPasswordField.getText().isBlank() //////SPRAWDZANIE, CZY POLA SA PUSTE
                 || confirmPasswordField.getText().isBlank())  {
@@ -121,8 +118,7 @@ public class RegisterControler implements Initializable{
             }
             if (goodPasswordConfirmation) {
                 User user = new User(firstNameTextField.getText(), LastNameTextField.getText(), emailTextField.getText().toLowerCase(), setPasswordField.getText());
-                addUserToDatabase(user);
-                canReturn = true;               //////////////// PODSUMOWANIE
+                addUserToDatabase(user);  ////////// DODANIE USERA DO BAZY DANYCH
 
                 //////////////////////// PRZEJSCIE DO STRONY POTWIERDZENIA REJESTRACJI ///////////////
                 Stage stage = (Stage) scenePane.getScene().getWindow(); /// aktualna scena, ktora chcemy zamknac
@@ -136,30 +132,19 @@ public class RegisterControler implements Initializable{
     }
 
     public void CloseButtonOnAction (ActionEvent event) throws IOException {
-        if(!canReturn) {  // JESLI SIE NIE ZAREJESTROWALISMY
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);   ///// tworzy alert typu Confirm
-            alert.setTitle("Exit");
-            alert.setHeaderText("Return to login page");       /////////// NAPISY
-            alert.setContentText("Are you sure you want to return? All changes will be lost");
-            /////////////////////////////////////////////////////
-            if (alert.showAndWait().get() == ButtonType.OK) {
-                Stage stage = (Stage) scenePane.getScene().getWindow(); /// aktualna scena, ktora chcemy zamknac
-                stage.close();
-                Parent root = FXMLLoader.load(getClass().getResource("Login.fxml")); ////////////////// POWROT DO STRONY LOGOWANIA I ZAMKNIECIE STRONY POPRZEDNIEJ
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
-            }
-        }
-        else {
-            Stage stage = (Stage) scenePane.getScene().getWindow(); ///////// JEZELI JUZ SIE ZAREJESTROWALISMY, TO MOZEMY OPUSCIC STRONE REJESTRACJI BEZ POTWIERDZENIA
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);   ///// tworzy alert typu Confirm
+        alert.setTitle("Exit");
+        alert.setHeaderText("Return to login page");       /////////// NAPISY
+        alert.setContentText("Are you sure you want to return? All changes will be lost");
+        /////////////////////////////////////////////////////
+        if (alert.showAndWait().get() == ButtonType.OK) {
+            Stage stage = (Stage) scenePane.getScene().getWindow(); /// aktualna scena, ktora chcemy zamknac
             stage.close();
-            Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("Login.fxml")); ////////////////// POWROT DO STRONY LOGOWANIA I ZAMKNIECIE STRONY POPRZEDNIEJ
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
         }
-        canReturn = false;
     }
 
     private void addUserToDatabase(User user) {
@@ -195,7 +180,6 @@ public class RegisterControler implements Initializable{
             preparedStatement.execute();
             preparedStatement.close();
             conn.close();
-            RegistrationMessageLabel.setText("Registration completed!");
         }catch(Exception e){
             e.printStackTrace();
         }
