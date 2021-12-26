@@ -123,6 +123,9 @@ public class RegisterControler implements Initializable{
                 //////////////////////// PRZEJSCIE DO STRONY POTWIERDZENIA REJESTRACJI ///////////////
                 Stage stage = (Stage) scenePane.getScene().getWindow(); /// aktualna scena, ktora chcemy zamknac
                 stage.close();
+
+
+
                 Parent root = FXMLLoader.load(getClass().getResource("RegConfirmation.fxml")); ////////////////// POWROT DO STRONY LOGOWANIA I ZAMKNIECIE STRONY POPRZEDNIEJ
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
@@ -130,6 +133,8 @@ public class RegisterControler implements Initializable{
             }
         }
     }
+
+
 
     public void CloseButtonOnAction (ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);   ///// tworzy alert typu Confirm
@@ -148,16 +153,16 @@ public class RegisterControler implements Initializable{
     }
 
     private void addUserToDatabase(User user) {
-        final String databaseName =  "projectdatabase"; //"traiinsystem";
+        final String databaseName =  "trainsystem"; //"traiinsystem";
         final String databaseUser = "root";
-        final String databasePassword = "admin"; //"Zakopane35%";
-        final String url = "jdbc:mysql://localhost:3306/" + databaseName;
+        final String databasePassword = "Zakopane35%"; //"Zakopane35%";
+        final String url = "jdbc:mysql://trainsystemdatabase.cdhcxmnosqym.eu-west-1.rds.amazonaws.com/" + databaseName;
 
         try{
             Connection conn = DriverManager.getConnection(url, databaseUser, databasePassword);
             // Connected to database successfully...
 
-            String sql = "INSERT INTO users (firstname, lastname, email, password) " +
+            String sql = "INSERT INTO user_account (firstname, lastname, email, password) " +
                     "VALUES (?, ?, ?, ?)";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, user.getFirstname());

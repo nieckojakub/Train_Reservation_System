@@ -8,5 +8,12 @@
       <jdbc-url>jdbc:mysql://localhost:3306/traiinsystem</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="@trainsystemdatabase.cdhcxmnosqym.eu-west-1.rds.amazonaws.com" uuid="08c9205d-9a66-4561-86e8-4e742d01027e">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://trainsystemdatabase.cdhcxmnosqym.eu-west-1.rds.amazonaws.com:3306</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

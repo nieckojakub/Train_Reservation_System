@@ -28,6 +28,10 @@ public class RegConfirmationController implements Initializable {
     @FXML
     private ImageView greenMarkImage;
 
+    User user;
+    MailService mailService;
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         File imageFile = new File("image/greenmark.png");
@@ -35,9 +39,13 @@ public class RegConfirmationController implements Initializable {
         greenMarkImage.setImage(goodImage);
     }
 
-    public void setEmail(String s) {
-        textMail.setText(s);
+    RegisterControler registerControler;
+
+    public void setEmail(String user_email) {
+        textMail.setText(user.getEmail());
     }
+
+
 
     public void returnToLoginPage() throws IOException {
         Stage stage = (Stage) mainPane.getScene().getWindow(); /// aktualna scena, ktora chcemy zamknac

@@ -48,6 +48,9 @@ public class LoginControler implements Initializable {
     ////////////////
 
     User user;
+
+    //////////
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
         File brandingFile = new File("image/train_tvg.png");
@@ -84,15 +87,15 @@ public class LoginControler implements Initializable {
 
             User loggedInUser = new User("", "", "", "");
 
-            final String databaseName = "projectdatabase";//"traiinsystem";
+            final String databaseName = "trainsystem";//"";
             final String databaseUser = "root";
-            final String databasePassword = "admin"; //"Zakopane35%";
-            final String url = "jdbc:mysql://localhost:3306/" + databaseName;
+            final String databasePassword = "Zakopane35%"; //"Zakopane35%";
+            final String url = "jdbc:mysql://trainsystemdatabase.cdhcxmnosqym.eu-west-1.rds.amazonaws.com/" + databaseName;
 
             Connection conn = DriverManager.getConnection(url, databaseUser, databasePassword);
 
             Statement stmt = conn.createStatement();
-            String sql = "SELECT * FROM users WHERE email=? AND password=?";
+            String sql = "SELECT * FROM user_account WHERE email=? AND password=?";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, emailTextField.getText());
             preparedStatement.setString(2, passwordField.getText());
