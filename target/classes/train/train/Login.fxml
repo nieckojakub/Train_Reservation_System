@@ -64,13 +64,13 @@
                     </font>
                 </Button>
                 <Text fill="#ecd0cd" layoutX="93.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You do not have an account?" />
-                <Button fx:id="registerNowButton" layoutX="120.0" layoutY="339.0" mnemonicParsing="false" onAction="#RegisterButtonOnAction" prefHeight="25.0" prefWidth="99.0" style="-fx-background-color: #ecd0cd;" text="Register Now" textFill="#545871">
+                <Button fx:id="registerNowButton" layoutX="120.0" layoutY="339.0" mnemonicParsing="false" onAction="#registerButtonOnAction" prefHeight="25.0" prefWidth="99.0" style="-fx-background-color: #ecd0cd;" text="Register Now" textFill="#545871">
                     <font>
                         <Font name="Rubik Bold Italic" size="12.0" />
                     </font>
                 </Button>
                 <Label fx:id="loginMessageLabel" layoutX="74.0" layoutY="110.0" textFill="#ec0909" />
-                <Button fx:id="cancelButton" layoutX="258.0" layoutY="16.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" prefHeight="24.0" prefWidth="44.0" style="-fx-background-color: #ecd0cd;" text="Exit" textAlignment="CENTER" textFill="#545871">
+                <Button fx:id="exitButton" layoutX="258.0" layoutY="16.0" mnemonicParsing="false" onAction="#exitButtonOnAction" prefHeight="24.0" prefWidth="44.0" style="-fx-background-color: #ecd0cd;" text="Exit" textAlignment="CENTER" textFill="#545871">
                     <font>
                         <Font name="Rubik Bold Italic" size="12.0" />
                     </font>

@@ -74,7 +74,7 @@ public class RegisterControler implements Initializable{
             RegistrationMessageLabel.setText("");
             int index1 = emailTextField.getText().indexOf("@");
             int index2 = emailTextField.getText().indexOf(".");
-                                                                              ////////////////////// SPRAWDZANIE MAILA
+            ////////////////////// SPRAWDZANIE MAILA
             if (index1 != -1 && index2 != -1) {
                 if (index1 > index2) {
                     emailMessageLabel.setText("Invalid email address");
@@ -123,11 +123,12 @@ public class RegisterControler implements Initializable{
                 //////////////////////// PRZEJSCIE DO STRONY POTWIERDZENIA REJESTRACJI ///////////////
                 Stage stage = (Stage) scenePane.getScene().getWindow(); /// aktualna scena, ktora chcemy zamknac
                 stage.close();
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("RegConfirmation.fxml")); ////////////////// POWROT DO STRONY LOGOWANIA I ZAMKNIECIE STRONY POPRZEDNIEJ
+                Scene scene = new Scene(fxmlLoader.load());
 
+                RegConfirmationController regConfirmationController = fxmlLoader.getController();
+                regConfirmationController.setConfirmationMailText(emailTextField.getText());
 
-
-                Parent root = FXMLLoader.load(getClass().getResource("RegConfirmation.fxml")); ////////////////// POWROT DO STRONY LOGOWANIA I ZAMKNIECIE STRONY POPRZEDNIEJ
-                Scene scene = new Scene(root);
                 stage.setScene(scene);
                 stage.show();
             }
@@ -145,8 +146,8 @@ public class RegisterControler implements Initializable{
         if (alert.showAndWait().get() == ButtonType.OK) {
             Stage stage = (Stage) scenePane.getScene().getWindow(); /// aktualna scena, ktora chcemy zamknac
             stage.close();
-            Parent root = FXMLLoader.load(getClass().getResource("Login.fxml")); ////////////////// POWROT DO STRONY LOGOWANIA I ZAMKNIECIE STRONY POPRZEDNIEJ
-            Scene scene = new Scene(root);
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Login.fxml")); ////////////////// POWROT DO STRONY LOGOWANIA I ZAMKNIECIE STRONY POPRZEDNIEJ
+            Scene scene = new Scene(fxmlLoader.load());
             stage.setScene(scene);
             stage.show();
         }

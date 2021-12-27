@@ -39,19 +39,15 @@ public class RegConfirmationController implements Initializable {
         greenMarkImage.setImage(goodImage);
     }
 
-    RegisterControler registerControler;
-
-    public void setEmail(String user_email) {
-        textMail.setText(user.getEmail());
+    public void setConfirmationMailText(String text) {
+        textMail.setText(text);
     }
-
-
 
     public void returnToLoginPage() throws IOException {
         Stage stage = (Stage) mainPane.getScene().getWindow(); /// aktualna scena, ktora chcemy zamknac
         stage.close();
-        Parent root = FXMLLoader.load(getClass().getResource("Login.fxml")); ////////////////// POWROT DO STRONY LOGOWANIA I ZAMKNIECIE STRONY POPRZEDNIEJ
-        Scene scene = new Scene(root);
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Login.fxml")); ////////////////// POWROT DO STRONY LOGOWANIA I ZAMKNIECIE STRONY POPRZEDNIEJ
+        Scene scene = new Scene(fxmlLoader.load());
         stage.setScene(scene);
         stage.show();
     }

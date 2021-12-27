@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ReservationPageController {
+public class ReservationController {
     @FXML
     private Label welcomeLabel;
     @FXML
@@ -28,15 +28,39 @@ public class ReservationPageController {
     private AnchorPane scenePane;
     @FXML
     private Button CloseButton;
+    @FXML
+    private Stage stage;
+    @FXML
+    private Label firstNameField;
+    @FXML
+    private Label lastNameField;
+    @FXML
+    private Label emailField;
+    @FXML
+    private Label passengerField;
+    @FXML
+    private Label userFirstNameMain;
+    @FXML
+    private Label userEmailMain;
 
+    private User loggedInUser; // user, do ktorego dane zostana zapisane z logowania
+
+    public void initData(User user) { // ta metoda wywolywana w logowaniu
+        loggedInUser = user;
+        firstNameField.setText(loggedInUser.getFirstname());
+        lastNameField.setText(loggedInUser.getLastname());
+        emailField.setText(loggedInUser.getEmail());
+        userFirstNameMain.setText(loggedInUser.getFirstname());
+        userEmailMain.setText(loggedInUser.getEmail());
+    }
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
         File brandingFile = new File("image/train_reservation.png");
         Image train_reservationImage = new Image(brandingFile.toURI().toString());
-       // train_reservationImage.setImage(train_reservationImage);
+        // train_reservationImage.setImage(train_reservationImage);
     }
 
-    public void CancelButtonOnAction(ActionEvent event) throws IOException {
+    public void cancelButtonOnAction(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);   ///// tworzy alert typu Confirm
         alert.setTitle("Exit");
         alert.setHeaderText("Return to login page");       /////////// NAPISY
@@ -45,8 +69,8 @@ public class ReservationPageController {
         if (alert.showAndWait().get() == ButtonType.OK) {
             Stage stage = (Stage) scenePane.getScene().getWindow(); /// aktualna scena, ktora chcemy zamknac
             stage.close();
-            Parent root = FXMLLoader.load(getClass().getResource("Login.fxml")); ////////////////// POWROT DO STRONY LOGOWANIA I ZAMKNIECIE STRONY POPRZEDNIEJ
-            Scene scene = new Scene(root);
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Login.fxml")); ////////////////// POWROT DO STRONY LOGOWANIA I ZAMKNIECIE STRONY POPRZEDNIEJ
+            Scene scene = new Scene(fxmlLoader.load());
             stage.setScene(scene);
             stage.show();
         }
@@ -57,8 +81,4 @@ public class ReservationPageController {
     public void MyTicketButtonOnAction(ActionEvent event) {
 
     }
-
-
-
-
 }

@@ -3,7 +3,6 @@ package train.train;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
@@ -19,14 +18,15 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class LoginControler implements Initializable {
 
     @FXML
-    private Button registerNowButton;
+    private Button registerButton;
     @FXML
-    private Button cancelButton;
+    private Button exitButton;
     @FXML
     private Label loginMessageLabel;
     @FXML
@@ -45,11 +45,8 @@ public class LoginControler implements Initializable {
     private PasswordField passwordField;
     @FXML
     private BorderPane mainPane;
-    ////////////////
 
-    User user;
-
-    //////////
+    User user = new User("", "", "", "");
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
@@ -74,8 +71,8 @@ public class LoginControler implements Initializable {
         malopolskaImageView.setImage(MalopolskaImage);
     }
 
-    public void cancelButtonOnAction(ActionEvent event){
-        Stage stage = (Stage)cancelButton.getScene().getWindow();
+    public void exitButtonOnAction(ActionEvent event) {
+        Stage stage = (Stage) exitButton.getScene().getWindow();
         stage.close();
     }
 
@@ -84,9 +81,6 @@ public class LoginControler implements Initializable {
         if(emailTextField.getText().isBlank() || passwordField.getText().isBlank())
             loginMessageLabel.setText("Please enter username and password!");
         else {
-
-            User loggedInUser = new User("", "", "", "");
-
             final String databaseName = "trainsystem";//"";
             final String databaseUser = "root";
             final String databasePassword = "Zakopane35%"; //"Zakopane35%";
@@ -103,21 +97,23 @@ public class LoginControler implements Initializable {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
-                loggedInUser.setFirstname(resultSet.getString("firstname"));
-                loggedInUser.setLastname(resultSet.getString("lastname"));
-                loggedInUser.setEmail(resultSet.getString("email"));
-                loggedInUser.setPassword(resultSet.getString("password"));
+                user.setFirstname(resultSet.getString("firstname"));
+                user.setLastname(resultSet.getString("lastname"));
+                user.setEmail(resultSet.getString("email"));
+                user.setPassword(resultSet.getString("password"));
             }
 
             stmt.close();
             conn.close();
 
-            if (loggedInUser.getFirstname() != "") {
+            if (!Objects.equals(user.getFirstname(), "")) {
                 loginMessageLabel.setText("Logged in");
                 Stage stage = (Stage) mainPane.getScene().getWindow(); /// aktualna scena, ktora chcemy zamknac
                 stage.close();
-                Parent root = FXMLLoader.load(getClass().getResource("ReservationPage.fxml")); ////////////////// POWROT DO STRONY LOGOWANIA I ZAMKNIECIE STRONY POPRZEDNIEJ
-                Scene scene = new Scene(root);
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Reservation.fxml")); ////////////////// POWROT DO STRONY LOGOWANIA I ZAMKNIECIE STRONY POPRZEDNIEJ
+                Scene scene = new Scene(fxmlLoader.load());
+                ReservationController reservationController = fxmlLoader.getController();
+                reservationController.initData(user);
                 stage.setScene(scene);
                 stage.show();
             } else {
@@ -128,15 +124,15 @@ public class LoginControler implements Initializable {
     ////////////////////////////////////////////////////////////////////////////////////////////
 
 
-    public void RegisterButtonOnAction(ActionEvent event) throws IOException {
+    public void registerButtonOnAction(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Register.fxml"));
-        Stage RegisterStage = new Stage();
+        Stage stage = new Stage();
         Scene scene = new Scene(fxmlLoader.load(), 500, 500);
-        RegisterStage.setTitle("Register Page");
-        RegisterStage.setScene(scene);
-        RegisterStage.show();
+        stage.setScene(scene);
+        stage.setTitle("Register Page");
+        stage.show();
         ////////////////////////////////////////////////////
-        Stage stage = (Stage)mainPane.getScene().getWindow();
+        stage = (Stage)mainPane.getScene().getWindow();
         stage.close();
         //////////////////////////////////////////////////// ZAMYKANIE POPRZEDNIEGO OKNA (Z LOGOWANIEM)
     }
