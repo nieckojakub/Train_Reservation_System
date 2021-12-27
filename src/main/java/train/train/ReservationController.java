@@ -1,14 +1,13 @@
 package train.train;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -17,13 +16,17 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.*;
 import java.util.ResourceBundle;
 
-public class ReservationController {
+
+
+public class ReservationController implements Initializable {
+
     @FXML
     private Label welcomeLabel;
     @FXML
-    private ImageView train_reservationImage;
+    private ImageView trainLogoImageView;
     @FXML
     private AnchorPane scenePane;
     @FXML
@@ -42,8 +45,18 @@ public class ReservationController {
     private Label userFirstNameMain;
     @FXML
     private Label userEmailMain;
+    @FXML
+    private ComboBox<String> OriginCombo;
+    @FXML
+    private ComboBox<String> DestinationCombo;
+
+
+    JdbcDatabaseObject jdbc;
+
 
     private User loggedInUser; // user, do ktorego dane zostana zapisane z logowania
+
+    Train train = new Train("","","","","","","","","");
 
     public void initData(User user) { // ta metoda wywolywana w logowaniu
         loggedInUser = user;
@@ -54,10 +67,49 @@ public class ReservationController {
         userEmailMain.setText(loggedInUser.getEmail());
     }
 
+    @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         File brandingFile = new File("image/train_reservation.png");
         Image train_reservationImage = new Image(brandingFile.toURI().toString());
-        // train_reservationImage.setImage(train_reservationImage);
+        trainLogoImageView.setImage(train_reservationImage);
+
+
+        jdbc = new JdbcDatabaseObject();
+
+        try {
+            showOriginStation();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            showDestinatonStations();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void showOriginStation() throws SQLException {
+        Connection conn = jdbc.getConnection();
+        ObservableList<String> originStations = FXCollections.observableArrayList();
+        ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM trains");
+        while (rs.next()){
+            originStations.add(rs.getString("origin"));
+
+        }
+        OriginCombo.setItems(originStations);
+
+    }
+
+    private void showDestinatonStations() throws SQLException {
+        Connection conn = jdbc.getConnection();
+        ObservableList<String> destinatonStatons = FXCollections.observableArrayList();
+        ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM trains");
+        while (rs.next()){
+            destinatonStatons.add(rs.getString("destination"));
+
+        }
+        DestinationCombo.setItems(destinatonStatons);
     }
 
     public void cancelButtonOnAction(ActionEvent event) throws IOException {
@@ -81,4 +133,6 @@ public class ReservationController {
     public void MyTicketButtonOnAction(ActionEvent event) {
 
     }
+
+
 }

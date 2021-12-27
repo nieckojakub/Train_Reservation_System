@@ -34,7 +34,7 @@ public class QrCodeAndPdfGenerator {
 
     String timeTravel = "1.30";
 
-    public static void GenerateQRcode(User user, Train train) throws WriterException, IOException {
+    String GenerateQRcode(User user, Train train) throws WriterException, IOException {
 
         String data = "Name: " + user.getFirstname() +" "+ user.getLastname() + "\n"+ "From: " + train.getDepartureStation() + "\n" + "To: " + train.getDestinatonStation() + "\n" +
                 "Train number: " +train.getTrainNumber() + "\n" + "Price: " + train.getPriceNormal() + "\n" + "Ticket id: " + "id/dodac" ;
@@ -45,6 +45,8 @@ public class QrCodeAndPdfGenerator {
 
         BitMatrix matrix = new MultiFormatWriter().encode(data, BarcodeFormat.QR_CODE, 500, 500);
         MatrixToImageWriter.writeToPath(matrix,"jpg", Paths.get(path));
+
+        return path;
     }
 
     public static void GeneratePdfTicket(User user,Train train){
@@ -59,7 +61,7 @@ public class QrCodeAndPdfGenerator {
 
 
             Document document = new Document(pdfDoc);
-            String imageFile = "C:\\Users\\nieck\\Desktop\\PROJEKT-PO\\qr.jpg";  //
+            String imageFile = "";  //
             ImageData data_img = ImageDataFactory.create(imageFile);
 
             Image img = new Image(data_img);
@@ -97,7 +99,7 @@ public class QrCodeAndPdfGenerator {
             Paragraph destination_station = new Paragraph("Destination Station - "+ train.getDestinatonStation());
             Paragraph date_yourney = new Paragraph("Date - " + train.getDate());
             Paragraph train_number_info = new Paragraph("Train number - "+ train.getTrainNumber());
-            Paragraph travel_time_info = new Paragraph("Travel time - "+ train.getTravelTime() + "h" );
+            Paragraph travel_time_info = new Paragraph("Travel time - "+ "!!!!!!!!!!!!!" + "h" );
             Paragraph ticket_price_info = new Paragraph("Price - " + train.getPriceNormal() + " zl");
 
             Paragraph pdf_time_generated = new Paragraph("Document generated: " + pdf_generate_time);

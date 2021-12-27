@@ -7,7 +7,15 @@ import java.util.Properties;
 
 public class MailService {
 
-    public static void ReservationEmail(String user_mail, String FirstName, String LastName, String user_password) throws MessagingException {
+    private static User loggedInUser;
+
+
+
+
+    public static void ReservationEmail(User user) throws MessagingException {
+        loggedInUser = user;
+
+
         Properties prop = new Properties();
         prop.put("mail.smtp.auth", true);
         prop.put("mail.smtp.starttls.enable", "true");
@@ -32,16 +40,16 @@ public class MailService {
 
         Message message = new MimeMessage(session);
         message.setFrom(new InternetAddress(MyAccountEmail));
-        message.setRecipient(Message.RecipientType.TO, new InternetAddress(user_mail));
+        message.setRecipient(Message.RecipientType.TO, new InternetAddress(loggedInUser.getEmail()));
         message.setSubject("Registration completed successfully!!!");
 
 
-        String msg1 = "<p style=\"text-align: center;\"><span style=\"font-family: Courier New, courier;\">" + FirstName + " it&apos;s a pleasure to have you on board!</span></p>\n" +
+        String msg1 = "<p style=\"text-align: center;\"><span style=\"font-family: Courier New, courier;\">" + loggedInUser.getFirstname() + " it&apos;s a pleasure to have you on board!</span></p>\n" +
                 "<p><br></p>\n" +
                 "<p><span style='font-family: \"Courier New\", courier; font-size: 14px;'>You have just created an account on our Train Reservation System App.</span></p>\n" +
                 "<p><span style='font-family: \"Courier New\", courier; font-size: 14px;'>Here are your credentials:</span></p>\n" +
-                "<p><span style='font-family: \"Courier New\", courier; font-size: 14px;'>email - " + user_mail + "</span></p>\n" +
-                "<p><span style='font-family: \"Courier New\", courier; font-size: 14px;'>passoword - "+ user_password + "</span></p>\n" +
+                "<p><span style='font-family: \"Courier New\", courier; font-size: 14px;'>email - " + loggedInUser.getEmail() + "</span></p>\n" +
+                "<p><span style='font-family: \"Courier New\", courier; font-size: 14px;'>passoword - "+ loggedInUser.getPassword() + "</span></p>\n" +
                 "<p><span style='font-family: \"Courier New\", courier; font-size: 14px;'><br></span></p>\n" +
                 "<p><span style='font-family: \"Courier New\", courier; font-size: 14px;'>Thank you for traveling with us!</span></p>\n" +
                 "<p><span style='font-family: \"Courier New\", courier; font-size: 14px;'><br></span></p>\n" +
@@ -65,7 +73,7 @@ public class MailService {
     public static void SendTicketMailService(QrCodeAndPdfGenerator qrCodeAndPdfGenerator, Train train, User user)
             throws MessagingException {
 
-
+        loggedInUser = user;
 
 
         Properties prop = new Properties();
@@ -83,7 +91,7 @@ public class MailService {
         String MyAccountEmail = "railway.reservation.system.ticket@gmail.com";
         String password = "snenbwlamimkawzh";
 
-        String email_odbiorcy = "";
+        String email_odbiorcy = loggedInUser.getEmail();
 
 
         Session session = Session.getInstance(prop, new Authenticator() {

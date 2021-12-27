@@ -1,26 +1,31 @@
 package train.train;
 
 public class Train {
+
+
     private String departureStation;
     private String destinatonStation;
-    private String travelTime;
     private String trainNumber;
     private String priceNormal;
     private String priceChild;
     private String date;
     private String id_train;
+    private String departure_time;
+    private String arival_time;
 
 
-    public Train(String departureStation, String destinatonStation, String travelTime, String trainNumber,
-                 String priceNormal, String priceChild, String date, String id_train) {
+
+    public Train( String departureStation, String destinatonStation, String trainNumber,
+                 String priceNormal, String priceChild, String date, String id_train,String departure_time, String arival_time) {
         this.departureStation = departureStation;
         this.destinatonStation = destinatonStation;
-        this.travelTime = travelTime;
         this.trainNumber = trainNumber;
         this.priceNormal = priceNormal;
         this.priceChild = priceChild;
         this.date = date;
         this.id_train = id_train;
+        this.departure_time=departure_time;
+        this.arival_time=arival_time;
     }
 
 
@@ -38,14 +43,6 @@ public class Train {
 
     public void setDestinatonStation(String destinatonStation) {
         this.destinatonStation = destinatonStation;
-    }
-
-    public String getTravelTime() {
-        return travelTime;
-    }
-
-    public void setTravelTime(String travelTime) {
-        this.travelTime = travelTime;
     }
 
     public String getTrainNumber() {
@@ -86,5 +83,20 @@ public class Train {
 
     public void setId_train(String id_train) {
         this.id_train = id_train;
+    }
+    public String getDeparture_time() {
+        return departure_time;
+    }
+
+    public void setDeparture_time(String departure_time) {
+        this.departure_time = departure_time;
+    }
+
+    public String getArival_time() {
+        return arival_time;
+    }
+
+    public void setArival_time(String arival_time) {
+        this.arival_time = arival_time;
     }
 }
