@@ -7,8 +7,6 @@ import java.util.Properties;
 
 public class MailService {
 
-
-
     public static void ReservationEmail(String user_mail, String FirstName, String LastName, String user_password) throws MessagingException {
         Properties prop = new Properties();
         prop.put("mail.smtp.auth", true);
@@ -24,7 +22,6 @@ public class MailService {
         String MyAccountEmail = "railway.reservation.system.ticket@gmail.com";
         String password = "snenbwlamimkawzh";
 
-        ;
 
         Session session = Session.getInstance(prop, new Authenticator() {
             @Override
@@ -63,12 +60,9 @@ public class MailService {
         message.setContent(multipart);
         Transport.send(message);
 
+    }
 
-
-
-
-
-
+    public static void SendTicketMailService(String user_mail, String FirstName, String LastName, String user_password){
 
     }
 
