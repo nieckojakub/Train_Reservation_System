@@ -62,8 +62,56 @@ public class MailService {
 
     }
 
-    public static void SendTicketMailService(String user_mail, String FirstName, String LastName, String user_password){
+    public static void SendTicketMailService(QrCodeAndPdfGenerator qrCodeAndPdfGenerator, Train train, User user)
+            throws MessagingException {
 
+
+
+
+        Properties prop = new Properties();
+        prop.put("mail.smtp.auth", true);
+        prop.put("mail.smtp.starttls.enable", "true");
+        prop.put("mail.smtp.host", "smtp.gmail.com");
+        prop.put("mail.smtp.port", "465");
+        prop.put("mail.smtp.socketFactory.port", "465");
+        prop.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+        prop.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+        prop.put("mail.transport.protocol","smtp");
+
+
+
+        String MyAccountEmail = "railway.reservation.system.ticket@gmail.com";
+        String password = "snenbwlamimkawzh";
+
+        String email_odbiorcy = "";
+
+
+        Session session = Session.getInstance(prop, new Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(MyAccountEmail, password);
+            }
+        });
+
+
+        Message message = new MimeMessage(session);
+        message.setFrom(new InternetAddress(MyAccountEmail));
+        message.setRecipient(Message.RecipientType.TO, new InternetAddress(email_odbiorcy));
+        message.setSubject("Your Ticket");
+
+
+        String msg1 = "";
+
+
+        MimeBodyPart mimeBodyPart = new MimeBodyPart();
+        mimeBodyPart.setContent(msg1,"text/html;charet=utf-8");
+
+
+        Multipart multipart = new MimeMultipart();
+        multipart.addBodyPart(mimeBodyPart);
+
+        message.setContent(multipart);
+        Transport.send(message);
     }
 
 }

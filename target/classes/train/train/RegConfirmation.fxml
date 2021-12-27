@@ -23,14 +23,14 @@
             <Font size="20.0" />
          </font>
       </Text>
-      <Text fx:id="textMail" fill="WHITE" layoutX="1.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="607.0">
+      <Text fx:id="textMail" fill="WHITE" layoutX="1.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ustawie@ustawie.pl" textAlignment="CENTER" wrappingWidth="607.0">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
       <ImageView fx:id="greenMarkImage" fitHeight="100.0" fitWidth="98.0" layoutX="255.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../image/greenmark.png" />
+            <Image url="@../../../../../image/greenmark.png" />
          </image>
       </ImageView>
    </children>
