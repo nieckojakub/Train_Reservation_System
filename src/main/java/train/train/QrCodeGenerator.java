@@ -18,7 +18,7 @@ import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Image;
 import com.itextpdf.layout.element.Paragraph;
 
-public class QrCodeAndPdfGenerator {
+public class QrCodeGenerator {
 
     // dostepne z reservation
     String from = "Tarnow";
@@ -49,13 +49,12 @@ public class QrCodeAndPdfGenerator {
         return path;
     }
 
-    public static void GeneratePdfTicket(User user,Train train){
-
+    String GeneratePdfTicket(User user,Train train){
 
         try {
 
-            String dest = "C:\\Users\\nieck\\Desktop\\PROJEKT-PO\\testowy.pdf"; //
-            com.itextpdf.kernel.pdf.PdfWriter writer = new PdfWriter(dest);
+            String file = "C:\\Users\\nieck\\Desktop\\PROJEKT-PO\\testowy.pdf";
+            com.itextpdf.kernel.pdf.PdfWriter writer = new PdfWriter(file);
 
             PdfDocument pdfDoc = new PdfDocument(writer);
 
@@ -150,12 +149,11 @@ public class QrCodeAndPdfGenerator {
 
             document.close();
 
-            System.out.println("PDF GENERATED");
+            return file;
 
         }catch (Exception e){
             System.err.println(e);
         }
-
-
+        return "";
     }
 }

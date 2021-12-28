@@ -40,7 +40,7 @@
       <Label layoutX="298.0" layoutY="192.0" text="Passenger" textFill="#ecd0cd" />
       <CheckBox layoutX="298.0" layoutY="214.0" mnemonicParsing="false" text="Adult" textFill="#ecd0cd" />
       <CheckBox layoutX="384.0" layoutY="214.0" mnemonicParsing="false" text="Child" textFill="#ecd0cd" />
-      <Button fx:id="ReserveButton" layoutX="242.0" layoutY="576.0" mnemonicParsing="false" style="-fx-background-color: #ecd0cd;" text="Reserve Now" textFill="#545871">
+      <Button fx:id="ReserveButton" layoutX="242.0" layoutY="576.0" mnemonicParsing="false" onAction="#ReserveButtonOnAction" style="-fx-background-color: #ecd0cd;" text="Reserve Now" textFill="#545871">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>

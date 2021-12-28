@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 
 
+import javax.mail.MessagingException;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -50,6 +51,10 @@ public class RegisterControler implements Initializable{
     private Label passwordCorrectLabel;
 
 
+    //referencja
+    private MailService mailService;
+
+
     public void initialize(URL url, ResourceBundle resourceBundle) {
         File registerFile = new File("image/register_icon.png");
         Image registerImage = new Image(registerFile.toURI().toString());
@@ -61,7 +66,7 @@ public class RegisterControler implements Initializable{
     boolean goodPassword = false;               /////////////////// TE TRZY ZMIENNE POTRZEBNE SA DO SPRAWDZANIA DANYCH W FORMULARZU REJESTRACJI
     boolean goodEmail = false;
 
-    public void RegistrationButtonOnAction(ActionEvent event) throws IOException {
+    public void RegistrationButtonOnAction(ActionEvent event) throws IOException, MessagingException {
         if (firstNameTextField.getText().isBlank() || emailTextField.getText().isBlank() || setPasswordField.getText().isBlank() //////SPRAWDZANIE, CZY POLA SA PUSTE
                 || confirmPasswordField.getText().isBlank())  {
             RegistrationMessageLabel.setText("Please enter all fields");
@@ -120,6 +125,7 @@ public class RegisterControler implements Initializable{
                 User user = new User(firstNameTextField.getText(), LastNameTextField.getText(), emailTextField.getText().toLowerCase(), setPasswordField.getText());
                 addUserToDatabase(user);  ////////// DODANIE USERA DO BAZY DANYCH
 
+
                 //////////////////////// PRZEJSCIE DO STRONY POTWIERDZENIA REJESTRACJI ///////////////
                 Stage stage = (Stage) scenePane.getScene().getWindow(); /// aktualna scena, ktora chcemy zamknac
                 stage.close();
@@ -128,6 +134,12 @@ public class RegisterControler implements Initializable{
 
                 RegConfirmationController regConfirmationController = fxmlLoader.getController();
                 regConfirmationController.setConfirmationMailText(emailTextField.getText());
+
+
+                // wyslanie maila
+                MailService.RegisterEmail(user);
+
+
 
                 stage.setScene(scene);
                 stage.show();

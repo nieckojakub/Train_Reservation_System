@@ -1,8 +1,11 @@
 package train.train;
 
+import com.google.zxing.WriterException;
+
 import javax.mail.*;
 import javax.mail.internet.*;
-import java.io.File;
+import javax.sql.DataSource;
+import java.io.IOException;
 import java.util.Properties;
 
 public class MailService {
@@ -10,9 +13,7 @@ public class MailService {
     private static User loggedInUser;
 
 
-
-
-    public static void ReservationEmail(User user) throws MessagingException {
+    public static void RegisterEmail(User user) throws MessagingException {
         loggedInUser = user;
 
 
@@ -70,11 +71,10 @@ public class MailService {
 
     }
 
-    public static void SendTicketMailService(QrCodeAndPdfGenerator qrCodeAndPdfGenerator, Train train, User user)
-            throws MessagingException {
+    public static void SendTicketMailService(PdfGenerator pdfGenerator, Train train, User user, QrCodeGenerator qrCodeGenerator)
+            throws MessagingException, IOException, WriterException {
 
         loggedInUser = user;
-
 
         Properties prop = new Properties();
         prop.put("mail.smtp.auth", true);
@@ -105,20 +105,24 @@ public class MailService {
         Message message = new MimeMessage(session);
         message.setFrom(new InternetAddress(MyAccountEmail));
         message.setRecipient(Message.RecipientType.TO, new InternetAddress(email_odbiorcy));
-        message.setSubject("Your Ticket");
-
+        message.setSubject("Your Ticket from ");
 
         String msg1 = "";
-
 
         MimeBodyPart mimeBodyPart = new MimeBodyPart();
         mimeBodyPart.setContent(msg1,"text/html;charet=utf-8");
 
+        MimeBodyPart pdfAttachment = new MimeBodyPart();
+
+        pdfAttachment.attachFile(pdfGenerator.GeneratePdfTicket(user,train,qrCodeGenerator)); // PDF ATTACHMENT TICKET ///
 
         Multipart multipart = new MimeMultipart();
         multipart.addBodyPart(mimeBodyPart);
+        multipart.addBodyPart(pdfAttachment);
+
 
         message.setContent(multipart);
+
         Transport.send(message);
     }
 

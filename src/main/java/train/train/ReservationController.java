@@ -1,5 +1,6 @@
 package train.train;
 
+import com.google.zxing.WriterException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,6 +14,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+import javax.mail.MessagingException;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -92,7 +94,7 @@ public class ReservationController implements Initializable {
     private void showOriginStation() throws SQLException {
         Connection conn = jdbc.getConnection();
         ObservableList<String> originStations = FXCollections.observableArrayList();
-        ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM trains");
+        ResultSet rs = conn.createStatement().executeQuery("SELECT  * FROM trains");
         while (rs.next()){
             originStations.add(rs.getString("origin"));
 
@@ -104,7 +106,7 @@ public class ReservationController implements Initializable {
     private void showDestinatonStations() throws SQLException {
         Connection conn = jdbc.getConnection();
         ObservableList<String> destinatonStatons = FXCollections.observableArrayList();
-        ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM trains");
+        ResultSet rs = conn.createStatement().executeQuery("SELECT  * FROM trains");
         while (rs.next()){
             destinatonStatons.add(rs.getString("destination"));
 
@@ -129,6 +131,7 @@ public class ReservationController implements Initializable {
 
 
     }
+
 
     public void MyTicketButtonOnAction(ActionEvent event) {
 
