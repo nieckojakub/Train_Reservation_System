@@ -96,7 +96,7 @@ public class LoginControler implements Initializable {
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            if (resultSet.next()) {
+            if (resultSet.next()) { // IF dlatego, ze interesuje nas tylko ten wiersz, ktory zawiera dane z preparedStatement. (nie wszystkie wiersze, jak w przypadku while)
                 user.setFirstname(resultSet.getString("firstname"));
                 user.setLastname(resultSet.getString("lastname"));
                 user.setEmail(resultSet.getString("email"));
@@ -110,10 +110,10 @@ public class LoginControler implements Initializable {
                 loginMessageLabel.setText("Logged in");
                 Stage stage = (Stage) mainPane.getScene().getWindow(); /// aktualna scena, ktora chcemy zamknac
                 stage.close();
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Reservation.fxml")); ////////////////// POWROT DO STRONY LOGOWANIA I ZAMKNIECIE STRONY POPRZEDNIEJ
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Connections.fxml")); ////////////////// POWROT DO STRONY LOGOWANIA I ZAMKNIECIE STRONY POPRZEDNIEJ
                 Scene scene = new Scene(fxmlLoader.load());
-                ReservationController reservationController = fxmlLoader.getController();
-                reservationController.initData(user);
+                ConnectionsController connectionsController = fxmlLoader.getController();
+                connectionsController.initUserData(user);
                 stage.setScene(scene);
                 stage.show();
             } else {

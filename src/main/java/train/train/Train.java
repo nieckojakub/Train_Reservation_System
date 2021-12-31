@@ -1,80 +1,43 @@
 package train.train;
 
+import java.time.LocalDate;
+
 public class Train {
 
-
-    private String departureStation;
-    private String destinatonStation;
-    private String trainNumber;
-    private String priceNormal;
-    private String priceChild;
-    private String date;
+    private String origin;
+    private String destination;
     private String id_train;
+    private String price;
+    private LocalDate date;
     private String departure_time;
     private String arival_time;
+    private String train_number;
 
-
-
-    public Train( String departureStation, String destinatonStation, String trainNumber,
-                 String priceNormal, String priceChild, String date, String id_train,String departure_time, String arival_time) {
-        this.departureStation = departureStation;
-        this.destinatonStation = destinatonStation;
-        this.trainNumber = trainNumber;
-        this.priceNormal = priceNormal;
-        this.priceChild = priceChild;
-        this.date = date;
+    public Train(String id_train, String origin, String destination, String train_number, String price, LocalDate date, String departureTime, String arrivalTime) {
         this.id_train = id_train;
-        this.departure_time=departure_time;
-        this.arival_time=arival_time;
-    }
-
-
-    public String getDepartureStation() {
-        return departureStation;
-    }
-
-    public void setDepartureStation(String departureStation) {
-        this.departureStation = departureStation;
-    }
-
-    public String getDestinatonStation() {
-        return destinatonStation;
-    }
-
-    public void setDestinatonStation(String destinatonStation) {
-        this.destinatonStation = destinatonStation;
-    }
-
-    public String getTrainNumber() {
-        return trainNumber;
-    }
-
-    public void setTrainNumber(String trainNumber) {
-        this.trainNumber = trainNumber;
-    }
-
-    public String getPriceNormal() {
-        return priceNormal;
-    }
-
-    public void setPriceNormal(String priceNormal) {
-        this.priceNormal = priceNormal;
-    }
-
-    public String getPriceChild() {
-        return priceChild;
-    }
-
-    public void setPriceChild(String priceChild) {
-        this.priceChild = priceChild;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
+        this.origin = origin;
+        this.destination = destination;
+        this.train_number = train_number;
+        this.price = price;
         this.date = date;
+        this.departure_time = departureTime;
+        this.arival_time = arrivalTime;
+    }
+
+    public String getOrigin() {
+        return origin;
+    }
+
+    public void setOrigin(String origin) {
+        this.origin = origin;
+    }
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public void setDestination(String destination) {
+        this.destination = destination;
     }
 
     public String getId_train() {
@@ -84,6 +47,23 @@ public class Train {
     public void setId_train(String id_train) {
         this.id_train = id_train;
     }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
     public String getDeparture_time() {
         return departure_time;
     }
@@ -98,5 +78,13 @@ public class Train {
 
     public void setArival_time(String arival_time) {
         this.arival_time = arival_time;
+    }
+
+    public String getTrain_number() {
+        return train_number;
+    }
+
+    public void setTrain_number(String train_number) {
+        this.train_number = train_number;
     }
 }

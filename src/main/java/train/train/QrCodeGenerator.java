@@ -36,8 +36,8 @@ public class QrCodeGenerator {
 
     String GenerateQRcode(User user, Train train) throws WriterException, IOException {
 
-        String data = "Name: " + user.getFirstname() +" "+ user.getLastname() + "\n"+ "From: " + train.getDepartureStation() + "\n" + "To: " + train.getDestinatonStation() + "\n" +
-                "Train number: " +train.getTrainNumber() + "\n" + "Price: " + train.getPriceNormal() + "\n" + "Ticket id: " + "id/dodac" ;
+        String data = "Name: " + user.getFirstname() +" "+ user.getLastname() + "\n"+ "From: " + train.getOrigin() + "\n" + "To: " + train.getDestination() + "\n" +
+                "Train number: " +train.getTrain_number() + "\n" + "Price: " + train.getPrice() + "\n" + "Ticket id: " + "id/dodac" ;
 
 
         String path = "C:\\Users\\nieck\\Desktop\\PROJEKT-PO\\qr.jpg";
@@ -83,7 +83,7 @@ public class QrCodeGenerator {
 
             //TEKST
             Paragraph date_upper = new Paragraph("Ticket " + train.getDate());
-            Paragraph route_info_upper = new Paragraph(train.getDepartureStation() + " -> " + train.getDestinatonStation());
+            Paragraph route_info_upper = new Paragraph(train.getOrigin() + " -> " + train.getDestination());
             Paragraph ticket_client_info = new Paragraph("The ticket is valid together with a document with a photo\n confirming identity." +
                     "The ticket must be presented for inspection\n at each request of the inspection body on board the train.");
             Paragraph travel_info = new Paragraph("Travel information");
@@ -94,12 +94,12 @@ public class QrCodeGenerator {
             //Rezerwacja info tickets
             Paragraph client_name = new Paragraph("Passenger - " + user.getFirstname() + " " +  user.getLastname());
 
-            Paragraph departure_station = new Paragraph("Departure Station - " + train.getDepartureStation());
-            Paragraph destination_station = new Paragraph("Destination Station - "+ train.getDestinatonStation());
+            Paragraph departure_station = new Paragraph("Departure Station - " + train.getOrigin());
+            Paragraph destination_station = new Paragraph("Destination Station - "+ train.getDestination());
             Paragraph date_yourney = new Paragraph("Date - " + train.getDate());
-            Paragraph train_number_info = new Paragraph("Train number - "+ train.getTrainNumber());
+            Paragraph train_number_info = new Paragraph("Train number - "+ train.getTrain_number());
             Paragraph travel_time_info = new Paragraph("Travel time - "+ "!!!!!!!!!!!!!" + "h" );
-            Paragraph ticket_price_info = new Paragraph("Price - " + train.getPriceNormal() + " zl");
+            Paragraph ticket_price_info = new Paragraph("Price - " + train.getPrice() + " zl");
 
             Paragraph pdf_time_generated = new Paragraph("Document generated: " + pdf_generate_time);
 

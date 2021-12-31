@@ -135,19 +135,14 @@ public class RegisterControler implements Initializable{
                 RegConfirmationController regConfirmationController = fxmlLoader.getController();
                 regConfirmationController.setConfirmationMailText(emailTextField.getText());
 
-
                 // wyslanie maila
                 MailService.RegisterEmail(user);
-
-
 
                 stage.setScene(scene);
                 stage.show();
             }
         }
     }
-
-
 
     public void CloseButtonOnAction (ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);   ///// tworzy alert typu Confirm

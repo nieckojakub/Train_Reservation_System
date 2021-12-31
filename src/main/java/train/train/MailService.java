@@ -86,8 +86,6 @@ public class MailService {
         prop.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
         prop.put("mail.transport.protocol","smtp");
 
-
-
         String MyAccountEmail = "railway.reservation.system.ticket@gmail.com";
         String password = "snenbwlamimkawzh";
 

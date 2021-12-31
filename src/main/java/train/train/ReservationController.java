@@ -22,7 +22,6 @@ import java.sql.*;
 import java.util.ResourceBundle;
 
 
-
 public class ReservationController implements Initializable {
 
     @FXML
@@ -52,13 +51,9 @@ public class ReservationController implements Initializable {
     @FXML
     private ComboBox<String> DestinationCombo;
 
-
-    JdbcDatabaseObject jdbc;
-
-
+    private JdbcDatabaseObject jdbcDatabaseObject = new JdbcDatabaseObject(); //do polaczenia z baza danych
     private User loggedInUser; // user, do ktorego dane zostana zapisane z logowania
-
-    Train train = new Train("","","","","","","","","");
+    //private Train train = new Train("","","","","","","","","");
 
     public void initData(User user) { // ta metoda wywolywana w logowaniu
         loggedInUser = user;
@@ -75,9 +70,6 @@ public class ReservationController implements Initializable {
         Image train_reservationImage = new Image(brandingFile.toURI().toString());
         trainLogoImageView.setImage(train_reservationImage);
 
-
-        jdbc = new JdbcDatabaseObject();
-
         try {
             showOriginStation();
         } catch (SQLException e) {
@@ -92,7 +84,8 @@ public class ReservationController implements Initializable {
     }
 
     private void showOriginStation() throws SQLException {
-        Connection conn = jdbc.getConnection();
+        Connection conn = jdbcDatabaseObject.getConnection(); ///// POLACZENIE Z BAZA DANYCH
+
         ObservableList<String> originStations = FXCollections.observableArrayList();
         ResultSet rs = conn.createStatement().executeQuery("SELECT  * FROM trains");
         while (rs.next()){
@@ -100,11 +93,11 @@ public class ReservationController implements Initializable {
 
         }
         OriginCombo.setItems(originStations);
-
     }
 
     private void showDestinatonStations() throws SQLException {
-        Connection conn = jdbc.getConnection();
+        Connection conn = jdbcDatabaseObject.getConnection();  ///// POLACZENIE Z BAZA DANYCH
+
         ObservableList<String> destinatonStatons = FXCollections.observableArrayList();
         ResultSet rs = conn.createStatement().executeQuery("SELECT  * FROM trains");
         while (rs.next()){
