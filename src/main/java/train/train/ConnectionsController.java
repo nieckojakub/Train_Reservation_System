@@ -173,8 +173,6 @@ public class ConnectionsController implements Initializable {
         ticketPageController.initTrainData(selectedTrain);
         stage.setScene(scene);
         stage.show();
-
-
     }
 
     public void logoutButtonOnAction() throws IOException {
