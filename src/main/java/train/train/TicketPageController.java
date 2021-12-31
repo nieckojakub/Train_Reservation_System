@@ -5,10 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -53,6 +50,12 @@ public class TicketPageController implements Initializable {
     private Button logoutButton;
     @FXML
     private Button myTicketsButton;
+    @FXML
+    private Button returnButton;
+    @FXML
+    private Button confirmReservationButton;
+    @FXML
+    private TextField pathTextField;
 
 
     private User loggedInUser;
@@ -99,5 +102,16 @@ public class TicketPageController implements Initializable {
             stage.setScene(scene);
             stage.show();
         }
+    }
+
+    public void returnButtonOnAction() throws IOException {
+        Stage stage = (Stage) mainPane.getScene().getWindow(); /// aktualna scena, ktora chcemy zamknac
+        stage.close();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Connections.fxml")); ////////////////// POWROT DO STRONY LOGOWANIA I ZAMKNIECIE STRONY POPRZEDNIEJ
+        Scene scene = new Scene(fxmlLoader.load());
+        ConnectionsController connectionsController = fxmlLoader.getController();
+        connectionsController.initUserData(loggedInUser);
+        stage.setScene(scene);
+        stage.show();
     }
 }

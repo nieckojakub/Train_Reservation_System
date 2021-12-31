@@ -11,6 +11,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -46,7 +47,7 @@ public class ConnectionsController implements Initializable {
     @FXML
     private Button reserveButton;
     @FXML
-    private TableView<Train> connectionsTableViev;
+    private TableView<Train> connectionsTableView;
     @FXML
     private TableColumn<Train, String> idColumn;
     @FXML
@@ -66,14 +67,14 @@ public class ConnectionsController implements Initializable {
     @FXML
     private Label userNameLabel;
     @FXML
-    private Label invalidLabel;
+    private Text textInvalid;
 
 
     private final JdbcDatabaseObject jdbcDatabaseObject = new JdbcDatabaseObject(); // BAZA DANYCH DO POLACZENIA
     private User loggedInUser; // user, do ktorego dane zostana zapisane z logowania
     private Train selectedTrain;
 
-    ObservableList<Train> observableList = FXCollections.observableArrayList();
+    private ObservableList<Train> observableList = FXCollections.observableArrayList();
 
 
     public void initUserData(User user) { // ta metoda wywolywana w logowaniu
@@ -128,7 +129,7 @@ public class ConnectionsController implements Initializable {
     ////////////////////////////////////////////////////////////////////////////
 
     public void showAvailableConnectionsButtonOnAction() throws SQLException {
-        connectionsTableViev.getItems().clear();
+        connectionsTableView.getItems().clear();
         Connection connection = jdbcDatabaseObject.getConnection(); // POLACZENIE Z BAZA DANYCH
         String sql = "SELECT * FROM trains WHERE origin=? AND destination=?";
         PreparedStatement preparedStatement = connection.prepareStatement(sql) ;
@@ -138,9 +139,9 @@ public class ConnectionsController implements Initializable {
         ResultSet rs = preparedStatement.executeQuery();
 
         if(originComboBox.getSelectionModel().isEmpty() || destinationComboBox.getSelectionModel().isEmpty() || datePicker.getValue() == null)
-            invalidLabel.setText("Missing data");
+            textInvalid.setText("Missing data");
         else {
-            invalidLabel.setText("");
+            textInvalid.setText("");
             while (rs.next()) {
                 observableList.add(new Train(rs.getString("id_train"), rs.getString("origin"),
                         rs.getString("destination"), rs.getString("train_number"),
@@ -156,23 +157,32 @@ public class ConnectionsController implements Initializable {
             departureColumn.setCellValueFactory(new PropertyValueFactory<>("departure_time"));
             arrivalColumn.setCellValueFactory(new PropertyValueFactory<>("arival_time"));
 
-            connectionsTableViev.setItems(observableList);
+            connectionsTableView.setItems(observableList);
         }
     }
 
     public void reserveButtonOnAction() throws IOException {
-        selectedTrain = connectionsTableViev.getSelectionModel().getSelectedItem();
+        if(originComboBox.getSelectionModel().isEmpty() || destinationComboBox.getSelectionModel().isEmpty() || datePicker.getValue() == null) {
+            textInvalid.setText("Invalid data");
+        }
+        else if(connectionsTableView.getSelectionModel().getSelectedItem() == null) {
+            textInvalid.setText("Select the appropriate connection");
+        }
+        else {
+            textInvalid.setText("");
+            selectedTrain = connectionsTableView.getSelectionModel().getSelectedItem();
 
-        Stage stage = (Stage) scenePane.getScene().getWindow(); /// aktualna scena, ktora chcemy zamknac
-        stage.close();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("TicketPage.fxml")); ////////////////// POWROT DO STRONY LOGOWANIA I ZAMKNIECIE STRONY POPRZEDNIEJ
-        Scene scene = new Scene(fxmlLoader.load());
-        TicketPageController ticketPageController = fxmlLoader.getController();
+            Stage stage = (Stage) scenePane.getScene().getWindow(); /// aktualna scena, ktora chcemy zamknac
+            stage.close();
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("TicketPage.fxml")); ////////////////// POWROT DO STRONY LOGOWANIA I ZAMKNIECIE STRONY POPRZEDNIEJ
+            Scene scene = new Scene(fxmlLoader.load());
+            TicketPageController ticketPageController = fxmlLoader.getController();
 
-        ticketPageController.initUserData(loggedInUser); // PRZEKAZANIE USERA DO BILETU
-        ticketPageController.initTrainData(selectedTrain);
-        stage.setScene(scene);
-        stage.show();
+            ticketPageController.initUserData(loggedInUser); // PRZEKAZANIE USERA DO BILETU
+            ticketPageController.initTrainData(selectedTrain);
+            stage.setScene(scene);
+            stage.show();
+        }
     }
 
     public void logoutButtonOnAction() throws IOException {

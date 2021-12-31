@@ -67,7 +67,8 @@ public class RegisterControler implements Initializable{
     boolean goodEmail = false;
 
     public void RegistrationButtonOnAction(ActionEvent event) throws IOException, MessagingException {
-        if (firstNameTextField.getText().isBlank() || emailTextField.getText().isBlank() || setPasswordField.getText().isBlank() //////SPRAWDZANIE, CZY POLA SA PUSTE
+        if (firstNameTextField.getText().isBlank() || LastNameTextField.getText().isBlank() ||
+                emailTextField.getText().isBlank() || setPasswordField.getText().isBlank() //////SPRAWDZANIE, CZY POLA SA PUSTE
                 || confirmPasswordField.getText().isBlank())  {
             RegistrationMessageLabel.setText("Please enter all fields");
             emailMessageLabel.setText("");
@@ -77,26 +78,26 @@ public class RegisterControler implements Initializable{
         //////////////////////////////////////////////////////////
         else {
             RegistrationMessageLabel.setText("");
-            int index1 = emailTextField.getText().indexOf("@");
-            int index2 = emailTextField.getText().indexOf(".");
+
             ////////////////////// SPRAWDZANIE MAILA
-            if (index1 != -1 && index2 != -1) {
-                if (index1 > index2) {
-                    emailMessageLabel.setText("Invalid email address");
-                    passwordMessageLabel.setText("");
-                    passwordCorrectLabel.setText("");
-                    goodEmail = false;
-                }
-                else {
-                    emailMessageLabel.setText("");
-                    goodEmail = true;
-                }
-            }
-            else {
+            if(!emailTextField.getText().contains("@")) {
+                goodEmail = false;
                 emailMessageLabel.setText("Invalid email address");
                 passwordMessageLabel.setText("");
                 passwordCorrectLabel.setText("");
-                goodEmail = false;
+            }
+            else {
+                String[] parts = emailTextField.getText().split("@", 2);
+                if(parts[1].contains(".") && parts[1].indexOf(".") != 0) {
+                    goodEmail = true;
+                    emailMessageLabel.setText("");
+                }
+                else {
+                    goodEmail = false;
+                    emailMessageLabel.setText("Invalid email address");
+                    passwordMessageLabel.setText("");
+                    passwordCorrectLabel.setText("");
+                }
             }
             /////////////////////////////////////////////////////////////////////////
             if(goodEmail) {
