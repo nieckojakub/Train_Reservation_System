@@ -21,14 +21,13 @@ public class ReservationConfirmationController implements Initializable {
     @FXML
     private AnchorPane mainPane;
     @FXML
-    private Button returnToLoginButton;
+    private Button returnToConnectionsButton;
     @FXML
     private Text textMail;
     @FXML
     private ImageView greenMarkImage;
 
-    User user;
-
+    User loggedInUser;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -37,15 +36,18 @@ public class ReservationConfirmationController implements Initializable {
         greenMarkImage.setImage(goodImage);
     }
 
-    public void setConfirmationMailText(String text) {
-        textMail.setText(text);
+    public void initUserData(User user) {
+        loggedInUser = user;
+        textMail.setText(loggedInUser.getEmail());
     }
 
-    public void returnToLoginPage() throws IOException {
+    public void returnToConnectionsPage() throws IOException {
         Stage stage = (Stage) mainPane.getScene().getWindow(); /// aktualna scena, ktora chcemy zamknac
         stage.close();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Login.fxml")); ////////////////// POWROT DO STRONY LOGOWANIA I ZAMKNIECIE STRONY POPRZEDNIEJ
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Connections.fxml")); ////////////////// POWROT DO STRONY LOGOWANIA I ZAMKNIECIE STRONY POPRZEDNIEJ
         Scene scene = new Scene(fxmlLoader.load());
+        ConnectionsController connectionsController = fxmlLoader.getController();
+        connectionsController.initUserData(loggedInUser);
         stage.setScene(scene);
         stage.show();
     }

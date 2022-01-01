@@ -3,7 +3,6 @@ package train.train;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -17,7 +16,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class RegConfirmationController implements Initializable {
+public class RegistrationConfirmationController implements Initializable {
 
     @FXML
     private AnchorPane mainPane;
@@ -30,7 +29,6 @@ public class RegConfirmationController implements Initializable {
 
     User user;
     MailService mailService;
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

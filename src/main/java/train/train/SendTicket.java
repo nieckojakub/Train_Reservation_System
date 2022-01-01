@@ -36,7 +36,7 @@ public class SendTicket {
 
 
         loggedInUser = user;
-        selectedTrain=train;
+        selectedTrain = train;
 
         ////////////////////////// PDF GENERATOR //////////////////////
 
