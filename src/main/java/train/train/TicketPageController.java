@@ -1,6 +1,8 @@
 package train.train;
 
+import com.google.zxing.WriterException;
 import com.itextpdf.kernel.color.Lab;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -11,6 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+import javax.mail.MessagingException;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -56,10 +59,14 @@ public class TicketPageController implements Initializable {
     private Button confirmReservationButton;
     @FXML
     private TextField pathTextField;
+    @FXML
+    private Label pathNotSetField;
 
 
     private User loggedInUser;
     private Train selectedTrain;
+    private SendTicket sendTicket;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -88,6 +95,13 @@ public class TicketPageController implements Initializable {
         priceLabel.setText(selectedTrain.getPrice());
     }
 
+    public void confirmReservationButtonOnAction(ActionEvent event) throws IOException, WriterException, MessagingException {
+       /// sendTicket.TicketviaEmail(loggedInUser,selectedTrain);
+
+    }
+
+
+
     public void logoutButtonOnAction() throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);   ///// tworzy alert typu Confirm
         alert.setTitle("Logout");
@@ -114,4 +128,6 @@ public class TicketPageController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+
+
 }

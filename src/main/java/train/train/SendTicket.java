@@ -1,5 +1,10 @@
 package train.train;
 
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.WriterException;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
 import com.itextpdf.io.image.ImageData;
 import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.kernel.pdf.PdfDocument;
@@ -8,13 +13,41 @@ import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Image;
 import com.itextpdf.layout.element.Paragraph;
 
+import javax.mail.*;
+import javax.mail.internet.*;
+import java.io.IOException;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Properties;
 
-public class PdfGenerator {
+public class SendTicket {
+
+    private static User loggedInUser;
+    private Train selectedTrain;
+
+    public void TicketviaEmail(User user, Train train) throws MessagingException, WriterException, IOException {
 
 
-    String GeneratePdfTicket(User user,Train train, QrCodeGenerator qrCodeGenerator){
+        loggedInUser = user;
+        selectedTrain=train;
+
+
+        ///////////////////GENERATE QR CODE /////////////////////////
+        String data = "Name: " + user.getFirstname() +" "+ user.getLastname() + "\n"+ "From: " + train.getOrigin() + "\n" + "To: " + train.getDestination() + "\n" +
+                "Train number: " +train.getTrain_number() + "\n" + "Price: " + train.getPrice() + "\n" + "Ticket id: " + "id/dodac" ;
+
+
+        String path = "image/workingFolder/qr.jpg";
+
+        BitMatrix matrix = new MultiFormatWriter().encode(data, BarcodeFormat.QR_CODE, 500, 500);
+        MatrixToImageWriter.writeToPath(matrix,"jpg", Paths.get(path));
+        //////////////////////////////////////////////////////////////////
+
+
+
+        ////////////////////////// PDF GENERATOR //////////////////////
+
         // time generator
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
@@ -23,7 +56,8 @@ public class PdfGenerator {
 
         try {
 
-            String file = "image/workingFolder/qr.jpg";
+
+            String file = "image/workingFolder/"+pdf_generate_time +".pdf";
             com.itextpdf.kernel.pdf.PdfWriter writer = new PdfWriter(file);
 
             PdfDocument pdfDoc = new PdfDocument(writer);
@@ -31,7 +65,7 @@ public class PdfGenerator {
 
             Document document = new Document(pdfDoc);
 
-            String imageFile = qrCodeGenerator.GenerateQRcode(user, train); //QRCODE GENERATOR ///
+            String imageFile = "image/workingFolder/qr.jpg"; //QRCODE GENERATOR ///
 
             ImageData data_img = ImageDataFactory.create(imageFile);
 
@@ -116,12 +150,62 @@ public class PdfGenerator {
             document.add(logo);
 
             document.close();
-
-            return file;
-
         }catch (Exception e){
             System.err.println(e);
         }
-        return "";
+
+
+
+
+        /////////////SEND EMAIL ///////////////////////////
+
+
+        Properties prop = new Properties();
+        prop.put("mail.smtp.auth", true);
+        prop.put("mail.smtp.starttls.enable", "true");
+        prop.put("mail.smtp.host", "smtp.gmail.com");
+        prop.put("mail.smtp.port", "465");
+        prop.put("mail.smtp.socketFactory.port", "465");
+        prop.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+        prop.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+        prop.put("mail.transport.protocol", "smtp");
+
+        String MyAccountEmail = "railway.reservation.system.ticket@gmail.com";
+        String password = "snenbwlamimkawzh";
+
+        String email_odbiorcy = loggedInUser.getEmail();
+
+
+        Session session = Session.getInstance(prop, new Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(MyAccountEmail, password);
+            }
+        });
+
+
+        Message message = new MimeMessage(session);
+        message.setFrom(new InternetAddress(MyAccountEmail));
+        message.setRecipient(Message.RecipientType.TO, new InternetAddress(email_odbiorcy));
+        message.setSubject("Your Ticket from " + selectedTrain.getOrigin() + " to " + selectedTrain.getDestination());
+
+        String msg1 = "";
+
+        MimeBodyPart mimeBodyPart = new MimeBodyPart();
+        mimeBodyPart.setContent(msg1, "text/html;charet=utf-8");
+
+        MimeBodyPart pdfAttachment = new MimeBodyPart();
+
+        pdfAttachment.attachFile("image/workingFolder/"+pdf_generate_time +".pdf"); // PDF ATTACHMENT TICKET ///
+
+        Multipart multipart = new MimeMultipart();
+        multipart.addBodyPart(mimeBodyPart);
+        multipart.addBodyPart(pdfAttachment);
+
+
+        message.setContent(multipart);
+
+        Transport.send(message);
     }
 }
+

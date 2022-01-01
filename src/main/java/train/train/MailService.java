@@ -11,6 +11,7 @@ import java.util.Properties;
 public class MailService {
 
     private static User loggedInUser;
+    private Train selectedTrain;
 
 
     public static void RegisterEmail(User user) throws MessagingException {
@@ -71,10 +72,11 @@ public class MailService {
 
     }
 
-    public static void SendTicketMailService(PdfGenerator pdfGenerator, Train train, User user, QrCodeGenerator qrCodeGenerator)
+    public void SendTicketMailService(Train train, User user,String attachment)
             throws MessagingException, IOException, WriterException {
 
         loggedInUser = user;
+        selectedTrain=train;
 
         Properties prop = new Properties();
         prop.put("mail.smtp.auth", true);
@@ -103,7 +105,7 @@ public class MailService {
         Message message = new MimeMessage(session);
         message.setFrom(new InternetAddress(MyAccountEmail));
         message.setRecipient(Message.RecipientType.TO, new InternetAddress(email_odbiorcy));
-        message.setSubject("Your Ticket from ");
+        message.setSubject("Your Ticket from "+ selectedTrain.getOrigin() + " to " + selectedTrain.getDestination());
 
         String msg1 = "";
 
@@ -112,7 +114,7 @@ public class MailService {
 
         MimeBodyPart pdfAttachment = new MimeBodyPart();
 
-        pdfAttachment.attachFile(pdfGenerator.GeneratePdfTicket(user,train,qrCodeGenerator)); // PDF ATTACHMENT TICKET ///
+        pdfAttachment.attachFile(attachment); // PDF ATTACHMENT TICKET ///
 
         Multipart multipart = new MimeMultipart();
         multipart.addBodyPart(mimeBodyPart);

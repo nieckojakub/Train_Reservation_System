@@ -68,6 +68,8 @@ public class ConnectionsController implements Initializable {
     private Label userNameLabel;
     @FXML
     private Text textInvalid;
+    @FXML
+    private ImageView trainMap;
 
 
     private final JdbcDatabaseObject jdbcDatabaseObject = new JdbcDatabaseObject(); // BAZA DANYCH DO POLACZENIA
@@ -88,6 +90,11 @@ public class ConnectionsController implements Initializable {
         File brandingFile = new File("image/train_reservation.png");
         Image train_reservationImage = new Image(brandingFile.toURI().toString());
         trainLogoImageView.setImage(train_reservationImage);
+
+        File trainMapFile = new File("image/trainMap.png");
+        Image trainMapImage = new Image(trainMapFile.toURI().toString());
+        trainMap.setImage(trainMapImage);
+
 
         try {
             showOriginStation();
