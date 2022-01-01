@@ -103,7 +103,7 @@ public class TicketPageController implements Initializable {
        SendTicket.TicketviaEmail(loggedInUser,selectedTrain);
 
 
-        //////////////////////// PRZEJSCIE DO STRONY POTWIERDZENIA REJESTRACJI ///////////////
+        //////////////////////// PRZEJSCIE DO STRONY POTWIERDZENIA Rezerwacji ///////////////
         //Stage stage = (Stage) scenePane.getScene().getWindow(); /// aktualna scena, ktora chcemy zamknac
         //stage.close();
         //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ReservationConfirmation.fxml")); ////////////////// POWROT DO STRONY LOGOWANIA I ZAMKNIECIE STRONY POPRZEDNIEJ
