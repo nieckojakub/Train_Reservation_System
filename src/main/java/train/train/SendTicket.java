@@ -24,9 +24,15 @@ import java.util.Properties;
 public class SendTicket {
 
     private static User loggedInUser;
-    private Train selectedTrain;
+    private static Train selectedTrain;
 
-    public void TicketviaEmail(User user, Train train) throws MessagingException, WriterException, IOException {
+
+    private static double round (double value, int precision) {
+        int scale = (int) Math.pow(10, precision);
+        return (double) Math.round(value * scale) / scale;
+    }
+
+    public static void TicketviaEmail(User user, Train train) throws MessagingException, WriterException, IOException {
 
 
         loggedInUser = user;
@@ -38,7 +44,7 @@ public class SendTicket {
                 "Train number: " +train.getTrain_number() + "\n" + "Price: " + train.getPrice() + "\n" + "Ticket id: " + "id/dodac" ;
 
 
-        String path = "image/workingFolder/qr.jpg";
+        String path = "qr.jpg";
 
         BitMatrix matrix = new MultiFormatWriter().encode(data, BarcodeFormat.QR_CODE, 500, 500);
         MatrixToImageWriter.writeToPath(matrix,"jpg", Paths.get(path));
@@ -49,7 +55,7 @@ public class SendTicket {
         ////////////////////////// PDF GENERATOR //////////////////////
 
         // time generator
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH.mm.ss");
         LocalDateTime now = LocalDateTime.now();
         String pdf_generate_time = dtf.format(now);
 
@@ -57,7 +63,8 @@ public class SendTicket {
         try {
 
 
-            String file = "image/workingFolder/"+pdf_generate_time +".pdf";
+            String file ="ticket"+ pdf_generate_time +".pdf";
+
             com.itextpdf.kernel.pdf.PdfWriter writer = new PdfWriter(file);
 
             PdfDocument pdfDoc = new PdfDocument(writer);
@@ -65,7 +72,7 @@ public class SendTicket {
 
             Document document = new Document(pdfDoc);
 
-            String imageFile = "image/workingFolder/qr.jpg"; //QRCODE GENERATOR ///
+            String imageFile = "qr.jpg"; //QRCODE GENERATOR ///
 
             ImageData data_img = ImageDataFactory.create(imageFile);
 
@@ -81,6 +88,11 @@ public class SendTicket {
             logo.setFixedPosition(450,700);
             logo.scaleToFit(100,100);
 
+
+            // time generator 2
+            DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern("yyyy/MM/dd HH.mm.ss");
+            LocalDateTime now2 = LocalDateTime.now();
+            String pdf_generate_time2 = dtf2.format(now2);
 
 
             //TEKST
@@ -100,10 +112,29 @@ public class SendTicket {
             Paragraph destination_station = new Paragraph("Destination Station - "+ train.getDestination());
             Paragraph date_yourney = new Paragraph("Date - " + train.getDate());
             Paragraph train_number_info = new Paragraph("Train number - "+ train.getTrain_number());
-            Paragraph travel_time_info = new Paragraph("Travel time - "+ "!!!!!!!!!!!!!" + "h" );
-            Paragraph ticket_price_info = new Paragraph("Price - " + train.getPrice() + " zl");
 
-            Paragraph pdf_time_generated = new Paragraph("Document generated: " + pdf_generate_time);
+
+
+
+            StringBuilder time_departure = new StringBuilder(train.getDeparture_time());
+            time_departure.setCharAt(2, '.');
+
+            StringBuilder time_arrival = new StringBuilder(train.getArival_time());
+            time_arrival.setCharAt(2, '.');
+
+
+            Double time_travel_count =  Double.parseDouble(String.valueOf(time_arrival)) -  Double.parseDouble(String.valueOf(time_departure));
+
+            String time_travel_count_string = Double. toString(round(time_travel_count,2));
+
+            Paragraph travel_time_info = new Paragraph("Travel time - "+ time_travel_count_string + "h" );
+
+            Paragraph ticket_price_info = new Paragraph("Price - " + train.getPrice() + " zl");
+            Paragraph time_departure_info = new Paragraph("Departure time - " + train.getDeparture_time() + "h");
+            Paragraph time_arrival_info = new Paragraph("Arrival tine - " + train.getArival_time()+ "h");
+
+
+            Paragraph pdf_time_generated = new Paragraph("Document generated: " + pdf_generate_time2);
 
             date_upper.setFixedPosition(1,230,765,100);
             route_info_upper.setFixedPosition(1,230,740,100);
@@ -120,9 +151,11 @@ public class SendTicket {
             train_number_info.setFixedPosition(1,400,490,1000);
             travel_time_info.setFixedPosition(1,400,460,1000);
             ticket_price_info.setFixedPosition(1,400,430,1000);
+            time_departure_info.setFixedPosition(1,400,400,1000);
+            time_arrival_info.setFixedPosition(1,400,370,1000);
 
 
-            pdf_time_generated.setFontSize(8).setFixedPosition(1,400,400,100);
+            pdf_time_generated.setFontSize(8).setFixedPosition(1,400,350,100);
 
 
             //Text
@@ -140,10 +173,10 @@ public class SendTicket {
             document.add(train_number_info);
             document.add(travel_time_info);
             document.add(ticket_price_info);
-
+            document.add(time_departure_info);
+            document.add(time_arrival_info);
 
             document.add(pdf_time_generated);
-
 
             ///Images
             document.add(img);
@@ -189,14 +222,21 @@ public class SendTicket {
         message.setRecipient(Message.RecipientType.TO, new InternetAddress(email_odbiorcy));
         message.setSubject("Your Ticket from " + selectedTrain.getOrigin() + " to " + selectedTrain.getDestination());
 
-        String msg1 = "";
+        String msg1 = "<p><span style=\"font-family: Courier New, courier;\">Dear, "+ loggedInUser.getFirstname() + " " + loggedInUser.getLastname() +",</span></p>\n" +
+                "<p><span style=\"font-family: Courier New, courier;\">you just booked your train ride, which will take place on "+train.getDate() +".</span></p>\n" +
+                "<p><span style=\"font-family: Courier New, courier;\"><br class=\"Apple-interchange-newline\">Please save the attached pdf file with the ticket on your mobile device or print it out for inspection on the train. &nbsp;</span></p>\n" +
+                "<p><span style=\"font-family: Courier New, courier;\">Our crew has QR code readers, thanks to which checking the ticket is quick and without contact, which is important during the pandemic.</span></p>\n" +
+                "<p><span style=\"font-family: Courier New, courier;\"><br></span></p>\n" +
+                "<p><span style=\"font-family: Courier New, courier;\"><br></span></p>\n" +
+                "<p><span style=\"font-family: Courier New, courier;\">We wish you a pleasant journey</span></p>\n" +
+                "<p><span style=\"font-family: Courier New, courier;\">Train Reservation team</span></p>";
 
         MimeBodyPart mimeBodyPart = new MimeBodyPart();
         mimeBodyPart.setContent(msg1, "text/html;charet=utf-8");
 
         MimeBodyPart pdfAttachment = new MimeBodyPart();
 
-        pdfAttachment.attachFile("image/workingFolder/"+pdf_generate_time +".pdf"); // PDF ATTACHMENT TICKET ///
+        pdfAttachment.attachFile("ticket"+ pdf_generate_time +".pdf"); // PDF ATTACHMENT TICKET ///
 
         Multipart multipart = new MimeMultipart();
         multipart.addBodyPart(mimeBodyPart);

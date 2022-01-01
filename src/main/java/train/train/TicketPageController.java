@@ -61,6 +61,10 @@ public class TicketPageController implements Initializable {
     private TextField pathTextField;
     @FXML
     private Label pathNotSetField;
+    @FXML
+    private AnchorPane scenePane;
+    @FXML
+    private TextField emailTextField;
 
 
     private User loggedInUser;
@@ -96,7 +100,20 @@ public class TicketPageController implements Initializable {
     }
 
     public void confirmReservationButtonOnAction(ActionEvent event) throws IOException, WriterException, MessagingException {
-       /// sendTicket.TicketviaEmail(loggedInUser,selectedTrain);
+       SendTicket.TicketviaEmail(loggedInUser,selectedTrain);
+
+
+        //////////////////////// PRZEJSCIE DO STRONY POTWIERDZENIA REJESTRACJI ///////////////
+        //Stage stage = (Stage) scenePane.getScene().getWindow(); /// aktualna scena, ktora chcemy zamknac
+        //stage.close();
+        //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ReservationConfirmation.fxml")); ////////////////// POWROT DO STRONY LOGOWANIA I ZAMKNIECIE STRONY POPRZEDNIEJ
+        //Scene scene = new Scene(fxmlLoader.load());
+
+       // ReservationConfirmationController reservationConfirmationController = fxmlLoader.getController();
+        //reservationConfirmationController.setConfirmationMailText(emailTextField.getText());
+
+        //stage.setScene(scene);
+        //stage.show();
 
     }
 
