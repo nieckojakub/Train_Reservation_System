@@ -38,10 +38,17 @@ public class SendTicket {
         loggedInUser = user;
         selectedTrain=train;
 
+        ////////////////////////// PDF GENERATOR //////////////////////
+
+        // time generator
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH.mm.ss");
+        LocalDateTime now = LocalDateTime.now();
+        String pdf_generate_time = dtf.format(now);
+
 
         ///////////////////GENERATE QR CODE /////////////////////////
         String data = "Name: " + user.getFirstname() +" "+ user.getLastname() + "\n"+ "From: " + train.getOrigin() + "\n" + "To: " + train.getDestination() + "\n" +
-                "Train number: " +train.getTrain_number() + "\n" + "Price: " + train.getPrice() + "\n" + "Ticket id: " + "id/dodac" ;
+                "Train number: " +train.getTrain_number() + "\n" + "Price: " + train.getPrice() + "\n" + "Ticket id: " + pdf_generate_time ;
 
 
         String path = "qr.jpg";
@@ -49,15 +56,6 @@ public class SendTicket {
         BitMatrix matrix = new MultiFormatWriter().encode(data, BarcodeFormat.QR_CODE, 500, 500);
         MatrixToImageWriter.writeToPath(matrix,"jpg", Paths.get(path));
         //////////////////////////////////////////////////////////////////
-
-
-
-        ////////////////////////// PDF GENERATOR //////////////////////
-
-        // time generator
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH.mm.ss");
-        LocalDateTime now = LocalDateTime.now();
-        String pdf_generate_time = dtf.format(now);
 
 
         try {
