@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="scenePane" prefHeight="500.0" prefWidth="500.0" style="-fx-background-color: #83889C;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="train.train.RegisterControler">
+<AnchorPane fx:id="scenePane" prefHeight="500.0" prefWidth="500.0" style="-fx-background-color: #83889C;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="train.train.RegistrationController">
    <children>
       <AnchorPane prefHeight="80.0" prefWidth="500.0" style="-fx-background-color: #545871;">
          <children>

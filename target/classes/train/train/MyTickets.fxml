@@ -2,39 +2,63 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="432.0" prefWidth="686.0" style="-fx-background-color: #83889C;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="train.train.MyTicketsController">
+<AnchorPane fx:id="scenePane" prefHeight="432.0" prefWidth="686.0" style="-fx-background-color: #83889C;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="train.train.MyTicketsController">
    <children>
       <AnchorPane prefHeight="107.0" prefWidth="686.0" style="-fx-background-color: #545871;">
          <children>
-            <Label layoutX="116.0" layoutY="32.0" prefHeight="59.0" prefWidth="380.0" text="Train Reservation System" textFill="#ecd0cd">
+            <Label layoutX="132.0" layoutY="24.0" prefHeight="59.0" prefWidth="380.0" text="Train Reservation System" textFill="#ecd0cd">
                <font>
                   <Font name="System Bold" size="25.0" />
                </font>
             </Label>
-            <ImageView fitHeight="99.0" fitWidth="83.0" layoutX="27.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="trainLogoImageView" fitHeight="99.0" fitWidth="83.0" layoutX="27.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../image/train_reservation.png" />
                </image>
             </ImageView>
-            <Label layoutX="490.0" layoutY="15.0" text="UserFirstName" textFill="#ecd0cd" />
-            <Label layoutX="490.0" layoutY="33.0" text="UserEmail" textFill="#ecd0cd" />
-            <Button layoutX="485.0" layoutY="62.0" mnemonicParsing="false" style="-fx-background-color: #ecd0cd;" text="Reservation Page" textFill="#545871">
+            <Label fx:id="userNameLabel" layoutX="490.0" layoutY="15.0" text="UserFirstName" textFill="#ecd0cd">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Label fx:id="userEmailLabel" layoutX="490.0" layoutY="33.0" text="UserEmail" textFill="#ecd0cd">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Button fx:id="logoutButton" layoutX="536.0" layoutY="63.0" mnemonicParsing="false" onAction="#logoutButtonOnAction" style="-fx-background-color: #ecd0cd;" text="Logout" textFill="#545871">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
          </children>
       </AnchorPane>
-      <Label layoutX="42.0" layoutY="124.0" prefHeight="39.0" prefWidth="118.0" text="Your tickets" textFill="#ecd0cd">
+      <Label layoutX="293.0" layoutY="115.0" prefHeight="39.0" prefWidth="118.0" text="Your tickets" textAlignment="CENTER" textFill="#ecd0cd">
          <font>
-            <Font name="System Bold" size="15.0" />
+            <Font name="System Bold" size="18.0" />
          </font>
       </Label>
+      <TableView fx:id="connectionsTableView" layoutX="12.0" layoutY="163.0" prefHeight="200.0" prefWidth="662.0">
+        <columns>
+          <TableColumn fx:id="ticketIdColumn" prefWidth="62.0" text="Ticket ID" />
+          <TableColumn fx:id="travelIdColumn" prefWidth="66.0" text="Travel ID" />
+            <TableColumn fx:id="originColumn" prefWidth="79.0" text="Origin" />
+            <TableColumn fx:id="destinationColumn" prefWidth="102.0" text="Destination" />
+            <TableColumn fx:id="priceColumn" prefWidth="56.0" text="Price" />
+            <TableColumn fx:id="dateColumn" prefWidth="85.0" text="Date" />
+            <TableColumn fx:id="departureColumn" prefWidth="102.0" text="Departure time" />
+            <TableColumn fx:id="arrivalColumn" prefWidth="109.0" text="Arrival time" />
+        </columns>
+      </TableView>
+      <Button fx:id="returnButton" layoutX="311.0" layoutY="382.0" mnemonicParsing="false" onAction="#returnButtonOnAction" style="-fx-background-color: #ecd0cd;" text="Return" textFill="#545871">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

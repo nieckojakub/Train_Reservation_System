@@ -14,7 +14,7 @@
             <Font size="35.0" />
          </font>
       </Text>
-      <Button fx:id="returnToLoginButton" layoutX="227.0" layoutY="296.0" mnemonicParsing="false" onAction="#returnToLoginPage" prefHeight="47.0" prefWidth="155.0" style="-fx-background-color: #ecd0cd;" text="Return to login page" textFill="#545871">
+      <Button fx:id="returnToConnectionsButton" layoutX="227.0" layoutY="296.0" mnemonicParsing="false" onAction="#returnToConnectionsPage" prefHeight="47.0" prefWidth="155.0" style="-fx-background-color: #ecd0cd;" text="Return" textFill="#545871">
          <font>
             <Font size="14.0" />
          </font></Button>

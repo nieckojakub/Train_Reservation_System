@@ -164,7 +164,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>train.train/train.train.HelloApplication</mainClass>
+                            <mainClass>train.train/train.train.TrainApp</mainClass>
                         </configuration>
                     </execution>
                 </executions>

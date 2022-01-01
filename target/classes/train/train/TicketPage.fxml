@@ -16,11 +16,11 @@
                   <Font name="System Bold" size="25.0" />
                </font>
             </Label>
-            <Label fx:id="userNameLabel" layoutX="490.0" layoutY="15.0" text="UserFirstName" textFill="#ecd0cd">
+            <Label fx:id="userNameLabel" layoutX="475.0" layoutY="13.0" text="UserFirstName" textFill="#ecd0cd">
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <Label fx:id="userEmailLabel" layoutX="490.0" layoutY="35.0" text="UserEmail" textFill="#ecd0cd">
+            <Label fx:id="userEmailLabel" layoutX="475.0" layoutY="33.0" text="UserEmail" textFill="#ecd0cd">
                <font>
                   <Font size="14.0" />
                </font></Label>

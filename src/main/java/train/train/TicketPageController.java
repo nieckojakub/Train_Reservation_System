@@ -17,6 +17,9 @@ import javax.mail.MessagingException;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class TicketPageController implements Initializable {
@@ -62,8 +65,6 @@ public class TicketPageController implements Initializable {
     @FXML
     private Label pathNotSetField;
     @FXML
-    private AnchorPane scenePane;
-    @FXML
     private TextField emailTextField;
 
 
@@ -71,6 +72,7 @@ public class TicketPageController implements Initializable {
     private Train selectedTrain;
     private SendTicket sendTicket;
 
+    private final JdbcDatabaseObject jdbcDatabaseObject = new JdbcDatabaseObject();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -99,25 +101,38 @@ public class TicketPageController implements Initializable {
         priceLabel.setText(selectedTrain.getPrice());
     }
 
-    public void confirmReservationButtonOnAction(ActionEvent event) throws IOException, WriterException, MessagingException {
-       SendTicket.TicketviaEmail(loggedInUser,selectedTrain);
+    public void confirmReservationButtonOnAction(ActionEvent event) throws IOException, WriterException, MessagingException, SQLException {
+        SendTicket.TicketviaEmail(loggedInUser, selectedTrain);
 
+        Connection connection = jdbcDatabaseObject.getConnection();
+        String sql = "INSERT INTO tickets (id_train, origin, destination, price, date, departure_time,\n" +
+                "arival_time, owner) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setString(1, selectedTrain.getId_train());
+        preparedStatement.setString(2, selectedTrain.getOrigin());
+        preparedStatement.setString(3, selectedTrain.getDestination());
+        preparedStatement.setString(4, selectedTrain.getPrice());
+        preparedStatement.setString(5, selectedTrain.getDate().toString());
+        preparedStatement.setString(6, selectedTrain.getDeparture_time());
+        preparedStatement.setString(7, selectedTrain.getArival_time());
+        preparedStatement.setString(8, loggedInUser.getEmail());
 
-        //////////////////////// PRZEJSCIE DO STRONY POTWIERDZENIA REJESTRACJI ///////////////
-        //Stage stage = (Stage) scenePane.getScene().getWindow(); /// aktualna scena, ktora chcemy zamknac
-        //stage.close();
-        //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ReservationConfirmation.fxml")); ////////////////// POWROT DO STRONY LOGOWANIA I ZAMKNIECIE STRONY POPRZEDNIEJ
-        //Scene scene = new Scene(fxmlLoader.load());
+        preparedStatement.execute();
+        preparedStatement.close();
+        connection.close();
 
-       // ReservationConfirmationController reservationConfirmationController = fxmlLoader.getController();
-        //reservationConfirmationController.setConfirmationMailText(emailTextField.getText());
+        /////////////////////// PRZEJSCIE DO STRONY POTWIERDZENIA REJESTRACJI ///////////////
+        Stage stage = (Stage) mainPane.getScene().getWindow(); /// aktualna scena, ktora chcemy zamknac
+        stage.close();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ReservationConfirmation.fxml")); ////////////////// POWROT DO STRONY LOGOWANIA I ZAMKNIECIE STRONY POPRZEDNIEJ
+        Scene scene = new Scene(fxmlLoader.load());
 
-        //stage.setScene(scene);
-        //stage.show();
+        ReservationConfirmationController reservationConfirmationController = fxmlLoader.getController();
+        reservationConfirmationController.initUserData(loggedInUser);
 
+        stage.setScene(scene);
+        stage.show();
     }
-
-
 
     public void logoutButtonOnAction() throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);   ///// tworzy alert typu Confirm

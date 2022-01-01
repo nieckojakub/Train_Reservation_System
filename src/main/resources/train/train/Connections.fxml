@@ -26,15 +26,15 @@
                   <Image url="@../../../../../image/train_reservation.png" />
                </image>
             </ImageView>
-            <Label fx:id="userNameLabel" layoutX="490.0" layoutY="15.0" text="UserFirstName" textFill="#ecd0cd">
+            <Label fx:id="userNameLabel" layoutX="474.0" layoutY="13.0" text="UserFirstName" textFill="#ecd0cd">
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <Label fx:id="userEmailLabel" layoutX="490.0" layoutY="35.0" text="UserEmail" textFill="#ecd0cd">
+            <Label fx:id="userEmailLabel" layoutX="474.0" layoutY="33.0" text="UserEmail" textFill="#ecd0cd">
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <Button fx:id="myTicketsButton" layoutX="443.0" layoutY="67.0" mnemonicParsing="false" style="-fx-background-color: #ecd0cd;" text="My tickets" textFill="#545871">
+            <Button fx:id="myTicketsButton" layoutX="443.0" layoutY="67.0" mnemonicParsing="false" onAction="#myTicketsButtonOnAction" style="-fx-background-color: #ecd0cd;" text="My tickets" textFill="#545871">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -73,7 +73,7 @@
       <ComboBox fx:id="originComboBox" layoutX="42.0" layoutY="146.0" prefWidth="150.0" />
       <ComboBox fx:id="destinationComboBox" layoutX="42.0" layoutY="208.0" prefWidth="150.0" />
       <Label layoutX="42.0" layoutY="190.0" text="To" textFill="#ecd0cd" />
-      <Text fx:id="textInvalid" fill="#cc4135" layoutX="9.0" layoutY="133.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="607.0">
+      <Text fx:id="textInvalid" fill="#cc4135" layoutX="42.0" layoutY="332.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="282.0">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>

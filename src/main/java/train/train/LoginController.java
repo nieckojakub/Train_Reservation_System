@@ -21,7 +21,7 @@ import java.sql.*;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class LoginControler implements Initializable {
+public class LoginController implements Initializable {
 
     @FXML
     private Button registerButton;
@@ -125,7 +125,7 @@ public class LoginControler implements Initializable {
 
 
     public void registerButtonOnAction(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Register.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(TrainApp.class.getResource("Registration.fxml"));
         Stage stage = new Stage();
         Scene scene = new Scene(fxmlLoader.load(), 500, 500);
         stage.setScene(scene);

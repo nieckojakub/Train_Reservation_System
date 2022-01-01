@@ -74,7 +74,7 @@ public class ConnectionsController implements Initializable {
 
     private final JdbcDatabaseObject jdbcDatabaseObject = new JdbcDatabaseObject(); // BAZA DANYCH DO POLACZENIA
     private User loggedInUser; // user, do ktorego dane zostana zapisane z logowania
-    private Train selectedTrain;
+    private Train selectedTrain; // pociag wybrany przez uzytkownika
 
     private ObservableList<Train> observableList = FXCollections.observableArrayList();
 
@@ -83,6 +83,10 @@ public class ConnectionsController implements Initializable {
         loggedInUser = user;
         userNameLabel.setText(loggedInUser.getFirstname());
         userEmailLabel.setText(loggedInUser.getEmail());
+    }
+
+    public User returnUserData() {
+        return loggedInUser;
     }
 
     @Override
@@ -94,7 +98,6 @@ public class ConnectionsController implements Initializable {
         File trainMapFile = new File("image/trainMap.png");
         Image trainMapImage = new Image(trainMapFile.toURI().toString());
         trainMap.setImage(trainMapImage);
-
 
         try {
             showOriginStation();
@@ -206,5 +209,19 @@ public class ConnectionsController implements Initializable {
             stage.setScene(scene);
             stage.show();
         }
+    }
+
+    public void myTicketsButtonOnAction() throws IOException {
+        Stage stage = (Stage) scenePane.getScene().getWindow(); /// aktualna scena, ktora chcemy zamknac
+        stage.close();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MyTickets.fxml")); ////////////////// POWROT DO STRONY LOGOWANIA I ZAMKNIECIE STRONY POPRZEDNIEJ
+        Scene scene = new Scene(fxmlLoader.load());
+        MyTicketsController myTicketsController = fxmlLoader.getController();
+        myTicketsController.initTrainData(selectedTrain);
+        myTicketsController.initUserData(loggedInUser);
+        myTicketsController.showTable();
+
+        stage.setScene(scene);
+        stage.show();
     }
 }

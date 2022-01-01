@@ -1,11 +1,9 @@
 package train.train;
 
 
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -23,7 +21,7 @@ import java.sql.*;
 import java.util.ResourceBundle;
 
 
-public class RegisterControler implements Initializable{
+public class RegistrationController implements Initializable{
 
     @FXML
     private ImageView registerImageView;
@@ -130,10 +128,10 @@ public class RegisterControler implements Initializable{
                 //////////////////////// PRZEJSCIE DO STRONY POTWIERDZENIA REJESTRACJI ///////////////
                 Stage stage = (Stage) scenePane.getScene().getWindow(); /// aktualna scena, ktora chcemy zamknac
                 stage.close();
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("RegConfirmation.fxml")); ////////////////// POWROT DO STRONY LOGOWANIA I ZAMKNIECIE STRONY POPRZEDNIEJ
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("RegistrationConfirmation.fxml")); ////////////////// POWROT DO STRONY LOGOWANIA I ZAMKNIECIE STRONY POPRZEDNIEJ
                 Scene scene = new Scene(fxmlLoader.load());
 
-                RegConfirmationController regConfirmationController = fxmlLoader.getController();
+                RegistrationConfirmationController regConfirmationController = fxmlLoader.getController();
                 regConfirmationController.setConfirmationMailText(emailTextField.getText());
 
                 // wyslanie maila
