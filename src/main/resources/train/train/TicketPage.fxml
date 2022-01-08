@@ -16,11 +16,11 @@
                   <Font name="System Bold" size="25.0" />
                </font>
             </Label>
-            <Label fx:id="userNameLabel" layoutX="475.0" layoutY="13.0" text="UserFirstName" textFill="#ecd0cd">
+            <Label fx:id="userNameLabel" layoutX="443.0" layoutY="13.0" text="UserFirstName" textFill="#ecd0cd">
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <Label fx:id="userEmailLabel" layoutX="475.0" layoutY="33.0" text="UserEmail" textFill="#ecd0cd">
+            <Label fx:id="userEmailLabel" layoutX="443.0" layoutY="33.0" text="UserEmail" textFill="#ecd0cd">
                <font>
                   <Font size="14.0" />
                </font></Label>
@@ -70,17 +70,17 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="firstNameLabel" layoutX="111.0" layoutY="189.0" prefHeight="18.0" prefWidth="130.0" textFill="#ecd0cd">
+      <Label fx:id="firstNameLabel" layoutX="111.0" layoutY="189.0" prefHeight="20.0" prefWidth="504.0" textFill="#ecd0cd">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="lastNameLabel" layoutX="111.0" layoutY="217.0" prefHeight="18.0" prefWidth="130.0" textFill="#ecd0cd">
+      <Label fx:id="lastNameLabel" layoutX="111.0" layoutY="217.0" prefHeight="20.0" prefWidth="504.0" textFill="#ecd0cd">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="emailLabel" layoutX="109.0" layoutY="244.0" prefHeight="18.0" prefWidth="130.0" textFill="#ecd0cd">
+      <Label fx:id="emailLabel" layoutX="109.0" layoutY="244.0" prefHeight="20.0" prefWidth="504.0" textFill="#ecd0cd">
          <font>
             <Font size="14.0" />
          </font>

@@ -26,11 +26,11 @@
                   <Image url="@../../../../../image/train_reservation.png" />
                </image>
             </ImageView>
-            <Label fx:id="userNameLabel" layoutX="474.0" layoutY="13.0" text="UserFirstName" textFill="#ecd0cd">
+            <Label fx:id="userNameLabel" layoutX="443.0" layoutY="13.0" text="UserFirstName" textFill="#ecd0cd">
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <Label fx:id="userEmailLabel" layoutX="474.0" layoutY="33.0" text="UserEmail" textFill="#ecd0cd">
+            <Label fx:id="userEmailLabel" layoutX="443.0" layoutY="33.0" text="UserEmail" textFill="#ecd0cd">
                <font>
                   <Font size="14.0" />
                </font></Label>
@@ -65,7 +65,7 @@
             <TableColumn fx:id="arrivalColumn" prefWidth="106.0" text="Arrival time" />
         </columns>
       </TableView>
-      <Button fx:id="reserveButton" layoutX="274.0" layoutY="609.0" mnemonicParsing="false" onAction="#reserveButtonOnAction" style="-fx-background-color: #ecd0cd;" text="Reserve" textFill="#545871">
+      <Button fx:id="reserveButton" layoutX="241.0" layoutY="610.0" mnemonicParsing="false" onAction="#reserveButtonOnAction" style="-fx-background-color: #ecd0cd;" text="Reserve" textFill="#545871">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -83,5 +83,10 @@
             <Image url="@../../../../../image/trainMap.png" />
          </image>
       </ImageView>
+      <Button fx:id="returnButton" layoutX="322.0" layoutY="610.0" mnemonicParsing="false" onAction="#returnButtonOnAction" style="-fx-background-color: #ecd0cd;" text="Return" textFill="#545871">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

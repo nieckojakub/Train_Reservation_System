@@ -110,10 +110,10 @@ public class LoginController implements Initializable {
                 loginMessageLabel.setText("Logged in");
                 Stage stage = (Stage) mainPane.getScene().getWindow(); /// aktualna scena, ktora chcemy zamknac
                 stage.close();
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Connections.fxml")); ////////////////// POWROT DO STRONY LOGOWANIA I ZAMKNIECIE STRONY POPRZEDNIEJ
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MainPage.fxml")); ////////////////// POWROT DO STRONY LOGOWANIA I ZAMKNIECIE STRONY POPRZEDNIEJ
                 Scene scene = new Scene(fxmlLoader.load());
-                ConnectionsController connectionsController = fxmlLoader.getController();
-                connectionsController.initUserData(user);
+                MainPageController mainPageController = fxmlLoader.getController();
+                mainPageController.initUserData(user);
                 stage.setScene(scene);
                 stage.show();
             } else {
@@ -129,7 +129,10 @@ public class LoginController implements Initializable {
         Stage stage = new Stage();
         Scene scene = new Scene(fxmlLoader.load(), 500, 500);
         stage.setScene(scene);
-        stage.setTitle("Register Page");
+        stage.setTitle("Train Reservation System");
+        File iconImage = new File("image/train_reservation.png");
+        Image iconImageImg = new Image(iconImage.toURI().toString());
+        stage.getIcons().add(iconImageImg);
         stage.show();
         ////////////////////////////////////////////////////
         stage = (Stage)mainPane.getScene().getWindow();

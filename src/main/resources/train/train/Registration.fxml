@@ -65,7 +65,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Button>
-      <Label fx:id="RegistrationMessageLabel" alignment="CENTER" layoutY="99.0" prefHeight="18.0" prefWidth="500.0" textAlignment="CENTER" textFill="#ecd0cd">
+      <Label fx:id="RegistrationMessageLabel" alignment="CENTER" layoutY="99.0" prefHeight="18.0" prefWidth="500.0" textAlignment="CENTER" textFill="#cc4135">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>

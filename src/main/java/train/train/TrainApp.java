@@ -3,8 +3,10 @@ package train.train;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 
 public class TrainApp extends Application {
@@ -16,10 +18,12 @@ public class TrainApp extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 600, 400);
 
         //stage.setFullScreen(true);
-
-       // stage.getIcons().add(new Image("image/login_window_icon.png"));   // wyswietlanie icony (not working)
+        File iconImage = new File("image/train_reservation.png");
+        Image iconImageImg = new Image(iconImage.toURI().toString());
+        stage.getIcons().add(iconImageImg);
+        //stage.getIcons().add(new Image("image/login_window_icon.png"));   // wyswietlanie icony (not working)
         //stage.getIcons().add(new Image(getClass().getResourceAsStream("image/login_window_icon.png")));
-        stage.setTitle("Login Page");
+        stage.setTitle("Train Reservation System");
         stage.setScene(scene);
         stage.show();
     }
