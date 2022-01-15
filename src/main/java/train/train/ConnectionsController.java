@@ -224,4 +224,15 @@ public class ConnectionsController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+
+    public void returnButtonOnAction() throws IOException {
+        Stage stage = (Stage) scenePane.getScene().getWindow(); /// aktualna scena, ktora chcemy zamknac
+        stage.close();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MainPage.fxml")); ////////////////// POWROT DO STRONY LOGOWANIA I ZAMKNIECIE STRONY POPRZEDNIEJ
+        Scene scene = new Scene(fxmlLoader.load());
+        MainPageController mainPageController = fxmlLoader.getController();
+        mainPageController.initUserData(loggedInUser);
+        stage.setScene(scene);
+        stage.show();
+    }
 }

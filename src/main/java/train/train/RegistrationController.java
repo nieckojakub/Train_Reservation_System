@@ -49,22 +49,24 @@ public class RegistrationController implements Initializable{
     private Label passwordCorrectLabel;
 
 
+
     //referencja
     private MailService mailService;
+    private final JdbcDatabaseObject jdbcDatabaseObject = new JdbcDatabaseObject();
 
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
         File registerFile = new File("image/register_icon.png");
         Image registerImage = new Image(registerFile.toURI().toString());
         registerImageView.setImage(registerImage);
-
     }
 
-    boolean goodPasswordConfirmation = false;
-    boolean goodPassword = false;               /////////////////// TE TRZY ZMIENNE POTRZEBNE SA DO SPRAWDZANIA DANYCH W FORMULARZU REJESTRACJI
-    boolean goodEmail = false;
+    public void RegistrationButtonOnAction(ActionEvent event) throws IOException, MessagingException, SQLException {
 
-    public void RegistrationButtonOnAction(ActionEvent event) throws IOException, MessagingException {
+        boolean goodPasswordConfirmation = false;
+        boolean goodPassword = false;               /////////////////// TE TRZY ZMIENNE POTRZEBNE SA DO SPRAWDZANIA DANYCH W FORMULARZU REJESTRACJI
+        boolean goodEmail = false;
+
         if (firstNameTextField.getText().isBlank() || LastNameTextField.getText().isBlank() ||
                 emailTextField.getText().isBlank() || setPasswordField.getText().isBlank() //////SPRAWDZANIE, CZY POLA SA PUSTE
                 || confirmPasswordField.getText().isBlank())  {
@@ -87,8 +89,23 @@ public class RegistrationController implements Initializable{
             else {
                 String[] parts = emailTextField.getText().split("@", 2);
                 if(parts[1].contains(".") && parts[1].indexOf(".") != 0) {
-                    goodEmail = true;
-                    emailMessageLabel.setText("");
+                    Connection connection = jdbcDatabaseObject.getConnection();
+                    Statement stmt = connection.createStatement();
+                    String sql = "SELECT * FROM user_account WHERE email=?";
+                    PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                    preparedStatement.setString(1, emailTextField.getText());
+                    ResultSet resultSet = preparedStatement.executeQuery();
+
+                    if(!resultSet.next()) {
+                        goodEmail = true;
+                        emailMessageLabel.setText("");
+                    }
+                    else {
+                        goodEmail = false;
+                        emailMessageLabel.setText("Account with this email already exists");
+                        passwordMessageLabel.setText("");
+                        passwordCorrectLabel.setText("");
+                    }
                 }
                 else {
                     goodEmail = false;
@@ -97,6 +114,7 @@ public class RegistrationController implements Initializable{
                     passwordCorrectLabel.setText("");
                 }
             }
+
             /////////////////////////////////////////////////////////////////////////
             if(goodEmail) {
                 if (setPasswordField.getText().length() >= 8) {
