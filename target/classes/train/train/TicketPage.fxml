@@ -24,12 +24,12 @@
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <Button fx:id="myTicketsButton" layoutX="443.0" layoutY="67.0" mnemonicParsing="false" style="-fx-background-color: #ecd0cd;" text="My tickets" textFill="#545871">
+            <Button fx:id="myTicketsButton" layoutX="443.0" layoutY="67.0" mnemonicParsing="false" style="-fx-background-color: #ecd0cd; -fx-background-radius: 30 30 30 30;" text="My tickets" textFill="#545871">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="logoutButton" layoutX="543.0" layoutY="67.0" mnemonicParsing="false" onAction="#logoutButtonOnAction" style="-fx-background-color: #ecd0cd;" text="Logout" textFill="#545871">
+            <Button fx:id="logoutButton" layoutX="543.0" layoutY="67.0" mnemonicParsing="false" onAction="#logoutButtonOnAction" style="-fx-background-color: #ecd0cd; -fx-background-radius: 30 30 30 30;" text="Logout" textFill="#545871">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -41,7 +41,7 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane layoutY="133.0" prefHeight="17.0" prefWidth="614.0" style="-fx-background-color: #ecd0cd;">
+      <AnchorPane layoutY="133.0" prefHeight="17.0" prefWidth="614.0" style="-fx-background-color: #ecd0cd; -fx-background-radius: 60 60 60 60;">
          <children>
             <Label contentDisplay="CENTER" layoutX="242.0" layoutY="3.0" prefHeight="23.0" prefWidth="130.0" text="    Passenger data" textAlignment="CENTER" textFill="#545871">
                <font>
@@ -90,7 +90,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <AnchorPane layoutY="289.0" prefHeight="17.0" prefWidth="614.0" style="-fx-background-color: #ecd0cd;">
+      <AnchorPane layoutY="289.0" prefHeight="17.0" prefWidth="614.0" style="-fx-background-color: #ecd0cd; -fx-background-radius: 45 45 45 45;">
          <children>
             <Label contentDisplay="CENTER" layoutX="242.0" layoutY="1.0" prefHeight="23.0" prefWidth="130.0" text="  Reservation data" textAlignment="CENTER" textFill="#545871">
                <font>
@@ -169,12 +169,12 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Button fx:id="confirmReservationButton" layoutX="236.0" layoutY="545.0" mnemonicParsing="false" onAction="#confirmReservationButtonOnAction" style="-fx-background-color: #ecd0cd;" text="Confirm reservation" textFill="#545871">
+      <Button fx:id="confirmReservationButton" layoutX="236.0" layoutY="545.0" mnemonicParsing="false" onAction="#confirmReservationButtonOnAction" style="-fx-background-color: #ecd0cd; -fx-background-radius: 30 30 30 30;" text="Confirm reservation" textFill="#545871">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="returnButton" layoutX="275.0" layoutY="592.0" mnemonicParsing="false" onAction="#returnButtonOnAction" prefHeight="30.0" prefWidth="74.0" style="-fx-background-color: #ecd0cd;" text="Return" textFill="#545871">
+      <Button fx:id="returnButton" layoutX="275.0" layoutY="592.0" mnemonicParsing="false" onAction="#returnButtonOnAction" prefHeight="30.0" prefWidth="74.0" style="-fx-background-color: #ecd0cd; -fx-background-radius: 30 30 30 30;" text="Return" textFill="#545871">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>

@@ -30,14 +30,14 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="firstNameTextField" layoutX="76.0" layoutY="149.0" prefHeight="26.0" prefWidth="150.0" promptText="First Name" />
-      <TextField fx:id="LastNameTextField" layoutX="285.0" layoutY="149.0" prefHeight="26.0" prefWidth="150.0" promptText="Last Name" />
+      <TextField fx:id="firstNameTextField" layoutX="76.0" layoutY="149.0" prefHeight="26.0" prefWidth="150.0" promptText="First Name" style="-fx-background-radius: 10 10 10 10;" />
+      <TextField fx:id="LastNameTextField" layoutX="285.0" layoutY="149.0" prefHeight="26.0" prefWidth="150.0" promptText="Last Name" style="-fx-background-radius: 10 10 10 10;" />
       <Label layoutX="287.0" layoutY="129.0" text="Last Name" textFill="#ecd0cd">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="emailTextField" layoutX="76.0" layoutY="213.0" prefHeight="26.0" prefWidth="358.0" promptText="email" />
+      <TextField fx:id="emailTextField" layoutX="76.0" layoutY="213.0" prefHeight="26.0" prefWidth="358.0" promptText="email" style="-fx-background-radius: 10 10 10 10;" />
       <Label layoutX="78.0" layoutY="193.0" text="Email Address" textFill="#ecd0cd">
          <font>
             <Font size="14.0" />
@@ -48,19 +48,19 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <PasswordField fx:id="setPasswordField" layoutX="76.0" layoutY="271.0" prefHeight="26.0" prefWidth="358.0" promptText="password" />
+      <PasswordField fx:id="setPasswordField" layoutX="76.0" layoutY="271.0" prefHeight="26.0" prefWidth="358.0" promptText="password" style="-fx-background-radius: 10 10 10 10;" />
       <Label layoutX="78.0" layoutY="310.0" text="Confirm Password" textFill="#ecd0cd">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <PasswordField fx:id="confirmPasswordField" layoutX="76.0" layoutY="330.0" prefHeight="26.0" prefWidth="358.0" promptText="password" />
-      <Button fx:id="RegisterButton" layoutX="76.0" layoutY="396.0" mnemonicParsing="false" onAction="#RegistrationButtonOnAction" prefHeight="26.0" prefWidth="358.0" style="-fx-background-color: #ecd0cd;" text="Register Now" textFill="#545871">
+      <PasswordField fx:id="confirmPasswordField" layoutX="76.0" layoutY="330.0" prefHeight="26.0" prefWidth="358.0" promptText="password" style="-fx-background-radius: 10 10 10 10;" />
+      <Button fx:id="RegisterButton" layoutX="76.0" layoutY="396.0" mnemonicParsing="false" onAction="#RegistrationButtonOnAction" prefHeight="26.0" prefWidth="358.0" style="-fx-background-color: #ecd0cd; -fx-background-radius: 30 30 30 30;" text="Register Now" textFill="#545871">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Button>
-      <Button fx:id="CloseButton" layoutX="76.0" layoutY="434.0" mnemonicParsing="false" onAction="#CloseButtonOnAction" prefHeight="26.0" prefWidth="358.0" style="-fx-background-color: #ecd0cd;" text="Cancel" textFill="#545871">
+      <Button fx:id="CloseButton" layoutX="76.0" layoutY="434.0" mnemonicParsing="false" onAction="#CloseButtonOnAction" prefHeight="26.0" prefWidth="358.0" style="-fx-background-color: #ecd0cd; -fx-background-radius: 30 30 30 30;" text="Cancel" textFill="#545871">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>

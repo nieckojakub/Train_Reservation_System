@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="422.0" prefWidth="690.0" style="-fx-background-color: #83889C;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="train.train.AboutUs">
+   <children>
+      <AnchorPane prefHeight="79.0" prefWidth="691.0" style="-fx-background-color: #545871;">
+         <children>
+            <ImageView fx:id="trainLogoImageView" fitHeight="57.0" fitWidth="74.0" layoutX="14.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../image/train_reservation.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="exitButton" layoutX="584.0" layoutY="40.0" mnemonicParsing="false" onAction="#exitButtonOnAction" prefHeight="16.0" prefWidth="83.0" style="-fx-background-color: #ecd0cd; -fx-background-radius: 30 30 30 30;" text="Exit" textFill="#545871">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Label layoutX="302.0" layoutY="11.0" prefHeight="59.0" prefWidth="117.0" text="About Us" textFill="#ecd0cd">
+               <font>
+                  <Font name="System Bold" size="25.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="27.0" layoutY="109.0" prefHeight="122.0" prefWidth="297.0" style="-fx-background-color: #ecd0cd; -fx-background-radius: 10 10 10 10;">
+         <children>
+            <Label layoutX="104.0" layoutY="4.0" text="Who we are ?" textFill="#545871">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Text fill="#545871" layoutX="17.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="We are a ticket booking system that offers several of the most important routes in Poland." wrappingWidth="245.79296875">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="27.0" layoutY="258.0" prefHeight="122.0" prefWidth="297.0" style="-fx-background-color: #ecd0cd; -fx-background-radius: 10 10 10 10;">
+         <children>
+            <Label layoutX="104.0" layoutY="4.0" text="Our trains" textFill="#545871">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Text fill="#545871" layoutX="19.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="We shift our trains to green tracks. They are electric trains that are fast and comfortable. Everyone will find themselves on our board!" wrappingWidth="245.79296875">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="367.0" layoutY="109.0" prefHeight="122.0" prefWidth="297.0" style="-fx-background-color: #ecd0cd; -fx-background-radius: 10 10 10 10;">
+         <children>
+            <Label layoutX="104.0" layoutY="4.0" text="Our Aplication" textFill="#545871">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Text fill="#545871" layoutX="14.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Our application is simple and clear. Booking a ticket is a pleasure and sending a ticket to an e-mail protects trees." wrappingWidth="245.79296875">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="367.0" layoutY="258.0" prefHeight="122.0" prefWidth="297.0" style="-fx-background-color: #ecd0cd; -fx-background-radius: 10 10 10 10;">
+         <children>
+            <Label layoutX="104.0" layoutY="4.0" text="Our mission" textFill="#545871">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Text fill="#545871" layoutX="14.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Our goal is to reduce our carbon footprint. Traveling by train reduces the carbon footprint by as much as 9 times compared to flying by plane." wrappingWidth="245.79296875">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

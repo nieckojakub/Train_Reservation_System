@@ -56,21 +56,21 @@
                         <Font name="Rubik-Bold" size="11.0" />
                     </font>
                 </Label>
-                <TextField fx:id="emailTextField" layoutX="74.0" layoutY="152.0" prefHeight="26.0" prefWidth="190.0" promptText="e-mail" />
-                <PasswordField fx:id="passwordField" layoutX="74.0" layoutY="207.0" prefHeight="26.0" prefWidth="190.0" promptText="Password" />
-                <Button fx:id="loginButton" layoutX="125.0" layoutY="252.0" mnemonicParsing="false" onAction="#loginUser" prefHeight="32.0" prefWidth="89.0" style="-fx-background-color: #ecd0cd;" text="Log In" textFill="#545871">
+                <TextField fx:id="emailTextField" layoutX="74.0" layoutY="152.0" prefHeight="26.0" prefWidth="190.0" promptText="e-mail" style="-fx-background-radius: 10 10 10 10;" />
+                <PasswordField fx:id="passwordField" layoutX="74.0" layoutY="207.0" prefHeight="26.0" prefWidth="190.0" promptText="Password" style="-fx-background-radius: 10 10 10 10;" />
+                <Button fx:id="loginButton" layoutX="125.0" layoutY="252.0" mnemonicParsing="false" onAction="#loginUser" prefHeight="32.0" prefWidth="89.0" style="-fx-background-color: #ecd0cd; -fx-background-radius: 30 30 30 30;" styleClass="button1" text="Log In" textFill="#545871">
                     <font>
                         <Font name="Rubik Bold Italic" size="12.0" />
                     </font>
                 </Button>
                 <Text fill="#ecd0cd" layoutX="93.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You do not have an account?" />
-                <Button fx:id="registerNowButton" layoutX="120.0" layoutY="339.0" mnemonicParsing="false" onAction="#registerButtonOnAction" prefHeight="25.0" prefWidth="99.0" style="-fx-background-color: #ecd0cd;" text="Register Now" textFill="#545871">
+                <Button fx:id="registerNowButton" layoutX="120.0" layoutY="339.0" mnemonicParsing="false" onAction="#registerButtonOnAction" prefHeight="25.0" prefWidth="99.0" style="-fx-background-color: #ecd0cd; -fx-background-radius: 30 30 30 30;" styleClass="button1" stylesheets="@buttonstyles.css" text="Register Now" textFill="#545871">
                     <font>
                         <Font name="Rubik Bold Italic" size="12.0" />
                     </font>
                 </Button>
                 <Label fx:id="loginMessageLabel" layoutX="74.0" layoutY="110.0" textFill="#ec0909" />
-                <Button fx:id="exitButton" layoutX="258.0" layoutY="16.0" mnemonicParsing="false" onAction="#exitButtonOnAction" prefHeight="24.0" prefWidth="44.0" style="-fx-background-color: #ecd0cd;" text="Exit" textAlignment="CENTER" textFill="#545871">
+                <Button fx:id="exitButton" layoutX="245.0" layoutY="16.0" mnemonicParsing="false" onAction="#exitButtonOnAction" prefHeight="30.0" prefWidth="57.0" style="-fx-background-color: #ecd0cd; -fx-background-radius: 30 30 30 30;" text="Exit" textAlignment="CENTER" textFill="#545871">
                     <font>
                         <Font name="Rubik Bold Italic" size="12.0" />
                     </font>
@@ -79,9 +79,9 @@
                <image>
                   <Image url="@../../../../../image/lock.png" />
                </image></ImageView>
-            <Text fill="#ecd0cd" layoutX="144.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Log In" wrappingWidth="66.44604873657227">
+            <Text fill="#ecd0cd" layoutX="136.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Log In" wrappingWidth="66.44604873657227">
                <font>
-                  <Font name="Rubik-Bold" size="19.0" />
+                  <Font name="Rubik Bold Italic" size="19.0" />
                </font>
             </Text>
             </children>

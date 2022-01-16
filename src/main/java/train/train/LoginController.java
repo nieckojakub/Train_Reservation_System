@@ -28,6 +28,8 @@ public class LoginController implements Initializable {
     @FXML
     private Button exitButton;
     @FXML
+    private Button loginButton;
+    @FXML
     private Label loginMessageLabel;
     @FXML
     private ImageView trainImageView;
@@ -69,6 +71,9 @@ public class LoginController implements Initializable {
         File MalopolskaFile = new File("image/Logo-Małopolska-V-RGB.png");
         Image MalopolskaImage = new Image(MalopolskaFile.toURI().toString());
         malopolskaImageView.setImage(MalopolskaImage);
+
+
+
     }
 
     public void exitButtonOnAction(ActionEvent event) {

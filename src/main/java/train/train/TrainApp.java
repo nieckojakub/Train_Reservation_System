@@ -5,7 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-
+import javafx.scene.Parent;
 import java.io.File;
 import java.io.IOException;
 
@@ -16,6 +16,8 @@ public class TrainApp extends Application {
         //Scene scene = new Scene(root);
         FXMLLoader fxmlLoader = new FXMLLoader(TrainApp.class.getResource("Login.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+
+
 
         //stage.setFullScreen(true);
         File iconImage = new File("image/train_reservation.png");
