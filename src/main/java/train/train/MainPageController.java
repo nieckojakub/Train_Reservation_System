@@ -1,6 +1,7 @@
 package train.train;
 
 import com.itextpdf.kernel.color.Lab;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -17,6 +18,8 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class MainPageController implements Initializable {
@@ -48,6 +51,10 @@ public class MainPageController implements Initializable {
     private ImageView trainImageView;
     @FXML
     private ImageView trainMapImageView;
+    @FXML
+    private Label time;
+
+    private volatile boolean stop = false;
 
     private User loggedInUser;
 
@@ -76,6 +83,8 @@ public class MainPageController implements Initializable {
         File trainMapFile = new File("image/trainMap.png");
         Image trainMapImage = new Image(trainMapFile.toURI().toString());
         trainMapImageView.setImage(trainMapImage);
+
+        Timenow();
     }
 
     public void initUserData(User user) { // ta metoda wywolywana w logowaniu
@@ -97,6 +106,7 @@ public class MainPageController implements Initializable {
             Scene scene = new Scene(fxmlLoader.load());
             stage.setScene(scene);
             stage.show();
+            stop=true;
         }
     }
 
@@ -110,4 +120,62 @@ public class MainPageController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+
+
+    // poniższe Actiony do poprawy, błąd przy kliknięciu w MainPage
+
+    public void AboutUsOnAction() throws IOException{
+        Stage stage = (Stage) scenePane.getScene().getWindow(); /// aktualna scena, ktora chcemy zamknac
+        stage.close();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AboutUs.fxml")); ////////////////// POWROT DO STRONY LOGOWANIA I ZAMKNIECIE STRONY POPRZEDNIEJ
+        Scene scene = new Scene(fxmlLoader.load());
+        ConnectionsController connectionsController = fxmlLoader.getController();
+        connectionsController.initUserData(loggedInUser);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void HowToButtonOnAction() throws IOException{
+        Stage stage = (Stage) scenePane.getScene().getWindow(); /// aktualna scena, ktora chcemy zamknac
+        stage.close();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("HowToBookTicket.fxml")); ////////////////// POWROT DO STRONY LOGOWANIA I ZAMKNIECIE STRONY POPRZEDNIEJ
+        Scene scene = new Scene(fxmlLoader.load());
+        ConnectionsController connectionsController = fxmlLoader.getController();
+        connectionsController.initUserData(loggedInUser);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+
+    public void contactOnAction() throws IOException{
+        Stage stage = (Stage) scenePane.getScene().getWindow(); /// aktualna scena, ktora chcemy zamknac
+        stage.close();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Contact.fxml")); ////////////////// POWROT DO STRONY LOGOWANIA I ZAMKNIECIE STRONY POPRZEDNIEJ
+        Scene scene = new Scene(fxmlLoader.load());
+        ConnectionsController connectionsController = fxmlLoader.getController();
+        connectionsController.initUserData(loggedInUser);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+
+
+    private void Timenow(){
+        Thread thread = new Thread(() -> {
+            SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss a, dd-MM-yyyy");
+            while(!stop){
+                try{
+                    Thread.sleep(1000);
+                }catch(Exception e){
+                    System.out.println(e);
+                }
+                final String timenow = sdf.format(new Date());
+                Platform.runLater(() -> {
+                    time.setText(timenow); // This is the label
+                });
+            }
+        });
+        thread.start();
+    }
+
 }
