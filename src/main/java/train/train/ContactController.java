@@ -23,10 +23,10 @@ public class ContactController implements Initializable {
     private AnchorPane scenePane;
     @FXML
     private ImageView trainLogoImageView;
-
     @FXML
     private Button exitButton;
 
+    private User loggedInUser;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -36,17 +36,23 @@ public class ContactController implements Initializable {
 
     }
 
+    public void initUserData(User user) { // ta metoda wywolywana w logowaniu
+        loggedInUser = user;
+    }
+
     public void exitButtonOnAction() throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);   ///// tworzy alert typu Confirm
         alert.setTitle("Exit");
         alert.setHeaderText("Return to main page");       /////////// NAPISY
-        alert.setContentText("Are you sure you want to finish reading About Us?");
+        alert.setContentText("Are you sure you want to exit?");
         /////////////////////////////////////////////////////
         if (alert.showAndWait().get() == ButtonType.OK) {
             Stage stage = (Stage) scenePane.getScene().getWindow(); /// aktualna scena, ktora chcemy zamknac
             stage.close();
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MainPage.fxml")); ////////////////// POWROT DO STRONY LOGOWANIA I ZAMKNIECIE STRONY POPRZEDNIEJ
             Scene scene = new Scene(fxmlLoader.load());
+            MainPageController mainPageController = fxmlLoader.getController();
+            mainPageController.initUserData(loggedInUser);
             stage.setScene(scene);
             stage.show();
         }

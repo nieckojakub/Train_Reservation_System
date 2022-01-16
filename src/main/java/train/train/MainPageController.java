@@ -129,8 +129,8 @@ public class MainPageController implements Initializable {
         stage.close();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AboutUs.fxml")); ////////////////// POWROT DO STRONY LOGOWANIA I ZAMKNIECIE STRONY POPRZEDNIEJ
         Scene scene = new Scene(fxmlLoader.load());
-        ConnectionsController connectionsController = fxmlLoader.getController();
-        connectionsController.initUserData(loggedInUser);
+        AboutUsController aboutUsController = fxmlLoader.getController();
+        aboutUsController.initUserData(loggedInUser);
         stage.setScene(scene);
         stage.show();
     }
@@ -140,8 +140,8 @@ public class MainPageController implements Initializable {
         stage.close();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("HowToBookTicket.fxml")); ////////////////// POWROT DO STRONY LOGOWANIA I ZAMKNIECIE STRONY POPRZEDNIEJ
         Scene scene = new Scene(fxmlLoader.load());
-        ConnectionsController connectionsController = fxmlLoader.getController();
-        connectionsController.initUserData(loggedInUser);
+        HowToBookController howToBookController = fxmlLoader.getController();
+        howToBookController.initUserData(loggedInUser);
         stage.setScene(scene);
         stage.show();
     }
@@ -152,8 +152,8 @@ public class MainPageController implements Initializable {
         stage.close();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Contact.fxml")); ////////////////// POWROT DO STRONY LOGOWANIA I ZAMKNIECIE STRONY POPRZEDNIEJ
         Scene scene = new Scene(fxmlLoader.load());
-        ConnectionsController connectionsController = fxmlLoader.getController();
-        connectionsController.initUserData(loggedInUser);
+        ContactController contactController = fxmlLoader.getController();
+        contactController.initUserData(loggedInUser);
         stage.setScene(scene);
         stage.show();
     }
