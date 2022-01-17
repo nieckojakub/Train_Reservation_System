@@ -17,7 +17,7 @@
                   <Image url="@../../../../../image/train_reservation.png" />
                </image>
             </ImageView>
-            <Button fx:id="exitButton" layoutX="584.0" layoutY="40.0" mnemonicParsing="false" onAction="#exitButtonOnAction" prefHeight="16.0" prefWidth="83.0" style="-fx-background-color: #ecd0cd; -fx-background-radius: 30 30 30 30;" text="Exit" textFill="#545871">
+            <Button fx:id="exitButton" layoutX="584.0" layoutY="40.0" mnemonicParsing="false" onAction="#exitButtonOnAction" prefHeight="16.0" prefWidth="83.0" styleClass="button2" stylesheets="@buttonCSS.css" text="Exit" textFill="#545871">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>

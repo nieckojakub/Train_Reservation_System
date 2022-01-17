@@ -8,11 +8,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="324.0" prefWidth="597.0" style="-fx-background-color: #83889C;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="train.train.HowToBookController">
+<AnchorPane fx:id="scenePane" prefHeight="324.0" prefWidth="597.0" style="-fx-background-color: #83889C;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="train.train.HowToBookController">
    <children>
       <AnchorPane prefHeight="75.0" prefWidth="600.0" style="-fx-background-color: #545871;">
          <children>
-            <Button fx:id="exitButton" layoutX="509.0" layoutY="31.0" mnemonicParsing="false" onAction="#exitButtonOnAction" prefHeight="18.0" prefWidth="66.0" style="-fx-background-color: #ecd0cd; -fx-background-radius: 30 30 30 30;" text="Exit" textFill="#545871">
+            <Button fx:id="exitButton" layoutX="509.0" layoutY="31.0" mnemonicParsing="false" onAction="#exitButtonOnAction" prefHeight="18.0" prefWidth="66.0" styleClass="button2" stylesheets="@buttonCSS.css" text="Exit" textFill="#545871">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>

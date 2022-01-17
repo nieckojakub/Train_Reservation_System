@@ -1,0 +1,39 @@
+.button2
+{
+    -fx-background-color :  #ecd0cd;
+    -fx-background-radius :  30 30 30 30;
+}
+.button1 {
+    -fx-background-color :  #ecd0cd;
+    -fx-background-radius :  0 30 30 0;
+}
+.button1:hover {
+    -fx-background-color :  #2F2B43;
+    -fx-background-radius :  0 30 30 0;
+}
+button1.pressed {
+    -fx-background-color : #2F2B43;
+    -fx-background-radius :  0 30 30 0;
+}
+.button2:hover
+{
+    -fx-background-color :  #2F2B43;
+    -fx-background-radius :  30 30 30 30;
+}
+.button2:pressed
+{
+    -fx-background-color : #2F2B43;
+    -fx-background-radius :  30 30 30 30;
+}
+.button3 {
+    -fx-background-color :  #ecd0cd;
+    -fx-background-radius :  30 0 0 30;
+}
+.button3:hover {
+    -fx-background-color :  #2F2B43;
+    -fx-background-radius :  30 0 0 30;
+}
+.button3:pressed {
+    -fx-background-color: #2F2B43;
+    -fx-background-radius: 30 0 0 30;
+}

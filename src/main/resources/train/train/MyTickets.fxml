@@ -31,7 +31,7 @@
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <Button fx:id="logoutButton" layoutX="523.0" layoutY="63.0" mnemonicParsing="false" onAction="#logoutButtonOnAction" prefHeight="30.0" prefWidth="104.0" style="-fx-background-color: #ecd0cd; -fx-background-radius: 30 30 30 30;" text="Logout" textFill="#545871">
+            <Button fx:id="logoutButton" layoutX="523.0" layoutY="63.0" mnemonicParsing="false" onAction="#logoutButtonOnAction" prefHeight="30.0" prefWidth="104.0" styleClass="button2" stylesheets="@buttonCSS.css" text="Logout" textFill="#545871">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -55,7 +55,7 @@
             <TableColumn fx:id="arrivalColumn" prefWidth="109.0" text="Arrival time" />
         </columns>
       </TableView>
-      <Button fx:id="returnButton" layoutX="311.0" layoutY="382.0" mnemonicParsing="false" onAction="#returnButtonOnAction" style="-fx-background-color: #ecd0cd; -fx-background-radius: 30 30 30 30;" text="Return" textFill="#545871">
+      <Button fx:id="returnButton" layoutX="311.0" layoutY="382.0" mnemonicParsing="false" onAction="#returnButtonOnAction" styleClass="button2" stylesheets="@buttonCSS.css" text="Return" textFill="#545871">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>

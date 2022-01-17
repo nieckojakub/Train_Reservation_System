@@ -55,12 +55,12 @@
          </font>
       </Label>
       <PasswordField fx:id="confirmPasswordField" layoutX="76.0" layoutY="330.0" prefHeight="26.0" prefWidth="358.0" promptText="password" style="-fx-background-radius: 10 10 10 10;" />
-      <Button fx:id="RegisterButton" layoutX="76.0" layoutY="396.0" mnemonicParsing="false" onAction="#RegistrationButtonOnAction" prefHeight="26.0" prefWidth="358.0" style="-fx-background-color: #ecd0cd; -fx-background-radius: 30 30 30 30;" text="Register Now" textFill="#545871">
+      <Button fx:id="RegisterButton" layoutX="76.0" layoutY="396.0" mnemonicParsing="false" onAction="#RegistrationButtonOnAction" prefHeight="26.0" prefWidth="358.0" styleClass="button2" stylesheets="@buttonCSS.css" text="Register Now" textFill="#545871">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Button>
-      <Button fx:id="CloseButton" layoutX="76.0" layoutY="434.0" mnemonicParsing="false" onAction="#CloseButtonOnAction" prefHeight="26.0" prefWidth="358.0" style="-fx-background-color: #ecd0cd; -fx-background-radius: 30 30 30 30;" text="Cancel" textFill="#545871">
+      <Button fx:id="CloseButton" layoutX="76.0" layoutY="434.0" mnemonicParsing="false" onAction="#CloseButtonOnAction" prefHeight="26.0" prefWidth="358.0" styleClass="button2" stylesheets="@buttonCSS.css" text="Cancel" textFill="#545871">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>

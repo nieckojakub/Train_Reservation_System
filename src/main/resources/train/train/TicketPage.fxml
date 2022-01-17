@@ -24,12 +24,12 @@
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <Button fx:id="myTicketsButton" layoutX="443.0" layoutY="67.0" mnemonicParsing="false" style="-fx-background-color: #ecd0cd; -fx-background-radius: 30 30 30 30;" text="My tickets" textFill="#545871">
+            <Button fx:id="myTicketsButton" layoutX="443.0" layoutY="67.0" mnemonicParsing="false" styleClass="button2" stylesheets="@buttonCSS.css" text="My tickets" textFill="#545871">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="logoutButton" layoutX="543.0" layoutY="67.0" mnemonicParsing="false" onAction="#logoutButtonOnAction" style="-fx-background-color: #ecd0cd; -fx-background-radius: 30 30 30 30;" text="Logout" textFill="#545871">
+            <Button fx:id="logoutButton" layoutX="543.0" layoutY="67.0" mnemonicParsing="false" onAction="#logoutButtonOnAction" styleClass="button2" stylesheets="@buttonCSS.css" text="Logout" textFill="#545871">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -169,12 +169,12 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Button fx:id="confirmReservationButton" layoutX="236.0" layoutY="545.0" mnemonicParsing="false" onAction="#confirmReservationButtonOnAction" style="-fx-background-color: #ecd0cd; -fx-background-radius: 30 30 30 30;" text="Confirm reservation" textFill="#545871">
+      <Button fx:id="confirmReservationButton" layoutX="236.0" layoutY="545.0" mnemonicParsing="false" onAction="#confirmReservationButtonOnAction" styleClass="button2" stylesheets="@buttonCSS.css" text="Confirm reservation" textFill="#545871">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="returnButton" layoutX="275.0" layoutY="592.0" mnemonicParsing="false" onAction="#returnButtonOnAction" prefHeight="30.0" prefWidth="74.0" style="-fx-background-color: #ecd0cd; -fx-background-radius: 30 30 30 30;" text="Return" textFill="#545871">
+      <Button fx:id="returnButton" layoutX="275.0" layoutY="592.0" mnemonicParsing="false" onAction="#returnButtonOnAction" prefHeight="30.0" prefWidth="74.0" styleClass="button2" stylesheets="@buttonCSS.css" text="Return" textFill="#545871">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
