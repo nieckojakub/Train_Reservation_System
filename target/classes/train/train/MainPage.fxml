@@ -84,7 +84,7 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="HowToButton" layoutX="203.0" layoutY="585.0" mnemonicParsing="false" onAction="#HowToButtonOnAction" prefHeight="42.0" prefWidth="187.0" styleClass="button2" stylesheets="@buttonCSS.css" text="How to book a ticket ?" textFill="#545871">
+      <Button fx:id="HowToButton" layoutX="203.0" layoutY="585.0" mnemonicParsing="false" onAction="#HowToButtonOnAction" prefHeight="42.0" prefWidth="187.0" styleClass="button4" stylesheets="@buttonCSS.css" text="How to book a ticket ?" textFill="#545871">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>

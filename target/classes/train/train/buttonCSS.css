@@ -46,7 +46,18 @@ button1.pressed {
     -fx-background-radius: 30 0 0 30;
 }
 
-
+.button4 {
+    -fx-background-color :  #ecd0cd;
+    -fx-background-radius :  0 0 0 0;
+}
+.button4:hover {
+    -fx-background-color :  #d6bcbc;
+    -fx-background-radius :  0 0 0 0;
+}
+button4.pressed {
+    -fx-background-color : #b79999;
+    -fx-background-radius :  0 0 0 0;
+}
 
 .combo-box
 {
