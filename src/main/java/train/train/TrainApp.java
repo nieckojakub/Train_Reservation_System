@@ -46,7 +46,6 @@ public class TrainApp extends Application {
         stage.show();
 
         new FadeIn(root).play();
-
     }
 
     public static void main(String[] args) {

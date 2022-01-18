@@ -14,6 +14,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
@@ -127,7 +128,7 @@ public class LoginController implements Initializable {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MainPage.fxml")); ////////////////// POWROT DO STRONY LOGOWANIA I ZAMKNIECIE STRONY POPRZEDNIEJ
 
                 Scene scene = new Scene(fxmlLoader.load());
-                MainPageController mainPageController = fxmlLoader.getController() ;
+                MainPageController mainPageController = fxmlLoader.getController();
                 mainPageController.initUserData(user);
                 stage.setScene(scene);
                 stage.show();
@@ -142,18 +143,14 @@ public class LoginController implements Initializable {
 
 
     public void registerButtonOnAction(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(TrainApp.class.getResource("Registration.fxml"));
-        Stage stage = new Stage();
-        Scene scene = new Scene(fxmlLoader.load(), 500, 500);
+        Stage stage = (Stage) mainPane.getScene().getWindow(); /// aktualna scena, ktora chcemy zamknac
+        stage.close();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Registration.fxml")); ////////////////// POWROT DO STRONY LOGOWANIA I ZAMKNIECIE STRONY POPRZEDNIEJ
+        Scene scene = new Scene(fxmlLoader.load());
         stage.setScene(scene);
-        stage.setTitle("Train Reservation System");
-        File iconImage = new File("image/train_reservation.png");
-        Image iconImageImg = new Image(iconImage.toURI().toString());
-        stage.getIcons().add(iconImageImg);
         stage.show();
         ////////////////////////////////////////////////////
-        stage = (Stage)mainPane.getScene().getWindow();
-        stage.close();
+
         //////////////////////////////////////////////////// ZAMYKANIE POPRZEDNIEGO OKNA (Z LOGOWANIEM)
     }
 }
