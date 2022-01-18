@@ -32,7 +32,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Button fx:id="logoutButton" layoutX="1054.0" layoutY="62.0" mnemonicParsing="false" onAction="#logoutButtonOnAction" prefHeight="30.0" prefWidth="98.0" style="-fx-background-color: #ecd0cd; -fx-background-radius: 30 30 30 30;" text="Logout" textFill="#545871">
+            <Button fx:id="logoutButton" layoutX="1054.0" layoutY="62.0" mnemonicParsing="false" onAction="#logoutButtonOnAction" prefHeight="30.0" prefWidth="98.0" styleClass="button2" stylesheets="@buttonCSS.css" text="Logout" textFill="#545871">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -54,7 +54,7 @@
             <Font size="20.0" />
          </font>
       </Text>
-      <Button fx:id="contactButton1" layoutX="197.0" layoutY="475.0" mnemonicParsing="false" onAction="#getStartedButtonOnAction" prefHeight="79.0" prefWidth="199.0" style="-fx-background-color: #ecd0cd; -fx-background-radius: 30 30 30 30;" text="Get started" textFill="#545871">
+      <Button fx:id="contactButton1" layoutX="197.0" layoutY="475.0" mnemonicParsing="false" onAction="#getStartedButtonOnAction" prefHeight="79.0" prefWidth="199.0" styleClass="button2" stylesheets="@buttonCSS.css" text="Get started" textFill="#545871">
          <font>
             <Font name="System Bold" size="29.0" />
          </font>
@@ -79,17 +79,17 @@
             <Image url="@../../../../../image/trainMap.png" />
          </image>
       </ImageView>
-      <Button fx:id="aboutUsButton" layoutX="73.0" layoutY="585.0" mnemonicParsing="false" onAction="#AboutUsOnAction" prefHeight="42.0" prefWidth="98.0" style="-fx-background-color: #ecd0cd; -fx-background-radius: 30 0 0 30;" text="About us" textFill="#545871">
+      <Button fx:id="aboutUsButton" layoutX="73.0" layoutY="585.0" mnemonicParsing="false" onAction="#AboutUsOnAction" prefHeight="42.0" prefWidth="98.0" styleClass="button3" stylesheets="@buttonCSS.css" text="About us" textFill="#545871">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="HowToButton" layoutX="203.0" layoutY="585.0" mnemonicParsing="false" onAction="#HowToButtonOnAction" prefHeight="42.0" prefWidth="187.0" style="-fx-background-color: #ecd0cd;" text="How to book a ticket ?" textFill="#545871">
+      <Button fx:id="HowToButton" layoutX="203.0" layoutY="585.0" mnemonicParsing="false" onAction="#HowToButtonOnAction" prefHeight="42.0" prefWidth="187.0" styleClass="button2" stylesheets="@buttonCSS.css" text="How to book a ticket ?" textFill="#545871">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="contactButton" layoutX="424.0" layoutY="585.0" mnemonicParsing="false" onAction="#contactOnAction" prefHeight="42.0" prefWidth="91.0" style="-fx-background-color: #ecd0cd; -fx-background-radius: 0 30 30 0;" text="Contact" textFill="#545871">
+      <Button fx:id="contactButton" layoutX="424.0" layoutY="585.0" mnemonicParsing="false" onAction="#contactOnAction" prefHeight="42.0" prefWidth="91.0" styleClass="button1" stylesheets="@buttonCSS.css" text="Contact" textFill="#545871">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>

@@ -12,7 +12,7 @@
    <children>
       <AnchorPane prefHeight="75.0" prefWidth="600.0" style="-fx-background-color: #545871;">
          <children>
-            <Button fx:id="exitButton" layoutX="509.0" layoutY="31.0" mnemonicParsing="false" onAction="#exitButtonOnAction" prefHeight="18.0" prefWidth="66.0" style="-fx-background-color: #ecd0cd; -fx-background-radius: 30 30 30 30;" text="Exit" textFill="#545871">
+            <Button fx:id="exitButton" layoutX="509.0" layoutY="31.0" mnemonicParsing="false" onAction="#exitButtonOnAction" prefHeight="18.0" prefWidth="66.0" styleClass="button2" stylesheets="@buttonCSS.css" text="Exit" textFill="#545871">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>

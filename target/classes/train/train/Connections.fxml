@@ -34,12 +34,12 @@
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <Button fx:id="myTicketsButton" layoutX="443.0" layoutY="67.0" mnemonicParsing="false" onAction="#myTicketsButtonOnAction" style="-fx-background-color: #ecd0cd; -fx-background-radius: 30 30 30 30;" text="My tickets" textFill="#545871">
+            <Button fx:id="myTicketsButton" layoutX="443.0" layoutY="67.0" mnemonicParsing="false" onAction="#myTicketsButtonOnAction" styleClass="button2" stylesheets="@buttonCSS.css" text="My tickets" textFill="#545871">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="logoutButton" layoutX="543.0" layoutY="67.0" mnemonicParsing="false" onAction="#logoutButtonOnAction" style="-fx-background-color: #ecd0cd; -fx-background-radius: 30 30 30 30;" text="Logout" textFill="#545871">
+            <Button fx:id="logoutButton" layoutX="543.0" layoutY="67.0" mnemonicParsing="false" onAction="#logoutButtonOnAction" styleClass="button2" stylesheets="@buttonCSS.css" text="Logout" textFill="#545871">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -49,12 +49,12 @@
       <Label layoutX="42.0" layoutY="128.0" text="From" textFill="#ecd0cd" />
       <DatePicker fx:id="datePicker" layoutX="42.0" layoutY="271.0" style="-fx-background-radius: 10 10 10 10;" />
       <Label layoutX="43.0" layoutY="253.0" text="Departing" textFill="#ecd0cd" />
-      <Button fx:id="showAvaliableConnectionsButton" layoutX="205.0" layoutY="350.0" mnemonicParsing="false" onAction="#showAvailableConnectionsButtonOnAction" style="-fx-background-color: #ecd0cd; -fx-background-radius: 30 30 30 30;" text="Show available connections" textFill="#545871">
+      <Button fx:id="showAvaliableConnectionsButton" layoutX="205.0" layoutY="350.0" mnemonicParsing="false" onAction="#showAvailableConnectionsButtonOnAction" styleClass="button2" stylesheets="@buttonCSS.css" text="Show available connections" textFill="#545871">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Button>
-      <TableView fx:id="connectionsTableView" layoutX="8.0" layoutY="396.0" prefHeight="199.0" prefWidth="602.0">
+      <TableView fx:id="connectionsTableView" layoutX="8.0" layoutY="396.0" prefHeight="199.0" prefWidth="602.0" stylesheets="@buttonCSS.css">
         <columns>
           <TableColumn fx:id="idColumn" prefWidth="42.0" text="ID" />
           <TableColumn fx:id="originColumn" prefWidth="89.0" text="Origin" />
@@ -65,13 +65,13 @@
             <TableColumn fx:id="arrivalColumn" prefWidth="106.0" text="Arrival time" />
         </columns>
       </TableView>
-      <Button fx:id="reserveButton" layoutX="241.0" layoutY="610.0" mnemonicParsing="false" onAction="#reserveButtonOnAction" style="-fx-background-color: #ecd0cd; -fx-background-radius: 30 30 30 30;" text="Reserve" textFill="#545871">
+      <Button fx:id="reserveButton" layoutX="241.0" layoutY="610.0" mnemonicParsing="false" onAction="#reserveButtonOnAction" styleClass="button2" stylesheets="@buttonCSS.css" text="Reserve" textFill="#545871">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <ComboBox fx:id="originComboBox" layoutX="42.0" layoutY="146.0" prefWidth="150.0" style="-fx-background-radius: 10 10 10 10;" />
-      <ComboBox fx:id="destinationComboBox" layoutX="42.0" layoutY="208.0" prefWidth="150.0" style="-fx-background-radius: 10 10 10 10;" />
+      <ComboBox fx:id="originComboBox" layoutX="42.0" layoutY="146.0" prefWidth="150.0" stylesheets="@buttonCSS.css" />
+      <ComboBox fx:id="destinationComboBox" layoutX="42.0" layoutY="208.0" prefWidth="150.0" stylesheets="@buttonCSS.css" />
       <Label layoutX="42.0" layoutY="190.0" text="To" textFill="#ecd0cd" />
       <Text fx:id="textInvalid" fill="#cc4135" layoutX="42.0" layoutY="332.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="282.0">
          <font>
@@ -83,7 +83,7 @@
             <Image url="@../../../../../image/trainMap.png" />
          </image>
       </ImageView>
-      <Button fx:id="returnButton" layoutX="322.0" layoutY="610.0" mnemonicParsing="false" onAction="#returnButtonOnAction" style="-fx-background-color: #ecd0cd; -fx-background-radius: 30 30 30 30;" text="Return" textFill="#545871">
+      <Button fx:id="returnButton" layoutX="322.0" layoutY="610.0" mnemonicParsing="false" onAction="#returnButtonOnAction" styleClass="button2" stylesheets="@buttonCSS.css" text="Return" textFill="#545871">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>

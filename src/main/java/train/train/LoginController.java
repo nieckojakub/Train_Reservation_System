@@ -1,8 +1,12 @@
 package train.train;
 
+import animatefx.animation.Bounce;
+import animatefx.animation.FadeIn;
+import animatefx.animation.Pulse;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
@@ -48,6 +52,8 @@ public class LoginController implements Initializable {
     @FXML
     private BorderPane mainPane;
 
+    double x,y = 0;
+
     User user = new User("", "", "", "");
 
     @Override
@@ -83,8 +89,11 @@ public class LoginController implements Initializable {
 
     ///////////////////// METODY LoginUser, LoginButtonOnAction i getAuthenticatedUser zwinalem w te jedna metode /////////////////
     public void loginUser() throws SQLException, IOException {
-        if(emailTextField.getText().isBlank() || passwordField.getText().isBlank())
+        if(emailTextField.getText().isBlank() || passwordField.getText().isBlank()) {
             loginMessageLabel.setText("Please enter username and password!");
+            new Pulse(loginMessageLabel).play();
+            new Bounce(lockImageView).play();
+        }
         else {
             final String databaseName = "trainsystem";//"";
             final String databaseUser = "root";
@@ -116,13 +125,16 @@ public class LoginController implements Initializable {
                 Stage stage = (Stage) mainPane.getScene().getWindow(); /// aktualna scena, ktora chcemy zamknac
                 stage.close();
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MainPage.fxml")); ////////////////// POWROT DO STRONY LOGOWANIA I ZAMKNIECIE STRONY POPRZEDNIEJ
+
                 Scene scene = new Scene(fxmlLoader.load());
-                MainPageController mainPageController = fxmlLoader.getController();
+                MainPageController mainPageController = fxmlLoader.getController() ;
                 mainPageController.initUserData(user);
                 stage.setScene(scene);
                 stage.show();
             } else {
                 loginMessageLabel.setText("Wrong email or password");
+                new Pulse(loginMessageLabel).play();
+                new Bounce(lockImageView).play();
             }
         }
     }

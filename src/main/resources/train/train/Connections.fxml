@@ -54,7 +54,7 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Button>
-      <TableView fx:id="connectionsTableView" layoutX="8.0" layoutY="396.0" prefHeight="199.0" prefWidth="602.0">
+      <TableView fx:id="connectionsTableView" layoutX="8.0" layoutY="396.0" prefHeight="199.0" prefWidth="602.0" stylesheets="@buttonCSS.css">
         <columns>
           <TableColumn fx:id="idColumn" prefWidth="42.0" text="ID" />
           <TableColumn fx:id="originColumn" prefWidth="89.0" text="Origin" />
@@ -70,8 +70,8 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <ComboBox fx:id="originComboBox" layoutX="42.0" layoutY="146.0" prefWidth="150.0" style="-fx-background-radius: 10 10 10 10;" />
-      <ComboBox fx:id="destinationComboBox" layoutX="42.0" layoutY="208.0" prefWidth="150.0" style="-fx-background-radius: 10 10 10 10;" />
+      <ComboBox fx:id="originComboBox" layoutX="42.0" layoutY="146.0" prefWidth="150.0" stylesheets="@buttonCSS.css" />
+      <ComboBox fx:id="destinationComboBox" layoutX="42.0" layoutY="208.0" prefWidth="150.0" stylesheets="@buttonCSS.css" />
       <Label layoutX="42.0" layoutY="190.0" text="To" textFill="#ecd0cd" />
       <Text fx:id="textInvalid" fill="#cc4135" layoutX="42.0" layoutY="332.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="282.0">
          <font>

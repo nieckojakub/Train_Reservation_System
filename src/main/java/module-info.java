@@ -10,6 +10,7 @@ module train.train {
     requires kernel;
     requires layout;
     requires io;
+    requires AnimateFX;
 
     opens train.train to javafx.fxml;
     exports train.train;

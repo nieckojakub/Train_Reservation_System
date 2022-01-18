@@ -43,7 +43,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <TableView fx:id="connectionsTableView" layoutX="12.0" layoutY="163.0" prefHeight="200.0" prefWidth="662.0">
+      <TableView fx:id="connectionsTableView" layoutX="12.0" layoutY="163.0" prefHeight="200.0" prefWidth="662.0" stylesheets="@buttonCSS.css">
         <columns>
           <TableColumn fx:id="ticketIdColumn" prefWidth="62.0" text="Ticket ID" />
           <TableColumn fx:id="travelIdColumn" prefWidth="66.0" text="Travel ID" />
