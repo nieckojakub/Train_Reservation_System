@@ -10,7 +10,7 @@
 
 <AnchorPane fx:id="scenePane" prefHeight="667.0" prefWidth="1200.0" style="-fx-background-color: #83889C;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="train.train.MainPageController">
    <children>
-      <AnchorPane prefHeight="106.0" prefWidth="1200.0" style="-fx-background-color: #545871;">
+      <AnchorPane prefHeight="106.0" prefWidth="1200.0" style="-fx-background-color: #545871; -fx-background-radius: 0 0 30 30;">
          <children>
             <ImageView fx:id="trainLogoImageView" fitHeight="99.0" fitWidth="83.0" layoutX="28.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -22,17 +22,17 @@
                   <Font name="System Bold" size="25.0" />
                </font>
             </Label>
-            <Label fx:id="userNameLabel" layoutX="1054.0" layoutY="14.0" text="UserFirstName" textFill="#ecd0cd">
+            <Label fx:id="userNameLabel" layoutX="1038.0" layoutY="14.0" text="UserFirstName" textFill="#ecd0cd">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label fx:id="userEmailLabel" layoutX="1054.0" layoutY="39.0" text="UserEmail" textFill="#ecd0cd">
+            <Label fx:id="userEmailLabel" layoutX="1038.0" layoutY="43.0" text="UserEmail" textFill="#ecd0cd">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Button fx:id="logoutButton" layoutX="1054.0" layoutY="62.0" mnemonicParsing="false" onAction="#logoutButtonOnAction" prefHeight="30.0" prefWidth="98.0" styleClass="button2" stylesheets="@buttonCSS.css" text="Logout" textFill="#545871">
+            <Button fx:id="logoutButton" layoutX="1050.0" layoutY="68.0" mnemonicParsing="false" onAction="#logoutButtonOnAction" prefHeight="30.0" prefWidth="98.0" styleClass="button2" stylesheets="@buttonCSS.css" text="Logout" textFill="#545871">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -42,7 +42,7 @@
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <ImageView fx:id="trainImageView" fitHeight="87.0" fitWidth="91.0" layoutX="952.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="trainImageView" fitHeight="87.0" fitWidth="91.0" layoutX="936.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../image/mainpagetrain.png" />
                </image>
@@ -94,7 +94,7 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <Label layoutX="61.0" layoutY="143.0" text="Hello  Jacob, start booking your next adventure ..." textFill="#ecd0cd">
+      <Label fx:id="helloField" layoutX="61.0" layoutY="143.0" textFill="#ecd0cd">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>

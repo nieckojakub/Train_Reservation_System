@@ -14,7 +14,7 @@
 
 <AnchorPane fx:id="scenePane" prefHeight="674.0" prefWidth="618.0" style="-fx-background-color: #83889C;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="train.train.ConnectionsController">
    <children>
-      <AnchorPane layoutX="-8.0" prefHeight="106.0" prefWidth="626.0" style="-fx-background-color: #545871;">
+      <AnchorPane prefHeight="106.0" prefWidth="618.0" style="-fx-background-color: #545871; -fx-background-radius: 0 0 30 30;">
          <children>
             <Label layoutX="124.0" layoutY="23.0" prefHeight="59.0" prefWidth="380.0" text="Train Reservation System" textFill="#ecd0cd">
                <font>

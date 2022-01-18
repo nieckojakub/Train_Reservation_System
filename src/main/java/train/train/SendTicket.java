@@ -47,7 +47,7 @@ public class SendTicket {
 
 
         ///////////////////GENERATE QR CODE /////////////////////////
-        String data = "Name: " + user.getFirstname() +" "+ user.getLastname() + "\n"+ "From: " + train.getOrigin() + "\n" + "To: " + train.getDestination() + "\n" +
+        String data = "Name: " + user.getFirstname() +" "+ user.getLastname() + "\n"+ "From: " + train.getOrigin() + "\n" + "To: " + train.getDestination() + "\n" + "\n" +
                 "Train number: " +train.getTrain_number() + "\n" + "Price: " + train.getPrice() + "\n" + "Ticket id: " + pdf_generate_time ;
 
 

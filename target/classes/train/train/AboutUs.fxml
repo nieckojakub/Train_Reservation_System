@@ -10,7 +10,7 @@
 
 <AnchorPane fx:id="scenePane" prefHeight="422.0" prefWidth="690.0" style="-fx-background-color: #83889C;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="train.train.AboutUsController">
    <children>
-      <AnchorPane prefHeight="79.0" prefWidth="691.0" style="-fx-background-color: #545871;">
+      <AnchorPane prefHeight="79.0" prefWidth="691.0" style="-fx-background-color: #545871; -fx-background-radius: 0 0 30 30;">
          <children>
             <ImageView fx:id="trainLogoImageView" fitHeight="57.0" fitWidth="74.0" layoutX="14.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
                <image>

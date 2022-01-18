@@ -11,7 +11,7 @@
 
 <AnchorPane fx:id="scenePane" prefHeight="500.0" prefWidth="500.0" style="-fx-background-color: #83889C;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="train.train.RegistrationController">
    <children>
-      <AnchorPane prefHeight="80.0" prefWidth="500.0" style="-fx-background-color: #545871;">
+      <AnchorPane prefHeight="80.0" prefWidth="500.0" style="-fx-background-color: #545871; -fx-background-radius: 0 0 80 0;">
          <children>
             <ImageView fx:id="registerImageView" fitHeight="63.0" fitWidth="59.0" layoutX="27.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
                <image>

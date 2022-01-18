@@ -53,6 +53,8 @@ public class MainPageController implements Initializable {
     private ImageView trainMapImageView;
     @FXML
     private Label time;
+    @FXML
+    private Label helloField;
 
     private volatile boolean stop = false;
 
@@ -76,7 +78,7 @@ public class MainPageController implements Initializable {
         Image malopolskaImage = new Image(malopolskaFile.toURI().toString());
         malopolskaImageView.setImage(malopolskaImage);
 
-        File trainFile = new File("image/train_tvg.png");
+        File trainFile = new File("image/mainpagetrain.png");
         Image trainImage = new Image(trainFile.toURI().toString());
         trainImageView.setImage(trainImage);
 
@@ -91,6 +93,7 @@ public class MainPageController implements Initializable {
         loggedInUser = user;
         userNameLabel.setText(loggedInUser.getFirstname());
         userEmailLabel.setText(loggedInUser.getEmail());
+        helloField.setText("Hello " + loggedInUser.getFirstname() + ", start booking your next adventure ... " );
     }
 
     public void logoutButtonOnAction() throws IOException {

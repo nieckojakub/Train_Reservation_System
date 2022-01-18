@@ -10,7 +10,7 @@
 
 <AnchorPane fx:id="scenePane" prefHeight="324.0" prefWidth="597.0" style="-fx-background-color: #83889C;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="train.train.HowToBookController">
    <children>
-      <AnchorPane prefHeight="75.0" prefWidth="600.0" style="-fx-background-color: #545871;">
+      <AnchorPane prefHeight="75.0" prefWidth="600.0" style="-fx-background-color: #545871; -fx-background-radius: 0 0 30 30;">
          <children>
             <Button fx:id="exitButton" layoutX="509.0" layoutY="31.0" mnemonicParsing="false" onAction="#exitButtonOnAction" prefHeight="18.0" prefWidth="66.0" styleClass="button2" stylesheets="@buttonCSS.css" text="Exit" textFill="#545871">
                <font>
