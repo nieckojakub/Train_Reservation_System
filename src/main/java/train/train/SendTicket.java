@@ -25,6 +25,7 @@ public class SendTicket {
 
     private static User loggedInUser;
     private static Train selectedTrain;
+    public String pdf_generate_time;
 
 
     private static double round (double value, int precision) {
@@ -45,7 +46,7 @@ public class SendTicket {
 
 
         ///////////////////GENERATE QR CODE /////////////////////////
-        String data = "Name: " + user.getFirstname() +" "+ user.getLastname() + "\n"+ "From: " + train.getOrigin() + "\n" + "To: " + train.getDestination() + "\n" + "\n" +
+        String data = "Name: " + user.getFirstname() +" "+ user.getLastname() + "\n"+ "From: " + train.getOrigin() + "\n" + " To: " + train.getDestination() + "\n" + "\n" +
                 "Train number: " +train.getTrain_number() + "\n" + "Price: " + train.getPrice() + "\n" + "Ticket id: " + pdf_generate_time ;
 
 
@@ -93,13 +94,17 @@ public class SendTicket {
 
             //TEKST
             Paragraph date_upper = new Paragraph("Ticket " + train.getDate());
-            Paragraph route_info_upper = new Paragraph(train.getOrigin() + " -> " + train.getOrigin());
+            Paragraph route_info_upper = new Paragraph(train.getOrigin() + " -> " + train.getDestination());
             Paragraph ticket_client_info = new Paragraph("The ticket is valid together with a document with a photo\n confirming identity." +
                     "The ticket must be presented for inspection\n at each request of the inspection body on board the train.");
             Paragraph travel_info = new Paragraph("Travel information");
 
             //Linia
             Paragraph line = new Paragraph("---------------------------------------------------------------------------------------------------------------------------");
+            Paragraph line2 = new Paragraph("---------------------------------------------------------------------------------------------------------------------------");
+
+            //Text under line
+            Paragraph thank_you_text = new Paragraph("Thank you for traveling with us!");
 
             //Rezerwacja info tickets
             Paragraph client_name = new Paragraph("Passenger - " + user.getFirstname() + " " +  user.getLastname());
@@ -108,8 +113,6 @@ public class SendTicket {
             Paragraph destination_station = new Paragraph("Destination Station - "+ train.getDestination());
             Paragraph date_yourney = new Paragraph("Date - " + train.getDate());
             Paragraph train_number_info = new Paragraph("Train number - "+ train.getTrain_number());
-
-
 
 
             StringBuilder time_departure = new StringBuilder(train.getDeparture_time());
@@ -133,7 +136,7 @@ public class SendTicket {
             Paragraph pdf_time_generated = new Paragraph("Document generated: " + pdf_generate_time2);
 
             date_upper.setFixedPosition(1,230,765,100);
-            route_info_upper.setFixedPosition(1,230,740,100);
+            route_info_upper.setFixedPosition(1,230,740,1000);
             ticket_client_info.setFontSize(8).setFixedPosition(1,230,650,1000);
             travel_info.setFixedPosition(1,250,600,100);
 
@@ -151,7 +154,10 @@ public class SendTicket {
             time_arrival_info.setFixedPosition(1,400,370,1000);
 
 
-            pdf_time_generated.setFontSize(8).setFixedPosition(1,400,350,100);
+            pdf_time_generated.setFontSize(8).setFixedPosition(1,400,330,100);
+
+            line2.setFixedPosition(1,50,300,1000);
+            thank_you_text.setFixedPosition(1,400,260,1000);
 
 
             //Text
@@ -173,6 +179,8 @@ public class SendTicket {
             document.add(time_arrival_info);
 
             document.add(pdf_time_generated);
+            document.add(line2);
+            document.add(thank_you_text);
 
             ///Images
             document.add(img);

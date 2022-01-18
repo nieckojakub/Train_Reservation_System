@@ -99,7 +99,7 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Text fill="#ecd0cd" layoutX="77.0" layoutY="338.0" strokeType="OUTSIDE" strokeWidth="0.0" text="We have added new rail connections! Remember to follow epidemiological rules on trains. In the last month, our trains were on time in 97%." wrappingWidth="438.4140625">
+      <Text fill="#ecd0cd" layoutX="77.0" layoutY="338.0" strokeType="OUTSIDE" strokeWidth="0.0" text="We have added new rail connections! Please remember to follow epidemiological rules during the travel. In the last month, our trains were on time in 97%." wrappingWidth="438.4140625">
          <font>
             <Font size="20.0" />
          </font>

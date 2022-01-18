@@ -1,5 +1,6 @@
 package train.train;
 
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -50,6 +51,8 @@ public class MyTicketsController implements Initializable {
     private TableColumn<Ticket, String> departureColumn;
     @FXML
     private TableColumn<Ticket, String> arrivalColumn;
+
+
 
     private User loggedInUser;
     private Train selectedTrain;
@@ -106,7 +109,7 @@ public class MyTicketsController implements Initializable {
         try {
             Connection connection = jdbcDatabaseObject.getConnection();
             String sql = "SELECT * FROM tickets WHERE Owner=?";
-            PreparedStatement preparedStatement = connection.prepareStatement(sql) ;
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, loggedInUser.getEmail());
 
             ResultSet rs = preparedStatement.executeQuery();
@@ -132,5 +135,34 @@ public class MyTicketsController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+
+//        try {
+//            connectionsTableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+//                if (newSelection != null) {
+//                    connectionsTableView.getSelectionModel().clearSelection();
+//                    System.out.println("zazn");
+//
+//                    try {
+//                        File file = new File("ticket22.13.57.pdf");
+//                        if(file.exists()){
+//                            Desktop.getDesktop().open(file);
+//                        }else {
+//                            System.out.println("Aby zobaczyć bilet zaloguj się ponownie!");
+//                        }
+//
+//                    }catch (Exception e){
+//                        e.printStackTrace();
+//                    }
+//
+//                }
+//            });
+//        }catch (Exception e){
+//            System.out.println();
+//        }
+  }
+
+
+
     }
-}
+

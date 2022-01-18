@@ -22,7 +22,7 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Label layoutX="302.0" layoutY="11.0" prefHeight="59.0" prefWidth="117.0" text="About Us" textFill="#ecd0cd">
+            <Label layoutX="287.0" layoutY="10.0" prefHeight="59.0" prefWidth="117.0" text="About us" textFill="#ecd0cd">
                <font>
                   <Font name="System Bold" size="25.0" />
                </font>
@@ -31,54 +31,54 @@
       </AnchorPane>
       <AnchorPane layoutX="27.0" layoutY="109.0" prefHeight="122.0" prefWidth="297.0" style="-fx-background-color: #ecd0cd; -fx-background-radius: 10 10 10 10;">
          <children>
-            <Label layoutX="104.0" layoutY="4.0" text="Who we are ?" textFill="#545871">
+            <Label layoutX="90.0" layoutY="4.0" text="Who are we?" textFill="#545871">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Text fill="#545871" layoutX="17.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="We are a ticket booking system that offers several of the most important routes in Poland." wrappingWidth="245.79296875">
+            <Text fill="#545871" layoutX="26.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="We are the authors of the ticket booking system that offers several of the most important routes in Poland." wrappingWidth="245.79296875">
                <font>
                   <Font size="15.0" />
                </font>
             </Text>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="27.0" layoutY="258.0" prefHeight="122.0" prefWidth="297.0" style="-fx-background-color: #ecd0cd; -fx-background-radius: 10 10 10 10;">
+      <AnchorPane layoutX="27.0" layoutY="258.0" prefHeight="142.0" prefWidth="298.0" style="-fx-background-color: #ecd0cd; -fx-background-radius: 10 10 10 10;">
          <children>
             <Label layoutX="104.0" layoutY="4.0" text="Our trains" textFill="#545871">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Text fill="#545871" layoutX="19.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="We shift our trains to green tracks. They are electric trains that are fast and comfortable. Everyone will find themselves on our board!" wrappingWidth="245.79296875">
+            <Text fill="#545871" layoutX="26.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="We shift our trains to green tracks. They are electric which means great convenience, speed and low emissions. We are constantly trying to provide best travel conditions." wrappingWidth="245.79296875">
                <font>
                   <Font size="15.0" />
                </font>
             </Text>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="367.0" layoutY="109.0" prefHeight="122.0" prefWidth="297.0" style="-fx-background-color: #ecd0cd; -fx-background-radius: 10 10 10 10;">
+      <AnchorPane layoutX="367.0" layoutY="109.0" prefHeight="122.0" prefWidth="298.0" style="-fx-background-color: #ecd0cd; -fx-background-radius: 10 10 10 10;">
          <children>
-            <Label layoutX="104.0" layoutY="4.0" text="Our Aplication" textFill="#545871">
+            <Label layoutX="90.0" layoutY="4.0" text="Our application" textFill="#545871">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Text fill="#545871" layoutX="14.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Our application is simple and clear. Booking a ticket is a pleasure and sending a ticket to an e-mail protects trees." wrappingWidth="245.79296875">
+            <Text fill="#545871" layoutX="26.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Our application is easy to use. Booking a ticket is a pleasure and sending a ticket electronically provides environmental friendliness." wrappingWidth="245.79296875">
                <font>
                   <Font size="15.0" />
                </font>
             </Text>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="367.0" layoutY="258.0" prefHeight="122.0" prefWidth="297.0" style="-fx-background-color: #ecd0cd; -fx-background-radius: 10 10 10 10;">
+      <AnchorPane layoutX="367.0" layoutY="258.0" prefHeight="142.0" prefWidth="298.0" style="-fx-background-color: #ecd0cd; -fx-background-radius: 10 10 10 10;">
          <children>
             <Label layoutX="104.0" layoutY="4.0" text="Our mission" textFill="#545871">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Text fill="#545871" layoutX="14.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Our goal is to reduce our carbon footprint. Traveling by train reduces the carbon footprint by as much as 9 times compared to flying by plane." wrappingWidth="245.79296875">
+            <Text fill="#545871" layoutX="26.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Our main goal is to make travellers glad. We are doing our best to be environmental friendly by reducing carbon footprint too." wrappingWidth="245.79296875">
                <font>
                   <Font size="15.0" />
                </font>
