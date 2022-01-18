@@ -44,6 +44,7 @@
             <Font name="System Bold" size="17.0" />
          </font>
       </Label>
-      <Text fill="#ecd0cd" layoutX="52.0" layoutY="316.0" strokeType="OUTSIDE" strokeWidth="0.0" text="We reply to the e-mail within 2 hours!" />
+      <Text fill="#ecd0cd" layoutX="52.0" layoutY="316.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Due to large number of correspondences delays can occur. " />
+      <Text fill="#ecd0cd" layoutX="52.0" layoutY="333.0" strokeType="OUTSIDE" strokeWidth="0.0" text="We are doing our best to reply as fast as possible." />
    </children>
 </AnchorPane>

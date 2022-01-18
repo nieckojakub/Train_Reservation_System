@@ -1,6 +1,5 @@
 package train.train;
 
-import com.itextpdf.kernel.color.Lab;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,16 +26,6 @@ public class MainPageController implements Initializable {
     private AnchorPane scenePane;
     @FXML
     private ImageView trainLogoImageView;
-    @FXML
-    private Button logoutButton;
-    @FXML
-    private Button aboutUsButton;
-    @FXML
-    private Button trainsButton;
-    @FXML
-    private Button contactButton;
-    @FXML
-    private Button getStartedButton;
     @FXML
     private Label userNameLabel;
     @FXML
@@ -86,7 +75,7 @@ public class MainPageController implements Initializable {
         Image trainMapImage = new Image(trainMapFile.toURI().toString());
         trainMapImageView.setImage(trainMapImage);
 
-        Timenow();
+        timeNow();
     }
 
     public void initUserData(User user) { // ta metoda wywolywana w logowaniu
@@ -127,7 +116,7 @@ public class MainPageController implements Initializable {
 
     // poniższe Actiony do poprawy, błąd przy kliknięciu w MainPage
 
-    public void AboutUsOnAction() throws IOException{
+    public void AboutUsOnAction() throws IOException {
         Stage stage = (Stage) scenePane.getScene().getWindow(); /// aktualna scena, ktora chcemy zamknac
         stage.close();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AboutUs.fxml")); ////////////////// POWROT DO STRONY LOGOWANIA I ZAMKNIECIE STRONY POPRZEDNIEJ
@@ -138,7 +127,7 @@ public class MainPageController implements Initializable {
         stage.show();
     }
 
-    public void HowToButtonOnAction() throws IOException{
+    public void HowToButtonOnAction() throws IOException {
         Stage stage = (Stage) scenePane.getScene().getWindow(); /// aktualna scena, ktora chcemy zamknac
         stage.close();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("HowToBookTicket.fxml")); ////////////////// POWROT DO STRONY LOGOWANIA I ZAMKNIECIE STRONY POPRZEDNIEJ
@@ -150,7 +139,7 @@ public class MainPageController implements Initializable {
     }
 
 
-    public void contactOnAction() throws IOException{
+    public void contactOnAction() throws IOException {
         Stage stage = (Stage) scenePane.getScene().getWindow(); /// aktualna scena, ktora chcemy zamknac
         stage.close();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Contact.fxml")); ////////////////// POWROT DO STRONY LOGOWANIA I ZAMKNIECIE STRONY POPRZEDNIEJ
@@ -163,7 +152,7 @@ public class MainPageController implements Initializable {
 
 
 
-    private void Timenow(){
+    private void timeNow() {
         Thread thread = new Thread(() -> {
             SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss a, dd-MM-yyyy");
             while(!stop){

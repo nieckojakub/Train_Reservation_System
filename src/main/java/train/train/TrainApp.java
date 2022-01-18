@@ -38,8 +38,7 @@ public class TrainApp extends Application {
         Image iconImageImg = new Image(iconImage.toURI().toString());
         stage.getIcons().add(iconImageImg);
 
-        stage.setTitle("Train Reservation System");
-
+        //stage.setTitle("Train Reservation System");
 
         scene.setFill(Color.TRANSPARENT);
         stage.setScene(scene);

@@ -33,20 +33,6 @@ public class ConnectionsController implements Initializable {
     @FXML
     private DatePicker datePicker;
     @FXML
-    private TextField idTextField;
-    @FXML
-    private CheckBox adultCheckBox;
-    @FXML
-    private CheckBox childCheckBox;
-    @FXML
-    private Button showAvailableConnectionsButton;
-    @FXML
-    private Button logoutButton;
-    @FXML
-    private Button myTicketsButton;
-    @FXML
-    private Button reserveButton;
-    @FXML
     private TableView<Train> connectionsTableView;
     @FXML
     private TableColumn<Train, String> idColumn;
@@ -83,10 +69,6 @@ public class ConnectionsController implements Initializable {
         loggedInUser = user;
         userNameLabel.setText(loggedInUser.getFirstname());
         userEmailLabel.setText(loggedInUser.getEmail());
-    }
-
-    public User returnUserData() {
-        return loggedInUser;
     }
 
     @Override

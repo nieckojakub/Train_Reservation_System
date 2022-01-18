@@ -31,10 +31,6 @@ public class MyTicketsController implements Initializable {
     @FXML
     private Label userEmailLabel;
     @FXML
-    private Button logoutButton;
-    @FXML
-    private Button returnButton;
-    @FXML
     private ImageView trainLogoImageView;
     @FXML
     private TableView<Ticket> connectionsTableView;

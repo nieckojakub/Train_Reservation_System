@@ -24,9 +24,6 @@ public class AboutUsController implements Initializable {
     @FXML
     private ImageView trainLogoImageView;
 
-    @FXML
-    private Button exitButton;
-
     private User loggedInUser;
 
     @Override
@@ -37,14 +34,14 @@ public class AboutUsController implements Initializable {
 
     }
 
-    public void initUserData(User user) { // ta metoda wywolywana w logowaniu
+    public void initUserData(User user) {
         loggedInUser = user;
     }
 
     public void exitButtonOnAction() throws IOException {
-        Stage stage = (Stage)scenePane.getScene().getWindow(); /// aktualna scena, ktora chcemy zamknac
+        Stage stage = (Stage)scenePane.getScene().getWindow();
         stage.close();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MainPage.fxml")); ////////////////// POWROT DO STRONY LOGOWANIA I ZAMKNIECIE STRONY POPRZEDNIEJ
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MainPage.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         MainPageController mainPageController = fxmlLoader.getController();
         mainPageController.initUserData(loggedInUser);

@@ -1,7 +1,6 @@
 package train.train;
 
 import com.google.zxing.WriterException;
-import com.itextpdf.kernel.color.Lab;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -52,26 +51,9 @@ public class TicketPageController implements Initializable {
     private Label trainNumberLabel;
     @FXML
     private Label priceLabel;
-    @FXML
-    private Button logoutButton;
-    @FXML
-    private Button myTicketsButton;
-    @FXML
-    private Button returnButton;
-    @FXML
-    private Button confirmReservationButton;
-    @FXML
-    private TextField pathTextField;
-    @FXML
-    private Label pathNotSetField;
-    @FXML
-    private TextField emailTextField;
-
 
     private User loggedInUser;
     private Train selectedTrain;
-    private SendTicket sendTicket;
-
     private final JdbcDatabaseObject jdbcDatabaseObject = new JdbcDatabaseObject();
 
     @Override
@@ -81,7 +63,7 @@ public class TicketPageController implements Initializable {
         ticketImageView.setImage(train_reservationImage);
     }
 
-    public void initUserData(User user) { // ta metoda wywolywana w logowaniu
+    public void initUserData(User user) {
         loggedInUser = user;
         userNameLabel.setText(loggedInUser.getFirstname());
         userEmailLabel.setText(loggedInUser.getEmail());
@@ -102,7 +84,7 @@ public class TicketPageController implements Initializable {
     }
 
     public void confirmReservationButtonOnAction(ActionEvent event) throws IOException, WriterException, MessagingException, SQLException {
-        SendTicket.TicketviaEmail(loggedInUser, selectedTrain);
+        SendTicket.ticketViaEmail(loggedInUser, selectedTrain);
 
         Connection connection = jdbcDatabaseObject.getConnection();
         String sql = "INSERT INTO tickets (id_train, origin, destination, price, date, departure_time,\n" +
@@ -121,7 +103,7 @@ public class TicketPageController implements Initializable {
         preparedStatement.close();
         connection.close();
 
-        /////////////////////// PRZEJSCIE DO STRONY POTWIERDZENIA REJESTRACJI ///////////////
+        /////////////////////// PRZEJSCIE DO STRONY POTWIERDZENIA REZERWACJI ///////////////
         Stage stage = (Stage) mainPane.getScene().getWindow(); /// aktualna scena, ktora chcemy zamknac
         stage.close();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ReservationConfirmation.fxml")); ////////////////// POWROT DO STRONY LOGOWANIA I ZAMKNIECIE STRONY POPRZEDNIEJ
@@ -135,15 +117,15 @@ public class TicketPageController implements Initializable {
     }
 
     public void logoutButtonOnAction() throws IOException {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);   ///// tworzy alert typu Confirm
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Logout");
-        alert.setHeaderText("Return to login page");       /////////// NAPISY
+        alert.setHeaderText("Return to login page");
         alert.setContentText("Are you sure you want to logout? All unsaved reservations will be lost");
         /////////////////////////////////////////////////////
         if (alert.showAndWait().get() == ButtonType.OK) {
             Stage stage = (Stage) mainPane.getScene().getWindow(); /// aktualna scena, ktora chcemy zamknac
             stage.close();
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Login.fxml")); ////////////////// POWROT DO STRONY LOGOWANIA I ZAMKNIECIE STRONY POPRZEDNIEJ
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Login.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
             stage.setScene(scene);
             stage.show();
@@ -153,7 +135,7 @@ public class TicketPageController implements Initializable {
     public void returnButtonOnAction() throws IOException {
         Stage stage = (Stage) mainPane.getScene().getWindow(); /// aktualna scena, ktora chcemy zamknac
         stage.close();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Connections.fxml")); ////////////////// POWROT DO STRONY LOGOWANIA I ZAMKNIECIE STRONY POPRZEDNIEJ
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Connections.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         ConnectionsController connectionsController = fxmlLoader.getController();
         connectionsController.initUserData(loggedInUser);

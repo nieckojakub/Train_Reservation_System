@@ -21,14 +21,9 @@ public class RegistrationConfirmationController implements Initializable {
     @FXML
     private AnchorPane mainPane;
     @FXML
-    private Button returnToLoginButton;
-    @FXML
     private Text textMail;
     @FXML
     private ImageView greenMarkImage;
-
-    User user;
-    MailService mailService;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

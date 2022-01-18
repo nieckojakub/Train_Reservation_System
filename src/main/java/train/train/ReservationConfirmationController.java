@@ -21,13 +21,11 @@ public class ReservationConfirmationController implements Initializable {
     @FXML
     private AnchorPane mainPane;
     @FXML
-    private Button returnToConnectionsButton;
-    @FXML
     private Text textMail;
     @FXML
     private ImageView greenMarkImage;
 
-    User loggedInUser;
+    private User loggedInUser;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

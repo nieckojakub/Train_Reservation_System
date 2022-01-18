@@ -18,7 +18,7 @@
                   <Image url="@../../../../../image/register_icon.png" />
                </image>
             </ImageView>
-            <Label layoutX="114.0" layoutY="22.0" prefHeight="42.0" prefWidth="235.0" text="User Registration" textAlignment="CENTER" textFill="#ecd0cd">
+            <Label layoutX="114.0" layoutY="22.0" prefHeight="42.0" prefWidth="235.0" text="User registration" textAlignment="CENTER" textFill="#ecd0cd">
                <font>
                   <Font name="System Bold" size="25.0" />
                </font>
@@ -38,7 +38,7 @@
          </font>
       </Label>
       <TextField fx:id="emailTextField" layoutX="76.0" layoutY="213.0" prefHeight="26.0" prefWidth="358.0" promptText="email" style="-fx-background-radius: 10 10 10 10;" />
-      <Label layoutX="78.0" layoutY="193.0" text="Email Address" textFill="#ecd0cd">
+      <Label layoutX="78.0" layoutY="193.0" text="Email address" textFill="#ecd0cd">
          <font>
             <Font size="14.0" />
          </font>
@@ -49,18 +49,18 @@
          </font>
       </Label>
       <PasswordField fx:id="setPasswordField" layoutX="76.0" layoutY="271.0" prefHeight="26.0" prefWidth="358.0" promptText="password" style="-fx-background-radius: 10 10 10 10;" />
-      <Label layoutX="78.0" layoutY="310.0" text="Confirm Password" textFill="#ecd0cd">
+      <Label layoutX="78.0" layoutY="310.0" text="Confirm password" textFill="#ecd0cd">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
       <PasswordField fx:id="confirmPasswordField" layoutX="76.0" layoutY="330.0" prefHeight="26.0" prefWidth="358.0" promptText="password" style="-fx-background-radius: 10 10 10 10;" />
-      <Button fx:id="RegisterButton" layoutX="76.0" layoutY="396.0" mnemonicParsing="false" onAction="#RegistrationButtonOnAction" prefHeight="26.0" prefWidth="358.0" styleClass="button2" stylesheets="@buttonCSS.css" text="Register Now" textFill="#545871">
+      <Button fx:id="RegisterButton" layoutX="76.0" layoutY="396.0" mnemonicParsing="false" onAction="#registrationButtonOnAction" prefHeight="26.0" prefWidth="358.0" styleClass="button2" stylesheets="@buttonCSS.css" text="Register now" textFill="#545871">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Button>
-      <Button fx:id="CloseButton" layoutX="76.0" layoutY="434.0" mnemonicParsing="false" onAction="#CloseButtonOnAction" prefHeight="26.0" prefWidth="358.0" styleClass="button2" stylesheets="@buttonCSS.css" text="Cancel" textFill="#545871">
+      <Button fx:id="CloseButton" layoutX="76.0" layoutY="434.0" mnemonicParsing="false" onAction="#closeButtonOnAction" prefHeight="26.0" prefWidth="358.0" styleClass="button2" stylesheets="@buttonCSS.css" text="Cancel" textFill="#545871">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>

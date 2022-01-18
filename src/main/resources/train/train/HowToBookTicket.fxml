@@ -29,7 +29,7 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <Text fill="#ecd0cd" layoutX="53.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="It's easy to book a train ticket. In the main menu you click &quot;Get Starded&quot;, the application takes you to the booking page where you choose the starting and ending station, date and time. You click &quot;Show available connections&quot;. You click on the field you are interested in and confirm by clicking &quot;Reserve&quot;. Your ticket is already in your e-mail account. We wish you a successful journey." wrappingWidth="494.572265625">
+      <Text fill="#ecd0cd" layoutX="53.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="It's easy to book a train ticket. You should click on Get started button located on main page first, then the application will take you to the booking page where you should choose the departure station, destination station, date and time. To search for connections click on Show avaliable connections button. If you have decided to select appropriate connection click on Reserve button. Your ticket should be sent to e-mail address associated with your account." wrappingWidth="494.572265625">
          <font>
             <Font size="18.0" />
          </font>
