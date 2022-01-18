@@ -11,12 +11,9 @@ import java.util.Properties;
 public class MailService {
 
     private static User loggedInUser;
-    private Train selectedTrain;
 
-
-    public static void RegisterEmail(User user) throws MessagingException {
+    public static void registerEmail(User user) throws MessagingException {
         loggedInUser = user;
-
 
         Properties prop = new Properties();
         prop.put("mail.smtp.auth", true);
@@ -28,20 +25,18 @@ public class MailService {
         prop.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
         prop.put("mail.transport.protocol","smtp");
 
-
-        String MyAccountEmail = "railway.reservation.system.ticket@gmail.com";
+        String myAccountEmail = "railway.reservation.system.ticket@gmail.com";
         String password = "snenbwlamimkawzh";
-
 
         Session session = Session.getInstance(prop, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(MyAccountEmail, password);
+                return new PasswordAuthentication(myAccountEmail, password);
             }
         });
 
         Message message = new MimeMessage(session);
-        message.setFrom(new InternetAddress(MyAccountEmail));
+        message.setFrom(new InternetAddress(myAccountEmail));
         message.setRecipient(Message.RecipientType.TO, new InternetAddress(loggedInUser.getEmail()));
         message.setSubject("Registration completed successfully!!!");
 
@@ -59,10 +54,8 @@ public class MailService {
                 "<p><br></p>\n" +
                 "<p><br></p>";
 
-
         MimeBodyPart mimeBodyPart = new MimeBodyPart();
         mimeBodyPart.setContent(msg1,"text/html;charet=utf-8");
-
 
         Multipart multipart = new MimeMultipart();
         multipart.addBodyPart(mimeBodyPart);
@@ -71,59 +64,4 @@ public class MailService {
         Transport.send(message);
 
     }
-
-    public void SendTicketMailService(Train train, User user,String attachment)
-            throws MessagingException, IOException, WriterException {
-
-        loggedInUser = user;
-        selectedTrain=train;
-
-        Properties prop = new Properties();
-        prop.put("mail.smtp.auth", true);
-        prop.put("mail.smtp.starttls.enable", "true");
-        prop.put("mail.smtp.host", "smtp.gmail.com");
-        prop.put("mail.smtp.port", "465");
-        prop.put("mail.smtp.socketFactory.port", "465");
-        prop.put("mail.smtp.ssl.trust", "smtp.gmail.com");
-        prop.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-        prop.put("mail.transport.protocol","smtp");
-
-        String MyAccountEmail = "railway.reservation.system.ticket@gmail.com";
-        String password = "snenbwlamimkawzh";
-
-        String email_odbiorcy = loggedInUser.getEmail();
-
-
-        Session session = Session.getInstance(prop, new Authenticator() {
-            @Override
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(MyAccountEmail, password);
-            }
-        });
-
-
-        Message message = new MimeMessage(session);
-        message.setFrom(new InternetAddress(MyAccountEmail));
-        message.setRecipient(Message.RecipientType.TO, new InternetAddress(email_odbiorcy));
-        message.setSubject("Your Ticket from "+ selectedTrain.getOrigin() + " to " + selectedTrain.getDestination());
-
-        String msg1 = "";
-
-        MimeBodyPart mimeBodyPart = new MimeBodyPart();
-        mimeBodyPart.setContent(msg1,"text/html;charet=utf-8");
-
-        MimeBodyPart pdfAttachment = new MimeBodyPart();
-
-        pdfAttachment.attachFile(attachment); // PDF ATTACHMENT TICKET ///
-
-        Multipart multipart = new MimeMultipart();
-        multipart.addBodyPart(mimeBodyPart);
-        multipart.addBodyPart(pdfAttachment);
-
-
-        message.setContent(multipart);
-
-        Transport.send(message);
-    }
-
 }

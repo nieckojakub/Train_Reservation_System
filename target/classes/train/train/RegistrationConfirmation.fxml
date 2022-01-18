@@ -28,10 +28,11 @@
             <Font size="20.0" />
          </font>
       </Text>
-      <ImageView fx:id="greenMarkImage" fitHeight="100.0" fitWidth="98.0" layoutX="255.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="greenMarkImage" fitHeight="58.0" fitWidth="118.0" layoutX="277.0" layoutY="73.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../image/greenmark.png" />
          </image>
       </ImageView>
+      <AnchorPane layoutX="-7.0" prefHeight="68.0" prefWidth="619.0" style="-fx-background-color: #545871; -fx-background-radius: 0 0 70 0;" />
    </children>
 </AnchorPane>

@@ -32,9 +32,7 @@ public class SendTicket {
         return (double) Math.round(value * scale) / scale;
     }
 
-    public static void TicketviaEmail(User user, Train train) throws MessagingException, WriterException, IOException {
-
-
+    public static void ticketViaEmail(User user, Train train) throws MessagingException, WriterException, IOException {
         loggedInUser = user;
         selectedTrain = train;
 

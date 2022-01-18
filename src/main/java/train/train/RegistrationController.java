@@ -50,10 +50,6 @@ public class RegistrationController implements Initializable{
     @FXML
     private Label passwordCorrectLabel;
 
-
-
-    //referencja
-    private MailService mailService;
     private final JdbcDatabaseObject jdbcDatabaseObject = new JdbcDatabaseObject();
 
 
@@ -63,7 +59,7 @@ public class RegistrationController implements Initializable{
         registerImageView.setImage(registerImage);
     }
 
-    public void RegistrationButtonOnAction(ActionEvent event) throws IOException, MessagingException, SQLException {
+    public void registrationButtonOnAction(ActionEvent event) throws IOException, MessagingException, SQLException {
 
         boolean goodPasswordConfirmation = false;
         boolean goodPassword = false;               /////////////////// TE TRZY ZMIENNE POTRZEBNE SA DO SPRAWDZANIA DANYCH W FORMULARZU REJESTRACJI
@@ -137,7 +133,7 @@ public class RegistrationController implements Initializable{
             ////////////////////////////////////////////////////////////////////////
             if(goodPassword) {
                 if (!setPasswordField.getText().equals(confirmPasswordField.getText())) {
-                    passwordMessageLabel.setText("Confirm Password does not match");
+                    passwordMessageLabel.setText("Invalid password confirmation");
                     goodPasswordConfirmation = false;
                     new Pulse(passwordMessageLabel).play();
                 }
@@ -161,7 +157,7 @@ public class RegistrationController implements Initializable{
                 regConfirmationController.setConfirmationMailText(emailTextField.getText());
 
                 // wyslanie maila
-                MailService.RegisterEmail(user);
+                MailService.registerEmail(user);
 
                 stage.setScene(scene);
                 stage.show();
@@ -169,7 +165,7 @@ public class RegistrationController implements Initializable{
         }
     }
 
-    public void CloseButtonOnAction (ActionEvent event) throws IOException {
+    public void closeButtonOnAction(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);   ///// tworzy alert typu Confirm
         alert.setTitle("Exit");
         alert.setHeaderText("Return to login page");       /////////// NAPISY
@@ -186,18 +182,13 @@ public class RegistrationController implements Initializable{
     }
 
     private void addUserToDatabase(User user) {
-        final String databaseName =  "trainsystem"; //"traiinsystem";
-        final String databaseUser = "root";
-        final String databasePassword = "Zakopane35%"; //"Zakopane35%";
-        final String url = "jdbc:mysql://trainsystemdatabase.cdhcxmnosqym.eu-west-1.rds.amazonaws.com/" + databaseName;
-
         try{
-            Connection conn = DriverManager.getConnection(url, databaseUser, databasePassword);
+            Connection connection = jdbcDatabaseObject.getConnection();
             // Connected to database successfully...
 
             String sql = "INSERT INTO user_account (firstname, lastname, email, password) " +
                     "VALUES (?, ?, ?, ?)";
-            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, user.getFirstname());
             preparedStatement.setString(2, user.getLastname());
             preparedStatement.setString(3, user.getEmail());
@@ -217,7 +208,7 @@ public class RegistrationController implements Initializable{
                 */
             preparedStatement.execute();
             preparedStatement.close();
-            conn.close();
+            connection.close();
         }catch(Exception e){
             e.printStackTrace();
         }

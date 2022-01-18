@@ -23,9 +23,6 @@ public class HowToBookController implements Initializable {
     private AnchorPane scenePane;
     @FXML
     private ImageView trainLogoImageView;
-    @FXML
-    private Button exitButton;
-
 
     private User loggedInUser;
 
@@ -44,7 +41,7 @@ public class HowToBookController implements Initializable {
     public void exitButtonOnAction() throws IOException {
         Stage stage = (Stage) scenePane.getScene().getWindow(); /// aktualna scena, ktora chcemy zamknac
         stage.close();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MainPage.fxml")); ////////////////// POWROT DO STRONY LOGOWANIA I ZAMKNIECIE STRONY POPRZEDNIEJ
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MainPage.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         MainPageController mainPageController = fxmlLoader.getController();
         mainPageController.initUserData(loggedInUser);

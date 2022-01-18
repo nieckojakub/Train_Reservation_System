@@ -29,11 +29,7 @@ import java.util.ResourceBundle;
 public class LoginController implements Initializable {
 
     @FXML
-    private Button registerButton;
-    @FXML
     private Button exitButton;
-    @FXML
-    private Button loginButton;
     @FXML
     private Label loginMessageLabel;
     @FXML
@@ -53,9 +49,7 @@ public class LoginController implements Initializable {
     @FXML
     private BorderPane mainPane;
 
-    double x,y = 0;
-
-    User user = new User("", "", "", "");
+    private User user = new User("", "", "", "");
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
@@ -149,8 +143,5 @@ public class LoginController implements Initializable {
         Scene scene = new Scene(fxmlLoader.load());
         stage.setScene(scene);
         stage.show();
-        ////////////////////////////////////////////////////
-
-        //////////////////////////////////////////////////// ZAMYKANIE POPRZEDNIEGO OKNA (Z LOGOWANIEM)
     }
 }
