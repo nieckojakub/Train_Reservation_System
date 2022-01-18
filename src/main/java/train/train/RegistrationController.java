@@ -1,6 +1,8 @@
 package train.train;
 
 
+import animatefx.animation.Bounce;
+import animatefx.animation.Pulse;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -71,6 +73,7 @@ public class RegistrationController implements Initializable{
                 emailTextField.getText().isBlank() || setPasswordField.getText().isBlank() //////SPRAWDZANIE, CZY POLA SA PUSTE
                 || confirmPasswordField.getText().isBlank())  {
             RegistrationMessageLabel.setText("Please enter all fields");
+            new Pulse(RegistrationMessageLabel).play();
             emailMessageLabel.setText("");
             passwordMessageLabel.setText("");
             passwordCorrectLabel.setText("");
@@ -85,6 +88,7 @@ public class RegistrationController implements Initializable{
                 emailMessageLabel.setText("Invalid email address");
                 passwordMessageLabel.setText("");
                 passwordCorrectLabel.setText("");
+                new Bounce(emailMessageLabel).play();
             }
             else {
                 String[] parts = emailTextField.getText().split("@", 2);
@@ -105,6 +109,7 @@ public class RegistrationController implements Initializable{
                         emailMessageLabel.setText("Account with this email already exists");
                         passwordMessageLabel.setText("");
                         passwordCorrectLabel.setText("");
+                        new Pulse(emailMessageLabel).play();
                     }
                 }
                 else {
@@ -112,6 +117,7 @@ public class RegistrationController implements Initializable{
                     emailMessageLabel.setText("Invalid email address");
                     passwordMessageLabel.setText("");
                     passwordCorrectLabel.setText("");
+                    new Pulse(emailMessageLabel).play();
                 }
             }
 
@@ -123,6 +129,7 @@ public class RegistrationController implements Initializable{
                 } else {
                     passwordCorrectLabel.setText("Password should contain at least 8 characters");
                     passwordMessageLabel.setText("");
+                    new Pulse(passwordCorrectLabel).play();
                     goodPassword = false;
                 }
             }
@@ -132,6 +139,7 @@ public class RegistrationController implements Initializable{
                 if (!setPasswordField.getText().equals(confirmPasswordField.getText())) {
                     passwordMessageLabel.setText("Confirm Password does not match");
                     goodPasswordConfirmation = false;
+                    new Pulse(passwordMessageLabel).play();
                 }
                 else {                                                                       /////////// SPRAWDZENIE POTWIERDZENIA HASLA
                     passwordMessageLabel.setText("");
